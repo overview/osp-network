@@ -2,15 +2,15 @@
 
 import os
 
-from flask import Flask
+from flask import Flask, render_template
 
 
 app = Flask(__name__)
 
 
 @app.route('/')
-def index():
-    return 'network'
+def network():
+    return render_template('network.html')
 
 
 if __name__ == '__main__':
