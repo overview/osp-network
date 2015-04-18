@@ -23,7 +23,16 @@ module.exports = React.createClass({
    * Initialize OSD.
    */
   componentDidMount: function() {
-    console.log(OpenSeadragon);
+
+    // TODO: Env-ify the source.
+    this.osd = OpenSeadragon({
+      id: 'image',
+      tileSources: 'http://localhost:5001/hlom.dzi',
+      immediateRender: true,
+      showNavigationControl: false,
+      showNavigator: true
+    });
+
   }
 
 
