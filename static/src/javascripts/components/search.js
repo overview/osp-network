@@ -103,7 +103,7 @@ module.exports = React.createClass({
    *
    * @param {String} q
    */
-  query: function(q) {
+  query: function(q, cb) {
     this.getFlux().actions.query(q);
   },
 
