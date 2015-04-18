@@ -16,7 +16,12 @@ module.exports = React.createClass({
    * Render the top-level structure.
    */
   render: function() {
-    return <Image />;
+    return (
+      <div className="outer">
+        <Image />
+        <Search />
+      </div>
+    );
   }
 
 
