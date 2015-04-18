@@ -2,8 +2,14 @@
 <html lang="en">
 
 <head>
+
   <title>{% block title %}OSP{% endblock %}</title>
   {% block css %}{% endblock %}
+
+  {% if config.DEBUG %}
+    <script src="//localhost:35729/livereload.js"></script>
+  {% endif %}
+
 </head>
 
 <body>
