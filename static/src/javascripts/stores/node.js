@@ -18,7 +18,19 @@ module.exports = Fluxxor.createStore({
    * @param {String} q - The query string.
    */
   onQuery: function(q) {
-    console.log(q);
+
+    var self = this;
+
+    $.ajax({
+      url: '/search',
+      dataType: 'json',
+      data: {q:q},
+      success: function(res) {
+        self.results = res.hits;
+        self.emit('change');
+      }
+    });
+
   }
 
 
