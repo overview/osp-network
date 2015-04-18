@@ -1,0 +1,13 @@
+{
+  "name": "osp-network",
+  "version": "0.0.0",
+  "homepage": "https://github.com/overview/osp-network",
+  "authors": [
+    "David McClure <davidwilliammcclure@gmail.com>"
+  ],
+  "description": "A 22.5 billion pixel render of the OSP citation graph.",
+  "license": "MIT",
+  "devDependencies": {
+    "openseadragon": "https://github.com/openseadragon/openseadragon/releases/download/v1.2.1/openseadragon-bin-1.2.1.tar.gz"
+  }
+}

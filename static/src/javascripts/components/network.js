@@ -2,6 +2,7 @@
 
 var React = require('react');
 var Fluxxor = require('fluxxor');
+var Image = require('./image');
 
 
 module.exports = React.createClass({
@@ -14,7 +15,7 @@ module.exports = React.createClass({
    * Render the top-level structure.
    */
   render: function() {
-    return <h1>Network</h1>;
+    return <Image />;
   }
 
 
