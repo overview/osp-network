@@ -28,8 +28,14 @@ module.exports = React.createClass({
    * Initialize Selectize.
    */
   componentDidMount: function() {
+
+    // Get the <select>.
     this.select = $(this.getDOMNode()).find('select');
+
+    // Start Selectize.
     this.select.selectize()
+    this.selectize = this.select[0].selectize;
+
   }
 
 
