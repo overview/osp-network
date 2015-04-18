@@ -1,0 +1,16 @@
+{
+  "name": "osp-network",
+  "version": "0.0.0",
+  "description": "An 22.5 billion pixel render of the OSP citation graph.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/overview/osp-network.git"
+  },
+  "author": "David McClure <davidwilliammcclure@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/overview/osp-network/issues"
+  },
+  "homepage": "https://github.com/overview/osp-network"
+}
