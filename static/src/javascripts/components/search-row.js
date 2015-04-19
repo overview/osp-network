@@ -78,7 +78,7 @@ module.exports = React.createClass({
    */
   onClick: function() {
     // TODO
-    console.log(this.props.hit);
+    console.log('click');
   },
 
 
