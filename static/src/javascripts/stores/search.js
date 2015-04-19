@@ -7,8 +7,8 @@ module.exports = Fluxxor.createStore({
 
 
   actions: {
-    ACTIVATE_SEARCH: 'onActivate',
-    DEACTIVATE_SEARCH: 'onDeactivate'
+    SEARCH_ACTIVATE: 'onActivate',
+    SEARCH_DEACTIVATE: 'onDeactivate'
   },
 
 

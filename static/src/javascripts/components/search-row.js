@@ -14,8 +14,13 @@ module.exports = React.createClass({
    */
   render: function() {
     return (
-      <tr className="search-row">
+      <tr
+        className="search-row"
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}>
+
         <td className="degree">10</td>
+
         <td className="text">
 
           <p>
@@ -40,8 +45,25 @@ module.exports = React.createClass({
           </p>
 
         </td>
+
       </tr>
     );
+  },
+
+
+  /**
+   * When the row is highlighted.
+   */
+  onMouseEnter: function() {
+    this.getFlux().actions.node.highlight();
+  },
+
+
+  /**
+   * When the row is unhighlighted.
+   */
+  onMouseLeave: function() {
+    this.getFlux().actions.node.unhighlight();
   },
 
 

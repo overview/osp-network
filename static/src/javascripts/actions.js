@@ -6,12 +6,26 @@ module.exports = {
   node: {
 
     /**
-     * When a query is entered.
+     * Search nodes.
      *
      * @param {String} q - The query string.
      */
     query: function(q) {
-      this.dispatch('QUERY_NODES', q);
+      this.dispatch('NODE_QUERY', q);
+    },
+
+    /**
+     * Highlight a node.
+     */
+    highlight: function() {
+      this.dispatch('NODE_HIGHLIGHT');
+    },
+
+    /**
+     * Unhighlight a node.
+     */
+    unhighlight: function() {
+      this.dispatch('NODE_UNHIGHLIGHT');
     }
 
   },
@@ -23,14 +37,14 @@ module.exports = {
      * Activate the browse UI.
      */
     activate: function() {
-      this.dispatch('ACTIVATE_SEARCH');
+      this.dispatch('SEARCH_ACTIVATE');
     },
 
     /**
      * Deactivate the browse UI.
      */
     deactivate: function() {
-      this.dispatch('DEACTIVATE_SEARCH');
+      this.dispatch('SEARCH_DEACTIVATE');
     }
 
   }
