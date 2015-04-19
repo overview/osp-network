@@ -29,15 +29,17 @@ module.exports = Fluxxor.createStore({
   highlight: function(node) {
     this.highlighted = node;
     this.emit('change');
+    this.emit('highlight');
   },
 
 
   /**
    * Unhighlight a node.
    */
-  unhighlight: function(node) {
+  unhighlight: function() {
     this.highlighted = null;
     this.emit('change');
+    this.emit('unhighlight');
   },
 
 
@@ -47,15 +49,17 @@ module.exports = Fluxxor.createStore({
   select: function(node) {
     this.selected = node;
     this.emit('change');
+    this.emit('select');
   },
 
 
   /**
    * Unselect a node.
    */
-  unselect: function(node) {
+  unselect: function() {
     this.selected = null;
     this.emit('change');
+    this.emit('unselect');
   }
 
 

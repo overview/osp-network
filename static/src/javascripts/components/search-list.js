@@ -20,11 +20,11 @@ module.exports = React.createClass({
    */
   getStateFromFlux: function() {
 
-    var searchStore = this.getFlux().store('SearchStore');
+    var search = this.getFlux().store('SearchStore');
 
     return {
-      active: searchStore.active,
-      results: searchStore.results
+      active: search.active,
+      results: search.results
     };
 
   },

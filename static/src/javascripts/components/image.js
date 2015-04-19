@@ -17,14 +17,15 @@ module.exports = React.createClass({
 
 
   /**
-   * Get the selection state.
+   * Get selection state.
    */
   getStateFromFlux: function() {
 
-    var selectionStore = this.getFlux().store('SelectionStore');
+    var selection = this.getFlux().store('SelectionStore');
 
     return {
-      highlighted: selectionStore.highlighted
+      highlighted: selection.highlighted,
+      selected: selection.selected
     };
 
   },
@@ -34,36 +35,23 @@ module.exports = React.createClass({
    * Render image container.
    */
   render: function() {
-    this.renderHighlight();
     return <div id="image"></div>;
   },
 
 
   /**
-   * Render highlight markers.
+   * Start the viewer.
    */
-  renderHighlight: function() {
-
-    // If highlight, show marker.
-    if (this.state.highlighted) {
-      // TODO: Break this out into a proper model.
-      var x = Math.round(this.state.highlighted._source.location.lon);
-      var y = Math.round(this.state.highlighted._source.location.lat);
-      this.setMarker(x, y);
-    }
-
-    // Otherwise, clear marker.
-    else if (this.isMounted()) {
-      this.osd.clearOverlays();
-    }
-
+  componentDidMount: function() {
+    this._initOSD();
+    this._bindEvents();
   },
 
 
   /**
    * Initialize OSD.
    */
-  componentDidMount: function() {
+  _initOSD: function() {
 
     // TODO: Env-ify the source.
     this.osd = OpenSeadragon({
@@ -90,10 +78,45 @@ module.exports = React.createClass({
 
 
   /**
-   * When the image is clicked.
+   * Listen for node selections.
    */
-  onRelease: function() {
-    this.getFlux().actions.search.deactivate();
+  _bindEvents: function() {
+
+    var selection = this.getFlux().store('SelectionStore');
+
+    selection.on(
+      'highlight',
+      _.bind(this.highlight, this)
+    );
+
+    selection.on(
+      'unhighlight',
+      _.bind(this.unhighlight, this)
+    );
+
+  },
+
+
+  /**
+   * Render a highlight marker.
+   *
+   * @param {Object} node
+   */
+  highlight: function(node) {
+
+    // TODO: Break this out into a proper model.
+    var x = Math.round(node._source.location.lon);
+    var y = Math.round(node._source.location.lat);
+    this.setMarker(x, y);
+
+  },
+
+
+  /**
+   * Clear the highlight marker.
+   */
+  unhighlight: function() {
+    this.osd.clearOverlays();
   },
 
 
@@ -117,6 +140,14 @@ module.exports = React.createClass({
       element: marker, location: point
     });
 
+  },
+
+
+  /**
+   * When the image is clicked.
+   */
+  onRelease: function() {
+    this.getFlux().actions.search.deactivate();
   }
 
 
