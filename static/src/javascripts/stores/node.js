@@ -19,7 +19,7 @@ module.exports = Fluxxor.createStore({
    */
   initialize: function() {
 
-    this.results = false;
+    this.results = null;
 
     // Debounce the query callback.
     this.onQuery = _.debounce(this.onQuery, 200);
@@ -37,10 +37,10 @@ module.exports = Fluxxor.createStore({
     var self = this;
 
     // Catch duplicates.
-    if (q.trim() == this.q) return;
+    if (this.q && this.q == q.trim()) return;
 
     // Show spinner.
-    this.results = false;
+    this.results = null;
     this.emit('change');
 
     // Cancel an in-flight request.

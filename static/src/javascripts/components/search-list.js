@@ -35,7 +35,7 @@ module.exports = React.createClass({
   render: function() {
 
     // Loading spinner.
-    if (!this.state.results) {
+    if (_.isNull(this.state.results)) {
       return <h3>spinner</h3>;
     }
 
