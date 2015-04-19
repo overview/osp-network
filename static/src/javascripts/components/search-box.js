@@ -9,7 +9,7 @@ module.exports = React.createClass({
 
   mixins: [
     Fluxxor.FluxMixin(React),
-    Fluxxor.StoreWatchMixin('NodeStore', 'SearchStore'),
+    Fluxxor.StoreWatchMixin('SearchStore'),
     React.addons.LinkedStateMixin
   ],
 
@@ -27,12 +27,11 @@ module.exports = React.createClass({
    */
   getStateFromFlux: function() {
 
-    var nodeStore = this.getFlux().store('NodeStore');
     var searchStore = this.getFlux().store('SearchStore');
 
     return {
       active: searchStore.active,
-      loading: nodeStore.loading
+      loading: searchStore.loading
     };
 
   },
@@ -42,7 +41,7 @@ module.exports = React.createClass({
    * On startup, empty query.
    */
   componentDidMount: function() {
-    this.getFlux().actions.node.query();
+    this.getFlux().actions.search.query();
   },
 
 
@@ -93,7 +92,7 @@ module.exports = React.createClass({
    * When the query is changed.
    */
   onKeyUp: function() {
-    this.getFlux().actions.node.query(this.state.query);
+    this.getFlux().actions.search.query(this.state.query);
   },
 
 

@@ -11,7 +11,7 @@ module.exports = React.createClass({
 
   mixins: [
     Fluxxor.FluxMixin(React),
-    Fluxxor.StoreWatchMixin('NodeStore', 'SearchStore'),
+    Fluxxor.StoreWatchMixin('SearchStore'),
   ],
 
 
@@ -20,12 +20,11 @@ module.exports = React.createClass({
    */
   getStateFromFlux: function() {
 
-    var nodeStore = this.getFlux().store('NodeStore');
     var searchStore = this.getFlux().store('SearchStore');
 
     return {
-      results: nodeStore.results,
-      active: searchStore.active
+      active: searchStore.active,
+      results: searchStore.results
     };
 
   },

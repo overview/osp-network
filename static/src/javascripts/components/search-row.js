@@ -58,7 +58,7 @@ module.exports = React.createClass({
    * When the row is highlighted.
    */
   onMouseEnter: function() {
-    this.getFlux().actions.node.highlight();
+    // TODO
   },
 
 
@@ -66,7 +66,7 @@ module.exports = React.createClass({
    * When the row is unhighlighted.
    */
   onMouseLeave: function() {
-    this.getFlux().actions.node.unhighlight();
+    // TODO
   },
 
 
