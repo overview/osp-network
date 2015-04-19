@@ -23,7 +23,7 @@ module.exports = Fluxxor.createStore({
 
     this.results = null;
     this.lastQuery = null;
-    this.active = false;
+    this.active = true;
     this.loading = false;
 
     // Debounce the query callback.
