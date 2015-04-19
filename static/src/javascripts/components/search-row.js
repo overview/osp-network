@@ -18,7 +18,7 @@ module.exports = React.createClass({
         <td className="degree">10</td>
         <td className="text">
 
-          <div>
+          <p>
 
             <i className="fa fa-bookmark-o"></i>
 
@@ -27,17 +27,17 @@ module.exports = React.createClass({
               dangerouslySetInnerHTML={{__html: this._title()}}>
             </span>
 
-          </div>
+          </p>
 
-          <div
+          <p
             className="author"
             dangerouslySetInnerHTML={{__html: this._author()}}>
-          </div>
+          </p>
 
-          <small
+          <p
             className="publisher"
             dangerouslySetInnerHTML={{__html: this._publisher()}}>
-          </small>
+          </p>
 
         </td>
       </tr>
