@@ -36,7 +36,7 @@ module.exports = React.createClass({
     return (
       <div id="search-box">
 
-        <div className="input-group">
+        <div className="form-group">
 
           <input
             className="form-control"
