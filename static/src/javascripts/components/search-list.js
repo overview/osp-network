@@ -36,7 +36,7 @@ module.exports = React.createClass({
 
     // Loading spinner.
     if (_.isNull(this.state.results)) {
-      return <i className="fa fa-spin fa-circle-o-notch"></i>;
+      return <i className="fa fa-spin fa-cog"></i>;
     }
 
     var total = Number(this.state.results.total);
