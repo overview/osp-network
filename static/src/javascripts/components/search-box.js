@@ -9,7 +9,7 @@ module.exports = React.createClass({
 
   mixins: [
     Fluxxor.FluxMixin(React),
-    Fluxxor.StoreWatchMixin('SearchStore'),
+    Fluxxor.StoreWatchMixin('NodeStore', 'SearchStore'),
     React.addons.LinkedStateMixin
   ],
 
@@ -27,10 +27,12 @@ module.exports = React.createClass({
    */
   getStateFromFlux: function() {
 
+    var nodeStore = this.getFlux().store('NodeStore');
     var searchStore = this.getFlux().store('SearchStore');
 
     return {
-      active: searchStore.active
+      active: searchStore.active,
+      loading: nodeStore.loading
     };
 
   },
@@ -53,13 +55,21 @@ module.exports = React.createClass({
       'active': this.state.active
     });
 
+    var iconCx = React.addons.classSet({
+      'fa': true,
+      'fa-fw': true,
+      'fa-search': !this.state.loading,
+      'fa-cog': this.state.loading,
+      'fa-spin': this.state.loading
+    });
+
     return (
       <div id="search-box" className={boxCx}>
 
         <div className="input-group">
 
           <span className="input-group-addon">
-            <i className="fa fa-search"></i>
+            <i className={iconCx}></i>
           </span>
 
           <input

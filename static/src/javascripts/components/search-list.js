@@ -36,9 +36,9 @@ module.exports = React.createClass({
    */
   render: function() {
 
-    // Loading spinner.
+    // Show nothing on startup.
     if (_.isNull(this.state.results)) {
-      return <i className="fa fa-spin fa-cog"></i>;
+      return null;
     }
 
     var total = Number(this.state.results.total);

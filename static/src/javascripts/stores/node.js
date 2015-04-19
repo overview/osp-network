@@ -21,6 +21,7 @@ module.exports = Fluxxor.createStore({
 
     this.results = null;
     this.lastQuery = null;
+    this.loading = false;
 
     // Debounce the query callback.
     this.onQuery = _.debounce(this.onQuery, 300);
@@ -41,20 +42,21 @@ module.exports = Fluxxor.createStore({
     if (_.isString(q)) q = q.trim();
     if (this.lastQuery === q) return;
 
-    // Show spinner.
-    this.results = null;
-    this.emit('change');
-
     // Cancel an in-flight request.
     if (this.req) {
       this.req.abort();
     }
+
+    // Show spinner.
+    this.loading = true;
+    this.emit('change');
 
     // Load results.
     this.req = request
       .get('/search')
       .query({q:q})
       .end(function(err, res) {
+        self.loading = false;
         self.results = res.body.hits;
         self.emit('change');
       });
