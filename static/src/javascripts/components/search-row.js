@@ -9,6 +9,9 @@ _.mixin(require('lodash-deep'));
 module.exports = React.createClass({
 
 
+  mixins: [Fluxxor.FluxMixin(React)],
+
+
   /**
    * Render a search result row.
    */
