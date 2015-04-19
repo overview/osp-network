@@ -36,14 +36,14 @@ module.exports = React.createClass({
 
     // Loading spinner.
     if (_.isNull(this.state.results)) {
-      return <h3>spinner</h3>;
+      return <i className="fa fa-spin fa-circle-o-notch"></i>;
     }
 
     var total = Number(this.state.results.total);
 
     // No results.
     if (total === 0) {
-      return <h3>No results</h3>;
+      return <i className="fa fa-ban"></i>;
     }
 
     else {
