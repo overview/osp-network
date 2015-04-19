@@ -32,8 +32,8 @@ module.exports = Fluxxor.createStore({
   /**
    * Deactivate searching.
    */
-  onDectivate: function() {
-    this.deactive = false;
+  onDeactivate: function() {
+    this.active = false;
     this.emit('change');
   }
 

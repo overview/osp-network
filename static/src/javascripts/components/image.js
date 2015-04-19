@@ -1,5 +1,6 @@
 
 
+var _ = require('lodash');
 var React = require('react');
 var Fluxxor = require('fluxxor');
 require('osd');
@@ -39,6 +40,20 @@ module.exports = React.createClass({
 
     });
 
+    _.bindAll(this, 'onMove');
+
+    // Listen for pan/zoom.
+    this.osd.addHandler('zoom', _.debounce(this.onMove, 500));
+    this.osd.addHandler('pan',  _.debounce(this.onMove, 500));
+
+  },
+
+
+  /**
+   * When the image is moved.
+   */
+  onMove: function() {
+    this.getFlux().actions.search.deactivate();
   }
 
 

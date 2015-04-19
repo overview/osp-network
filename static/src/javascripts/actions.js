@@ -24,6 +24,13 @@ module.exports = {
      */
     activate: function() {
       this.dispatch('ACTIVATE_SEARCH');
+    },
+
+    /**
+     * Deactivate the browse UI.
+     */
+    deactivate: function() {
+      this.dispatch('DEACTIVATE_SEARCH');
     }
 
   }
