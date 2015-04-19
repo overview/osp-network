@@ -36,7 +36,11 @@ module.exports = React.createClass({
     return (
       <div id="search-box">
 
-        <div className="form-group">
+        <div className="input-group">
+
+          <span className="input-group-addon">
+            <i className="fa fa-search"></i>
+          </span>
 
           <input
             className="form-control"
