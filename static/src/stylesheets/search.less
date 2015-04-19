@@ -68,7 +68,7 @@
 
   &:hover {
     cursor: pointer;
-    .title {
+    .title, .title em {
       color: @color-hl;
     }
   }
@@ -84,7 +84,12 @@
 
   em {
     font-style: normal;
-    color: whitesmoke;
+    color: @brand-primary;
+  }
+
+  i {
+    margin-right: 6px;
+    color: @brand-primary;
   }
 
 }

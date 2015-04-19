@@ -19,17 +19,19 @@ module.exports = React.createClass({
         <td className="text">
 
           <div>
+
+            <i className="fa fa-bookmark-o"></i>
+
             <span
               className="title"
               dangerouslySetInnerHTML={{__html: this._title()}}>
             </span>
 
-            <span> by </span>
+          </div>
 
-            <span
-              className="author"
-              dangerouslySetInnerHTML={{__html: this._author()}}>
-            </span>
+          <div
+            className="author"
+            dangerouslySetInnerHTML={{__html: this._author()}}>
           </div>
 
           <small
