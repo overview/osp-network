@@ -83,33 +83,6 @@ module.exports = React.createClass({
    */
   _publisher: function() {
     return this._getHighlight('publisher');
-  },
-
-
-  /**
-   * Assignment count field.
-   */
-  _count: function() {
-    var count = this.props.hit._source.count;
-    return Number(count).toLocaleString();
-  },
-
-
-  /**
-   * Teaching percentile field.
-   */
-  _percentile: function() {
-    var percentile = this.props.hit._source.percent;
-    return Number(percentile).toFixed(2)+'%';
-  },
-
-
-  /**
-   * Teaching rank field.
-   */
-  _rank: function() {
-    var rank = this.props.hit._source.rank;
-    return Number(rank).toLocaleString();
   }
 
 
