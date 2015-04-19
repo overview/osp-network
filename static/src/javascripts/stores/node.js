@@ -36,6 +36,9 @@ module.exports = Fluxxor.createStore({
 
     var self = this;
 
+    // Catch duplicates.
+    if (q.trim() == this.q) return;
+
     // Show spinner.
     this.results = false;
     this.emit('change');
@@ -53,6 +56,8 @@ module.exports = Fluxxor.createStore({
         self.results = res.body.hits;
         self.emit('change');
       });
+
+    this.q = q;
 
   }
 

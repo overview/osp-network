@@ -2,11 +2,46 @@
 
 #search {
   position: fixed;
-  top: @px-gutter;
   left: @px-gutter;
+  top: @px-gutter;
+  color: whitesmoke;
+}
+
+#search-box {
+
+  input {
+
+    width: 300px;
+    padding: 20px 10px;
+    border: none;
+    background: rgba(0,0,0,0.8);
+    font-size: 1.2em;
+    font-weight: 300;
+    color: inherit;
+
+    &:focus {
+      box-shadow: none;
+    }
+
+  }
+
 }
 
 #search-list {
   max-width: 300px;
-  color: whitesmoke;
+  max-height: 80vh;
+  overflow: scroll;
+}
+
+.search-row {
+
+  .title {
+    font-weight: bold
+  }
+
+  em {
+    font-style: normal;
+    text-decoration: underline;
+  }
+
 }
