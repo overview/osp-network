@@ -14,21 +14,23 @@ module.exports = React.createClass({
    */
   render: function() {
     return (
-      <div className="search-row">
+      <tr className="search-row">
+        <td className="text">
 
-        <span
-          className="title"
-          dangerouslySetInnerHTML={{__html: this._title()}}>
-        </span>
+          <span
+            className="title"
+            dangerouslySetInnerHTML={{__html: this._title()}}>
+          </span>
 
-        <span> by </span>
+          <span> by </span>
 
-        <span
-          className="author"
-          dangerouslySetInnerHTML={{__html: this._author()}}>
-        </span>
+          <span
+            className="author"
+            dangerouslySetInnerHTML={{__html: this._author()}}>
+          </span>
 
-      </div>
+        </td>
+      </tr>
     );
   },
 

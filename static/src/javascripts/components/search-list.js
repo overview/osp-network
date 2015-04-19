@@ -55,7 +55,9 @@ module.exports = React.createClass({
 
       return (
         <div id="search-list">
-          {rows}
+          <table>
+            <tbody>{rows}</tbody>
+          </table>
         </div>
       );
 

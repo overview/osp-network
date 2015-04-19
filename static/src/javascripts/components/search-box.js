@@ -59,7 +59,7 @@ module.exports = React.createClass({
    */
   onKeyUp: function() {
     this.getFlux().actions.query(this.state.query);
-  },
+  }
 
 
 });

@@ -22,7 +22,7 @@ module.exports = Fluxxor.createStore({
     this.results = null;
 
     // Debounce the query callback.
-    this.onQuery = _.debounce(this.onQuery, 200);
+    this.onQuery = _.debounce(this.onQuery, 300);
 
   },
 
@@ -35,9 +35,6 @@ module.exports = Fluxxor.createStore({
   onQuery: function(q) {
 
     var self = this;
-
-    // Catch duplicates.
-    if (this.q && this.q == q.trim()) return;
 
     // Show spinner.
     this.results = null;
@@ -56,8 +53,6 @@ module.exports = Fluxxor.createStore({
         self.results = res.body.hits;
         self.emit('change');
       });
-
-    this.q = q;
 
   }
 
