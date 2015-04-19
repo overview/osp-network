@@ -10,9 +10,9 @@ module.exports = Fluxxor.createStore({
 
 
   actions: {
-    SEARCH_ACTIVATE: 'onActivate',
-    SEARCH_DEACTIVATE: 'onDeactivate',
-    SEARCH_QUERY: 'onQuery'
+    SEARCH_ACTIVATE: 'activate',
+    SEARCH_DEACTIVATE: 'deactivate',
+    SEARCH_QUERY: 'query'
   },
 
 
@@ -27,8 +27,26 @@ module.exports = Fluxxor.createStore({
     this.loading = false;
 
     // Debounce the query callback.
-    this.onQuery = _.debounce(this.onQuery, 300);
+    this.query = _.debounce(this.query, 300);
 
+  },
+
+
+  /**
+   * Activate searching.
+   */
+  activate: function() {
+    this.active = true;
+    this.emit('change');
+  },
+
+
+  /**
+   * Deactivate searching.
+   */
+  deactivate: function() {
+    this.active = false;
+    this.emit('change');
   },
 
 
@@ -37,7 +55,7 @@ module.exports = Fluxxor.createStore({
    *
    * @param {String} q - The query string.
    */
-  onQuery: function(q) {
+  query: function(q) {
 
     var self = this;
 
@@ -66,24 +84,6 @@ module.exports = Fluxxor.createStore({
 
     this.lastQuery = q;
 
-  },
-
-
-  /**
-   * Activate searching.
-   */
-  onActivate: function() {
-    this.active = true;
-    this.emit('change');
-  },
-
-
-  /**
-   * Deactivate searching.
-   */
-  onDeactivate: function() {
-    this.active = false;
-    this.emit('change');
   }
 
 

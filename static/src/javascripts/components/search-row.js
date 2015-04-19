@@ -20,7 +20,8 @@ module.exports = React.createClass({
       <tr
         className="search-row"
         onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}>
+        onMouseLeave={this.onMouseLeave}
+        onClick={this.onClick}>
 
         <td className="degree">10</td>
 
@@ -59,6 +60,7 @@ module.exports = React.createClass({
    */
   onMouseEnter: function() {
     // TODO
+    console.log('enter');
   },
 
 
@@ -67,6 +69,16 @@ module.exports = React.createClass({
    */
   onMouseLeave: function() {
     // TODO
+    console.log('leave');
+  },
+
+
+  /**
+   * When the row is selected.
+   */
+  onClick: function() {
+    // TODO
+    console.log('click');
   },
 
 
