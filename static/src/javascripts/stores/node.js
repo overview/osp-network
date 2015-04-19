@@ -10,7 +10,7 @@ module.exports = Fluxxor.createStore({
 
 
   actions: {
-    QUERY: 'onQuery'
+    QUERY_NODES: 'onQuery'
   },
 
 

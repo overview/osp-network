@@ -9,23 +9,31 @@ module.exports = React.createClass({
 
   mixins: [
     Fluxxor.FluxMixin(React),
+    Fluxxor.StoreWatchMixin('SearchStore'),
     React.addons.LinkedStateMixin
   ],
 
 
   /**
-   * By default, empty query.
+   * Get initial query and active state.
    */
-  getInitialState: function() {
-    return { query: null };
+  getStateFromFlux: function() {
+
+    var searchStore = this.getFlux().store('SearchStore');
+
+    return {
+      active: searchStore.active,
+      query: null
+    };
+
   },
 
 
   /**
-   * On startup, execute the empty query.
+   * On startup, empty query.
    */
   componentDidMount: function() {
-    this.getFlux().actions.query();
+    this.getFlux().actions.node.query();
   },
 
 
@@ -33,8 +41,13 @@ module.exports = React.createClass({
    * Render search container.
    */
   render: function() {
+
+    var boxCx = React.addons.classSet({
+      'active': this.state.active
+    });
+
     return (
-      <div id="search-box">
+      <div id="search-box" className={boxCx}>
 
         <div className="input-group">
 
@@ -48,6 +61,7 @@ module.exports = React.createClass({
             placeholder="Search texts..."
             valueLink={this.linkState('query')}
             onKeyUp={this.onKeyUp}
+            onFocus={this.onFocus}
           />
 
         </div>
@@ -62,7 +76,15 @@ module.exports = React.createClass({
    * When the query is changed.
    */
   onKeyUp: function() {
-    this.getFlux().actions.query(this.state.query);
+    this.getFlux().actions.node.query(this.state.query);
+  },
+
+
+  /**
+   * When the input is focused.
+   */
+  onFocus: function() {
+    this.getFlux().actions.search.activate();
   }
 
 
