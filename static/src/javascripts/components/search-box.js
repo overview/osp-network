@@ -1,10 +1,7 @@
 
 
-var _ = require('lodash');
-var $ = require('jquery');
 var React = require('react/addons');
 var Fluxxor = require('fluxxor');
-require('selectize');
 
 
 module.exports = React.createClass({
@@ -29,7 +26,7 @@ module.exports = React.createClass({
    */
   render: function() {
     return (
-      <div id="search">
+      <div id="search-box">
 
         <div className="input-group">
 

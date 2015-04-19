@@ -13,6 +13,14 @@ module.exports = Fluxxor.createStore({
 
 
   /**
+   * No results on startup.
+   */
+  initialize: function() {
+    this.results = false;
+  },
+
+
+  /**
    * Run a search query.
    *
    * @param {String} q - The query string.
@@ -21,6 +29,11 @@ module.exports = Fluxxor.createStore({
 
     var self = this;
 
+    // Show spinner.
+    this.results = false;
+    this.emit('change');
+
+    // Load results.
     $.ajax({
       url: '/search',
       dataType: 'json',
