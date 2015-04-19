@@ -15,19 +15,27 @@ module.exports = React.createClass({
   render: function() {
     return (
       <tr className="search-row">
+        <td className="degree">10</td>
         <td className="text">
 
-          <span
-            className="title"
-            dangerouslySetInnerHTML={{__html: this._title()}}>
-          </span>
+          <div>
+            <span
+              className="title"
+              dangerouslySetInnerHTML={{__html: this._title()}}>
+            </span>
 
-          <span> by </span>
+            <span> by </span>
 
-          <span
-            className="author"
-            dangerouslySetInnerHTML={{__html: this._author()}}>
-          </span>
+            <span
+              className="author"
+              dangerouslySetInnerHTML={{__html: this._author()}}>
+            </span>
+          </div>
+
+          <small
+            className="publisher"
+            dangerouslySetInnerHTML={{__html: this._publisher()}}>
+          </small>
 
         </td>
       </tr>

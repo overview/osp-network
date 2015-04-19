@@ -53,9 +53,18 @@ module.exports = React.createClass({
         return <SearchRow hit={h} key={h._id} />;
       });
 
+      var tableCx = React.addons.classSet({
+        'table': true,
+        'table-condensed': true
+      });
+
       return (
         <div id="search-list">
-          <table>
+          <table className={tableCx}>
+            <thead>
+              <th>Degree</th>
+              <th>Text</th>
+            </thead>
             <tbody>{rows}</tbody>
           </table>
         </div>

@@ -5,20 +5,24 @@
   width: @px-search-width;
   top: @px-gutter;
   left: @px-gutter;
-  color: whitesmoke;
 }
 
 #search-box {
+
+  .form-group {
+    margin-bottom: 8px;
+  }
 
   input {
 
     width: 100%;
     padding: 20px 10px;
+    border-radius: 2px;
     border: none;
-    background: rgba(0,0,0,0.8);
-    font-size: 1.2em;
-    font-weight: 300;
-    color: inherit;
+    background: rgba(0,0,0,0.7);
+    font-size: 1.4em;
+    font-weight: 200;
+    color: whitesmoke;
 
     &:focus {
       box-shadow: none;
@@ -29,20 +33,58 @@
 }
 
 #search-list {
-  max-width: 300px;
+
   max-height: 80vh;
   overflow: scroll;
+  border-radius: 2px;
+  background: rgba(0,0,0,0.7);
+  color: darken(white, 30%);
+  font-weight: 200;
+
+  table {
+
+    margin-bottom: 0;
+
+    th {
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    td {
+      border-color: gray;
+    }
+
+    td.degree {
+      text-align: center;
+      vertical-align: middle;
+      font-size: 1.2em;
+    }
+
+  }
+
 }
 
 .search-row {
+
+  &:hover {
+    cursor: pointer;
+    .title {
+      color: @color-hl;
+    }
+  }
 
   .title {
     font-weight: bold
   }
 
+  .publisher {
+    font-size: 10px;
+    font-style: italic;
+  }
+
   em {
     font-style: normal;
-    text-decoration: underline;
+    color: whitesmoke;
   }
 
 }
