@@ -41,6 +41,10 @@ module.exports = React.createClass({
       this.setMarker(x, y);
     }
 
+    else if (this.isMounted()) {
+      this.osd.clearOverlays();
+    }
+
     return <div id="image"></div>;
 
   },
