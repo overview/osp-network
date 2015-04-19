@@ -1,5 +1,6 @@
 
 
+var $ = require('jquery');
 var _ = require('lodash');
 var React = require('react');
 var Fluxxor = require('fluxxor');
@@ -9,14 +10,39 @@ require('osd');
 module.exports = React.createClass({
 
 
-  mixins: [Fluxxor.FluxMixin(React)],
+  mixins: [
+    Fluxxor.FluxMixin(React),
+    Fluxxor.StoreWatchMixin('SelectionStore')
+  ],
+
+
+  /**
+   * Get the selection state.
+   */
+  getStateFromFlux: function() {
+
+    var selectionStore = this.getFlux().store('SelectionStore');
+
+    return {
+      highlighted: selectionStore.highlighted
+    };
+
+  },
 
 
   /**
    * Render image container.
    */
   render: function() {
+
+    if (this.state.highlighted) {
+      var x = Math.round(this.state.highlighted._source.location.lon);
+      var y = Math.round(this.state.highlighted._source.location.lat);
+      this.setMarker(x, y);
+    }
+
     return <div id="image"></div>;
+
   },
 
 
@@ -54,6 +80,29 @@ module.exports = React.createClass({
    */
   onRelease: function() {
     this.getFlux().actions.search.deactivate();
+  },
+
+
+  /**
+   * Render a highlight marker.
+   *
+   * @param {Number} x
+   * @param {Number} y
+   */
+  setMarker: function(x, y) {
+
+    this.osd.clearOverlays();
+
+    // Get OSD viewport coordinates.
+    var point = this.osd.viewport.imageToViewportCoordinates(x, y);
+
+    // Template the marker icon.
+    var marker = $('<i class="fa fa-lg fa-map-marker"></i>').get(0);
+
+    this.osd.addOverlay({
+      element: marker, location: point
+    });
+
   }
 
 

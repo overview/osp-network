@@ -59,8 +59,7 @@ module.exports = React.createClass({
    * When the row is highlighted.
    */
   onMouseEnter: function() {
-    // TODO
-    console.log('enter');
+    this.getFlux().actions.highlight(this.props.hit);
   },
 
 
@@ -68,8 +67,7 @@ module.exports = React.createClass({
    * When the row is unhighlighted.
    */
   onMouseLeave: function() {
-    // TODO
-    console.log('leave');
+    this.getFlux().actions.unhighlight();
   },
 
 
@@ -77,8 +75,7 @@ module.exports = React.createClass({
    * When the row is selected.
    */
   onClick: function() {
-    // TODO
-    console.log('click');
+    this.getFlux().actions.select(this.props.hit);
   },
 
 

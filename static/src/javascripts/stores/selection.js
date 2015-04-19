@@ -1,8 +1,5 @@
 
 
-var _ = require('lodash');
-var $ = require('jquery');
-var request = require('superagent');
 var Fluxxor = require('fluxxor');
 
 

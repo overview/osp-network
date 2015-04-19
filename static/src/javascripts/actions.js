@@ -3,6 +3,42 @@
 module.exports = {
 
 
+  /**
+   * Highlight a node.
+   *
+   * @param {Object} node
+   */
+  highlight: function(node) {
+    this.dispatch('HIGHLIGHT', node);
+  },
+
+
+  /**
+   * Unhilight the current node.
+   */
+  unhighlight: function(node) {
+    this.dispatch('HIGHLIGHT');
+  },
+
+
+  /**
+   * Select a node.
+   *
+   * @param {Object} node
+   */
+  select: function(node) {
+    this.dispatch('SELECT', node);
+  },
+
+
+  /**
+   * Unselect the current node.
+   */
+  unselect: function() {
+    this.dispatch('UNSELECT');
+  },
+
+
   search: {
 
     /**
@@ -22,7 +58,7 @@ module.exports = {
     /**
      * Search nodes.
      *
-     * @param {String} q - The query string.
+     * @param {String} q
      */
     query: function(q) {
       this.dispatch('SEARCH_QUERY', q);
