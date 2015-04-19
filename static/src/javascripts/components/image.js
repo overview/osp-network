@@ -34,18 +34,28 @@ module.exports = React.createClass({
    * Render image container.
    */
   render: function() {
+    this.renderHighlight();
+    return <div id="image"></div>;
+  },
 
+
+  /**
+   * Render highlight markers.
+   */
+  renderHighlight: function() {
+
+    // If highlight, show marker.
     if (this.state.highlighted) {
+      // TODO: Break this out into a proper model.
       var x = Math.round(this.state.highlighted._source.location.lon);
       var y = Math.round(this.state.highlighted._source.location.lat);
       this.setMarker(x, y);
     }
 
+    // Otherwise, clear marker.
     else if (this.isMounted()) {
       this.osd.clearOverlays();
     }
-
-    return <div id="image"></div>;
 
   },
 
@@ -101,7 +111,7 @@ module.exports = React.createClass({
     var point = this.osd.viewport.imageToViewportCoordinates(x, y);
 
     // Template the marker icon.
-    var marker = $('<i class="fa fa-lg fa-map-marker"></i>').get(0);
+    var marker = $('<i class="fa fa-2x fa-map-marker"></i>').get(0);
 
     this.osd.addOverlay({
       element: marker, location: point

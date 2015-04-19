@@ -13,9 +13,25 @@ module.exports = React.createClass({
 
 
   /**
+   * Get the text icon.
+   */
+  getInitialState: function() {
+    return { highlighted: false };
+  },
+
+
+  /**
    * Render a search result row.
    */
   render: function() {
+
+    var iconCx = React.addons.classSet({
+      'fa': true,
+      'fa-fw': true,
+      'fa-bookmark-o': !this.state.highlighted,
+      'fa-thumb-tack': this.state.highlighted,
+    });
+
     return (
       <tr
         className="search-row"
@@ -29,7 +45,7 @@ module.exports = React.createClass({
 
           <p>
 
-            <i className="fa fa-bookmark-o"></i>
+            <i className={iconCx}></i>
 
             <span
               className="title"
@@ -52,6 +68,7 @@ module.exports = React.createClass({
 
       </tr>
     );
+
   },
 
 
@@ -59,6 +76,7 @@ module.exports = React.createClass({
    * When the row is highlighted.
    */
   onMouseEnter: function() {
+    this.setState({ highlighted: true });
     this.getFlux().actions.highlight(this.props.hit);
   },
 
@@ -67,6 +85,7 @@ module.exports = React.createClass({
    * When the row is unhighlighted.
    */
   onMouseLeave: function() {
+    this.setState({ highlighted: false });
     this.getFlux().actions.unhighlight();
   },
 
