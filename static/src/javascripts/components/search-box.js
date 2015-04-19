@@ -22,6 +22,14 @@ module.exports = React.createClass({
 
 
   /**
+   * On startup, execute the empty query.
+   */
+  componentDidMount: function() {
+    this.getFlux().actions.query();
+  },
+
+
+  /**
    * Render search container.
    */
   render: function() {

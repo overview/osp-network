@@ -23,13 +23,39 @@ def search():
 
     q = request.args.get('q')
 
-    results = config.es.search('network', 'node', body={
-        'size': 100,
-        'query': {
+    # Search all fields when query is provided.
+    if q:
+        query = {
             'multi_match': {
                 'query': q,
                 'fields': ['_all'],
                 'type': 'phrase_prefix'
+            }
+        }
+
+    # If the query is empty, load all documents.
+    else:
+        query = {
+            'match_all': {}
+        }
+
+    results = config.es.search('network', 'node', body={
+        'query': query,
+        'size': 100,
+        'highlight': {
+            'fields': {
+                'title': {
+                    'number_of_fragments': 1,
+                    'fragment_size': 1000
+                },
+                'author': {
+                    'number_of_fragments': 1,
+                    'fragment_size': 1000
+                },
+                'publisher': {
+                    'number_of_fragments': 1,
+                    'fragment_size': 1000
+                },
             }
         }
     })
