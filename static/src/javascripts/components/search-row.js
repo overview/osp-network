@@ -1,9 +1,9 @@
 
 
 var _ = require('lodash');
-var React = require('react/addons');
+var React = require('react');
 var Fluxxor = require('fluxxor');
-require('underscore.haz')(_);
+_.mixin(require('lodash-deep'));
 
 
 module.exports = React.createClass({
@@ -45,7 +45,7 @@ module.exports = React.createClass({
 
     var path = 'highlight.'+field
 
-    return _.haz(this.props.hit, path) ?
+    return _.deepHas(this.props.hit, path) ?
       this.props.hit.highlight[field][0] :
       this.props.hit._source[field];
 
