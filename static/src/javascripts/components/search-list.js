@@ -11,7 +11,7 @@ module.exports = React.createClass({
 
   mixins: [
     Fluxxor.FluxMixin(React),
-    Fluxxor.StoreWatchMixin('NodeStore')
+    Fluxxor.StoreWatchMixin('NodeStore', 'SearchStore'),
   ],
 
 
@@ -21,9 +21,11 @@ module.exports = React.createClass({
   getStateFromFlux: function() {
 
     var nodeStore = this.getFlux().store('NodeStore');
+    var searchStore = this.getFlux().store('SearchStore');
 
     return {
-      results: nodeStore.results
+      results: nodeStore.results,
+      active: searchStore.active
     };
 
   },
@@ -53,13 +55,17 @@ module.exports = React.createClass({
         return <SearchRow hit={h} key={h._id} />;
       });
 
+      var listCx = React.addons.classSet({
+        'active': this.state.active
+      });
+
       var tableCx = React.addons.classSet({
         'table': true,
         'table-condensed': true
       });
 
       return (
-        <div id="search-list">
+        <div id="search-list" className={listCx}>
           <table className={tableCx}>
             <thead>
               <th>Degree</th>

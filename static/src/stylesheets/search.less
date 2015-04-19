@@ -50,12 +50,17 @@
 
 #search-list {
 
+  display: none;
   max-height: 80vh;
   overflow: scroll;
   border-radius: 2px;
   background: rgba(0,0,0,0.7);
   color: darken(white, 30%);
   font-weight: 200;
+
+  &.active {
+    display: block;
+  }
 
   table {
 

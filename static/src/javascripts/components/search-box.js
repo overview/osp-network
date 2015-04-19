@@ -15,15 +15,22 @@ module.exports = React.createClass({
 
 
   /**
-   * Get initial query and active state.
+   * Get initial query.
+   */
+  getInitialState: function() {
+    return { query: null };
+  },
+
+
+  /**
+   * Get active state.
    */
   getStateFromFlux: function() {
 
     var searchStore = this.getFlux().store('SearchStore');
 
     return {
-      active: searchStore.active,
-      query: null
+      active: searchStore.active
     };
 
   },

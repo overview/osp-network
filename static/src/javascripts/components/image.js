@@ -40,19 +40,19 @@ module.exports = React.createClass({
 
     });
 
-    _.bindAll(this, 'onMove');
-
-    // Listen for pan/zoom.
-    this.osd.addHandler('zoom', _.debounce(this.onMove, 500));
-    this.osd.addHandler('pan',  _.debounce(this.onMove, 500));
+    // Listen for click.
+    this.osd.addHandler(
+      'canvas-release',
+      _.bind(this.onRelease, this)
+    );
 
   },
 
 
   /**
-   * When the image is moved.
+   * When the image is clicked.
    */
-  onMove: function() {
+  onRelease: function() {
     this.getFlux().actions.search.deactivate();
   }
 
