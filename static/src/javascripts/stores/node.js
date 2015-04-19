@@ -1,5 +1,6 @@
 
 
+var _ = require('lodash');
 var $ = require('jquery');
 var Fluxxor = require('fluxxor');
 
@@ -13,10 +14,15 @@ module.exports = Fluxxor.createStore({
 
 
   /**
-   * No results on startup.
+   * Initialize results, debounce queries.
    */
   initialize: function() {
+
     this.results = false;
+
+    // Debounce the query callback.
+    this.onQuery = _.debounce(this.onQuery, 200);
+
   },
 
 
