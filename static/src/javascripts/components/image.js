@@ -2,8 +2,8 @@
 
 var $ = require('jquery');
 var _ = require('lodash');
-var React = require('react');
 var Fluxxor = require('fluxxor');
+var React = require('react');
 require('osd');
 
 
@@ -103,9 +103,11 @@ module.exports = React.createClass({
 
   /**
    * Clear the highlight marker.
+   * TODO: Do we really have to manually remove the nodes?
    */
   unhighlight: function() {
     this.osd.clearOverlays();
+    $('.fa-map-marker').remove();
   },
 
 
@@ -140,8 +142,6 @@ module.exports = React.createClass({
    * @param {Number} y
    */
   setMarker: function(x, y) {
-
-    this.osd.clearOverlays();
 
     // Get OSD viewport coordinates.
     var point = this.osd.viewport.imageToViewportCoordinates(x, y);

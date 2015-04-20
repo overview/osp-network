@@ -2,6 +2,7 @@
 
 var React = require('react');
 var Fluxxor = require('fluxxor');
+
 var Image = require('./image');
 var Search = require('./search');
 
