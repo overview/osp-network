@@ -17,6 +17,16 @@
 
 #search-box {
 
+  padding-right: 30%;
+  .transition(padding cubic-bezier(0.165, 0.840, 0.440, 1.000) .2s);
+
+  &.active {
+    padding-right: 0;
+    i {
+      color: @brand-primary;
+    }
+  }
+
   .input-group {
     margin-bottom: 10px;
   }
@@ -38,12 +48,6 @@
       box-shadow: none;
     }
 
-  }
-
-  &.active {
-    i {
-      color: @brand-primary;
-    }
   }
 
 }
