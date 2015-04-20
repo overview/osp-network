@@ -76,6 +76,11 @@ module.exports = React.createClass({
       _.bind(this.unhighlight, this)
     );
 
+    this.selection.on(
+      'select',
+      _.bind(this.select, this)
+    );
+
   },
 
 
@@ -101,6 +106,30 @@ module.exports = React.createClass({
    */
   unhighlight: function() {
     this.osd.clearOverlays();
+  },
+
+
+  /**
+   * Focus on a node.
+   *
+   * @param {Object} node
+   */
+  select: function(node) {
+
+    var node = this.selection.selected;
+
+    // TODO: Break this out into a proper model.
+    var x = Math.round(node._source.location.lon);
+    var y = Math.round(node._source.location.lat);
+
+    // Focus on the node.
+    var point = this.osd.viewport.imageToViewportCoordinates(x, y);
+    this.osd.viewport.panTo(point)
+
+    // Zoom all the way in.
+    var zoom = this.osd.viewport.getMaxZoom();
+    this.osd.viewport.zoomTo(zoom);
+
   },
 
 
