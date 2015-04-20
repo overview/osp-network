@@ -2,8 +2,9 @@
 
 var React = require('react');
 var Fluxxor = require('fluxxor');
+var SearchList = require('./search-list');
+var SearchBox = require('./search-box');
 var Image = require('./image');
-var Search = require('./search');
 
 
 module.exports = React.createClass({
@@ -17,9 +18,9 @@ module.exports = React.createClass({
    */
   render: function() {
     return (
-      <div className="outer">
-        <Image />
-        <Search />
+      <div id="search">
+        <SearchBox />
+        <SearchList />
       </div>
     );
   }
