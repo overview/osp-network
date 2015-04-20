@@ -64,6 +64,26 @@ module.exports = {
       this.dispatch('SEARCH_QUERY', q);
     }
 
+  },
+
+
+  image: {
+
+    /**
+     * When the image is clicked.
+     *
+     * @param {Number} x
+     * @param {Number} y
+     */
+    click: function(x, y) {
+
+      // Close search, if it's open.
+      if (this.flux.store('SearchStore').active) {
+        this.flux.actions.search.deactivate();
+      }
+
+    }
+
   }
 
 

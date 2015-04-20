@@ -1,7 +1,7 @@
 
 
 var _ = require('lodash');
-var classSet = require('classset');
+var classNames = require('classnames');
 var SearchRow = require('./search-row');
 var React = require('react');
 var Fluxxor = require('fluxxor');
@@ -55,11 +55,11 @@ module.exports = React.createClass({
         return <SearchRow hit={h} key={h._id} />;
       });
 
-      var listCx = classSet({
+      var listCx = classNames({
         'active': this.state.active
       });
 
-      var tableCx = classSet({
+      var tableCx = classNames({
         'table': true,
         'table-condensed': true
       });

@@ -1,8 +1,8 @@
 
 
-var classSet = require('classset');
 var React = require('react/addons');
 var Fluxxor = require('fluxxor');
+var classNames = require('classnames');
 
 
 module.exports = React.createClass({
@@ -51,11 +51,11 @@ module.exports = React.createClass({
    */
   render: function() {
 
-    var boxCx = classSet({
+    var boxCx = classNames({
       'active': this.state.active
     });
 
-    var iconCx = classSet({
+    var iconCx = classNames({
       'fa': true,
       'fa-fw': true,
       'fa-search': !this.state.loading,

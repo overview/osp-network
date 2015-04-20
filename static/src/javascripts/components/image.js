@@ -160,7 +160,10 @@ module.exports = React.createClass({
    * When the image is clicked.
    */
   onRelease: function() {
-    this.getFlux().actions.search.deactivate();
+
+    // TODO: Make this effect-agnostic.
+    this.getFlux().actions.image.click();
+
   }
 
 
