@@ -1,6 +1,7 @@
 
 
 var _ = require('lodash');
+var classSet = require('classset');
 var React = require('react');
 var Fluxxor = require('fluxxor');
 _.mixin(require('lodash-deep'));
@@ -25,7 +26,7 @@ module.exports = React.createClass({
    */
   render: function() {
 
-    var iconCx = React.addons.classSet({
+    var iconCx = classSet({
       'fa': true,
       'fa-fw': true,
       'fa-bookmark-o': !this.state.highlighted,

@@ -1,9 +1,10 @@
 
 
 var _ = require('lodash');
-var React = require('react/addons');
-var Fluxxor = require('fluxxor');
+var classSet = require('classset');
 var SearchRow = require('./search-row');
+var React = require('react');
+var Fluxxor = require('fluxxor');
 
 
 module.exports = React.createClass({
@@ -54,11 +55,11 @@ module.exports = React.createClass({
         return <SearchRow hit={h} key={h._id} />;
       });
 
-      var listCx = React.addons.classSet({
+      var listCx = classSet({
         'active': this.state.active
       });
 
-      var tableCx = React.addons.classSet({
+      var tableCx = classSet({
         'table': true,
         'table-condensed': true
       });
