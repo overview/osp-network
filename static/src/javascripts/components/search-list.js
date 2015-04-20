@@ -17,17 +17,12 @@ module.exports = React.createClass({
 
 
   /**
-   * Get the search results.
+   * Get search state.
    */
   getStateFromFlux: function() {
-
-    var search = this.getFlux().store('SearchStore');
-
     return {
-      active: search.active,
-      results: search.results
+      search: this.getFlux().store('SearchStore').getData()
     };
-
   },
 
 
@@ -37,11 +32,11 @@ module.exports = React.createClass({
   render: function() {
 
     // Show nothing on startup.
-    if (_.isNull(this.state.results)) {
+    if (_.isNull(this.state.search.results)) {
       return null;
     }
 
-    var total = Number(this.state.results.total);
+    var total = Number(this.state.search.results.total);
 
     // No results.
     if (total === 0) {
@@ -51,12 +46,12 @@ module.exports = React.createClass({
     else {
 
       // Build up the list of result rows.
-      var rows = _.map(this.state.results.hits, function(h) {
+      var rows = _.map(this.state.search.results.hits, function(h) {
         return <SearchRow hit={h} key={h._id} />;
       });
 
       var listCx = classNames({
-        'active': this.state.active
+        'active': this.state.search.active
       });
 
       var tableCx = classNames({

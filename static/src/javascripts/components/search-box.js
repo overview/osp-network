@@ -24,17 +24,12 @@ module.exports = React.createClass({
 
 
   /**
-   * Get active state.
+   * Get search state.
    */
   getStateFromFlux: function() {
-
-    var search = this.getFlux().store('SearchStore');
-
     return {
-      active: search.active,
-      loading: search.loading
+      search: this.getFlux().store('SearchStore').getData()
     };
-
   },
 
 
@@ -52,15 +47,15 @@ module.exports = React.createClass({
   render: function() {
 
     var boxCx = classNames({
-      'active': this.state.active
+      'active': this.state.search.active
     });
 
     var iconCx = classNames({
       'fa': true,
       'fa-fw': true,
-      'fa-search': !this.state.loading,
-      'fa-cog': this.state.loading,
-      'fa-spin': this.state.loading
+      'fa-search': !this.state.search.loading,
+      'fa-cog': this.state.search.loading,
+      'fa-spin': this.state.search.loading
     });
 
     return (

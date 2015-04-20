@@ -33,6 +33,18 @@ module.exports = Fluxxor.createStore({
 
 
   /**
+   * Provide data to components.
+   */
+  getData: function() {
+    return {
+      results: this.results,
+      active: this.active,
+      loading: this.loading
+    };
+  },
+
+
+  /**
    * Activate searching.
    */
   activate: function() {

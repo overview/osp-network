@@ -24,6 +24,17 @@ module.exports = Fluxxor.createStore({
 
 
   /**
+   * Provide data to components.
+   */
+  getData: function() {
+    return {
+      highlighted: this.highlighted,
+      selected: this.selected
+    };
+  },
+
+
+  /**
    * Highlight a node.
    */
   highlight: function(node) {

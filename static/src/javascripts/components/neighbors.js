@@ -3,6 +3,8 @@
 var classNames = require('classnames');
 var React = require('react');
 var Fluxxor = require('fluxxor');
+var NeighborsAnchor = require('./neighbors-anchor');
+var NeighborsList = require('./neighbors-list');
 
 
 module.exports = React.createClass({
@@ -18,13 +20,9 @@ module.exports = React.createClass({
    * Get selection state.
    */
   getStateFromFlux: function() {
-
-    var selection = this.getFlux().store('SelectionStore');
-
     return {
-      selected: selection.selected
+      selection: this.getFlux().store('SelectionStore').getData()
     };
-
   },
 
 
@@ -34,12 +32,13 @@ module.exports = React.createClass({
   render: function() {
 
     var neighborsCx = classNames({
-      active: this.state.selected
+      active: this.state.selection.selected
     });
 
     return (
       <div id="neighbors" className={neighborsCx}>
-        <h1>Neighbors</h1>
+        <NeighborsAnchor />
+        <NeighborsList />
       </div>
     );
 
