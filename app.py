@@ -42,6 +42,11 @@ def search():
     results = config.es.search('network', 'node', body={
         'query': query,
         'size': 100,
+        'sort': [{
+            'degree': {
+                'order': 'desc'
+            }
+        }],
         'highlight': {
             'fields': {
                 'title': {

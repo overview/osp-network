@@ -40,7 +40,7 @@ module.exports = React.createClass({
         onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}>
 
-        <td className="degree">10</td>
+        <td className="degree">{this.props.hit._source.degree}</td>
 
         <td className="text">
 
@@ -48,20 +48,17 @@ module.exports = React.createClass({
 
             <i className={iconCx}></i>
 
-            <span
-              className="title"
+            <span className="title"
               dangerouslySetInnerHTML={{__html: this._title()}}>
             </span>
 
           </p>
 
-          <p
-            className="author"
+          <p className="author"
             dangerouslySetInnerHTML={{__html: this._author()}}>
           </p>
 
-          <p
-            className="publisher"
+          <p className="publisher"
             dangerouslySetInnerHTML={{__html: this._publisher()}}>
           </p>
 
@@ -109,9 +106,11 @@ module.exports = React.createClass({
 
     var path = 'highlight.'+field
 
-    return _.deepHas(this.props.hit, path) ?
+    var value = _.deepHas(this.props.hit, path) ?
       this.props.hit.highlight[field][0] :
       this.props.hit._source[field];
+
+    return value || '';
 
   },
 
