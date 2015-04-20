@@ -3,7 +3,6 @@
 var React = require('react');
 var Fluxxor = require('fluxxor');
 var Image = require('./image');
-var Neighbors = require('./neighbors');
 var Search = require('./search');
 
 
@@ -20,7 +19,6 @@ module.exports = React.createClass({
     return (
       <div className="outer">
         <Image />
-        <Neighbors />
         <Search />
       </div>
     );
