@@ -17,7 +17,7 @@ module.exports = {
    * Unhilight the current node.
    */
   unhighlight: function(node) {
-    this.dispatch('HIGHLIGHT');
+    this.dispatch('UNHIGHLIGHT');
   },
 
 

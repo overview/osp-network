@@ -10,25 +10,7 @@ require('osd');
 module.exports = React.createClass({
 
 
-  mixins: [
-    Fluxxor.FluxMixin(React),
-    Fluxxor.StoreWatchMixin('SelectionStore')
-  ],
-
-
-  /**
-   * Get selection state.
-   */
-  getStateFromFlux: function() {
-
-    var selection = this.getFlux().store('SelectionStore');
-
-    return {
-      highlighted: selection.highlighted,
-      selected: selection.selected
-    };
-
-  },
+  mixins: [Fluxxor.FluxMixin(React)],
 
 
   /**
@@ -44,7 +26,7 @@ module.exports = React.createClass({
    */
   componentDidMount: function() {
     this._initOSD();
-    this._bindEvents();
+    this._bindStores();
   },
 
 
@@ -80,16 +62,16 @@ module.exports = React.createClass({
   /**
    * Listen for node selections.
    */
-  _bindEvents: function() {
+  _bindStores: function() {
 
-    var selection = this.getFlux().store('SelectionStore');
+    this.selection = this.getFlux().store('SelectionStore');
 
-    selection.on(
+    this.selection.on(
       'highlight',
       _.bind(this.highlight, this)
     );
 
-    selection.on(
+    this.selection.on(
       'unhighlight',
       _.bind(this.unhighlight, this)
     );
@@ -103,6 +85,8 @@ module.exports = React.createClass({
    * @param {Object} node
    */
   highlight: function(node) {
+
+    var node = this.selection.highlighted;
 
     // TODO: Break this out into a proper model.
     var x = Math.round(node._source.location.lon);
