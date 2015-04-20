@@ -3,8 +3,6 @@
 var classNames = require('classnames');
 var React = require('react');
 var Fluxxor = require('fluxxor');
-var SearchList = require('./search-list');
-var SearchBox = require('./search-box');
 
 
 module.exports = React.createClass({
@@ -35,14 +33,13 @@ module.exports = React.createClass({
    */
   render: function() {
 
-    var searchCx = classNames({
-      active: !this.state.selected
+    var neighborsCx = classNames({
+      active: this.state.selected
     });
 
     return (
-      <div id="search" className={searchCx}>
-        <SearchBox />
-        <SearchList />
+      <div id="neighbors" className={neighborsCx}>
+        <h1>Neighbors</h1>
       </div>
     );
 
