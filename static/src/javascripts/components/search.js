@@ -20,13 +20,9 @@ module.exports = React.createClass({
    * Get selection state.
    */
   getStateFromFlux: function() {
-
-    var selection = this.getFlux().store('SelectionStore');
-
     return {
-      selected: selection.selected
+      selection: this.getFlux().store('SelectionStore').getData()
     };
-
   },
 
 
@@ -36,7 +32,7 @@ module.exports = React.createClass({
   render: function() {
 
     var searchCx = classNames({
-      active: !this.state.selected
+      active: !this.state.selection.selected
     });
 
     return (
