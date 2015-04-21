@@ -52,8 +52,8 @@ module.exports = React.createClass({
 
     // Listen for click.
     this.osd.addHandler(
-      'canvas-release',
-      _.bind(this.onRelease, this)
+      'canvas-click',
+      _.bind(this.onClick, this)
     );
 
   },
@@ -158,7 +158,7 @@ module.exports = React.createClass({
   /**
    * When the image is clicked.
    */
-  onRelease: function() {
+  onClick: function() {
     this.getFlux().actions.image.click();
   }
 
