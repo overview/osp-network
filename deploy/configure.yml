@@ -1,0 +1,15 @@
+---
+
+- name: Configure OSP network
+  sudo: yes
+  hosts:
+    - tag_osp_network
+
+  vars_files:
+    - vars/elasticsearch.yml
+
+  roles:
+    - common
+    - elasticsearch
+    - nginx
+    - supervisor

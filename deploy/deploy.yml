@@ -1,0 +1,9 @@
+---
+
+- name: Deploy OSP network
+  sudo: yes
+  hosts:
+    - tag_osp_network
+
+  roles:
+    - network

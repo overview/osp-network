@@ -4,7 +4,25 @@
   register: code
   git:
     repo: '{{ network_repo }}'
+    version: '{{ network_branch }}'
     dest: '{{ network_src }}'
+
+- name: Check if a virtualenv exists
+  register: env
+  stat:
+    path: '{{ network_src }}/env'
+
+# pyvenv is broken on Ubuntu 14.04.
+- name: Create a Python 3 virtualenv, if necessary
+  when: env.stat.isdir is not defined
+  command: virtualenv --python=/usr/bin/python3.4 env
+  args:
+    chdir: '{{ network_src }}'
+
+- name: Install pip dependencies
+  command: env/bin/pip3 install -r requirements.txt
+  args:
+    chdir: '{{ network_src }}'
 
 - name: NPM install
   command: npm install
