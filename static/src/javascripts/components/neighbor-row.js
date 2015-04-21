@@ -34,7 +34,12 @@ module.exports = React.createClass({
     });
 
     return (
-      <tr className="text-row">
+      <tr
+        className="text-row"
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
+        onClick={this.onClick}>
+
         <td className="count">{this.props.row.weight}</td>
         <td className="text">
 
@@ -56,83 +61,43 @@ module.exports = React.createClass({
   /**
    * When the row is highlighted.
    */
-  //onMouseEnter: function() {
-    //this.setState({ highlighted: true });
-    //this.getFlux().actions.highlight(this.props.hit);
-  //},
+  onMouseEnter: function() {
+    this.setState({ highlighted: true });
+    this.getFlux().actions.highlight(this.model());
+  },
 
 
   /**
    * When the row is unhighlighted.
    */
-  //onMouseLeave: function() {
-    //this.setState({ highlighted: false });
-    //this.getFlux().actions.unhighlight();
-  //},
+  onMouseLeave: function() {
+    this.setState({ highlighted: false });
+    this.getFlux().actions.unhighlight();
+  },
 
 
   /**
    * When the row is selected.
    */
-  //onClick: function() {
-
-    //// TODO: Schema-ify this.
-    //var text = {
-      //cn:         this.props.hit._id,
-      //author:     this.props.hit._source.author,
-      //title:      this.props.hit._source.title,
-      //publisher:  this.props.hit._source.publisher,
-      //x:          this.props.hit._source.location.lon,
-      //y:          this.props.hit._source.location.lat
-    //};
-
-    //// TODO: Normalize text format.
-    //this.getFlux().actions.select(text);
-
-  //},
+  onClick: function() {
+    this.getFlux().actions.select(this.model());
+  },
 
 
   /**
-   * If a field is highlighted, get the highlighted value. If not, fall back
-   * on the raw field value.
-   *
-   * @param {String} field - The field key.
+   * Wrap the row as a model.
+   * TODO: Schema-ify this.
    */
-  //_getHighlight: function(field) {
-
-    //var path = 'highlight.'+field
-
-    //var value = _.deepHas(this.props.hit, path) ?
-      //this.props.hit.highlight[field][0] :
-      //this.props.hit._source[field];
-
-    //return value || '';
-
-  //},
-
-
-  /**
-   * Author field.
-   */
-  //_author: function() {
-    //return this._getHighlight('author');
-  //},
-
-
-  /**
-   * Title field.
-   */
-  //_title: function() {
-    //return this._getHighlight('title');
-  //},
-
-
-  /**
-   * Publisher field.
-   */
-  //_publisher: function() {
-    //return this._getHighlight('publisher');
-  //}
+  model: function() {
+    return {
+      cn:         this.props.row.node.label,
+      author:     this.props.row.node.author,
+      title:      this.props.row.node.title,
+      publisher:  this.props.row.node.publisher,
+      x:          this.props.row.node.x,
+      y:          this.props.row.node.y
+    };
+  }
 
 
 });

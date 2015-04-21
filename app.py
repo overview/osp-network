@@ -84,7 +84,7 @@ def neighbors():
     cn = request.args.get('cn')
 
     return jsonify({
-        'neighbors': graph.neighbors(cn)[:500]
+        'neighbors': graph.neighbors(cn)[:100]
     })
 
 

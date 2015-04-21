@@ -93,9 +93,10 @@ module.exports = React.createClass({
 
     var node = this.selection.highlighted;
 
-    // TODO: Break this out into a proper model.
-    var x = Math.round(node._source.location.lon);
-    var y = Math.round(node._source.location.lat);
+    // TODO: Move to model.
+    var x = Math.round(node.x);
+    var y = Math.round(node.y);
+
     this.setMarker(x, y);
 
   },

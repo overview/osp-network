@@ -45,21 +45,18 @@ module.exports = React.createClass({
         <td className="text">
 
           <p>
-
             <i className={iconCx}></i>
-
             <span className="title"
-              dangerouslySetInnerHTML={{__html: this._title()}}>
+              dangerouslySetInnerHTML={{__html: this.title()}}>
             </span>
-
           </p>
 
           <p className="author"
-            dangerouslySetInnerHTML={{__html: this._author()}}>
+            dangerouslySetInnerHTML={{__html: this.author()}}>
           </p>
 
           <p className="publisher"
-            dangerouslySetInnerHTML={{__html: this._publisher()}}>
+            dangerouslySetInnerHTML={{__html: this.publisher()}}>
           </p>
 
         </td>
@@ -75,7 +72,7 @@ module.exports = React.createClass({
    */
   onMouseEnter: function() {
     this.setState({ highlighted: true });
-    this.getFlux().actions.highlight(this.props.hit);
+    this.getFlux().actions.highlight(this.model());
   },
 
 
@@ -92,20 +89,7 @@ module.exports = React.createClass({
    * When the row is selected.
    */
   onClick: function() {
-
-    // TODO: Schema-ify this.
-    var text = {
-      cn:         this.props.hit._id,
-      author:     this.props.hit._source.author,
-      title:      this.props.hit._source.title,
-      publisher:  this.props.hit._source.publisher,
-      x:          this.props.hit._source.location.lon,
-      y:          this.props.hit._source.location.lat
-    };
-
-    // TODO: Normalize text format.
-    this.getFlux().actions.select(text);
-
+    this.getFlux().actions.select(this.model());
   },
 
 
@@ -129,9 +113,25 @@ module.exports = React.createClass({
 
 
   /**
+   * Wrap the row as a model.
+   * TODO: Schema-ify this.
+   */
+  model: function() {
+    return {
+      cn:         this.props.hit._id,
+      author:     this.props.hit._source.author,
+      title:      this.props.hit._source.title,
+      publisher:  this.props.hit._source.publisher,
+      x:          this.props.hit._source.location.lon,
+      y:          this.props.hit._source.location.lat
+    };
+  },
+
+
+  /**
    * Author field.
    */
-  _author: function() {
+  author: function() {
     return this._getHighlight('author');
   },
 
@@ -139,7 +139,7 @@ module.exports = React.createClass({
   /**
    * Title field.
    */
-  _title: function() {
+  title: function() {
     return this._getHighlight('title');
   },
 
@@ -147,7 +147,7 @@ module.exports = React.createClass({
   /**
    * Publisher field.
    */
-  _publisher: function() {
+  publisher: function() {
     return this._getHighlight('publisher');
   }
 
