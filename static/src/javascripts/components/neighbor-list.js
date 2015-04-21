@@ -29,7 +29,35 @@ module.exports = React.createClass({
    * Render neighbor results.
    */
   render: function() {
-    return <small>Neighbors</small>;
+
+    var tableCx = classNames({
+      'table': true,
+      'table-condensed': true
+    });
+
+    return (
+      <div id="neighbor-list">
+        <table className={tableCx}>
+          <tbody>
+
+            <tr>
+              <td onClick={this.onClose}>X</td>
+              <td>anchor</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    );
+
+  },
+
+
+  /**
+   * When the close X is clicked.
+   */
+  onClose: function() {
+    this.getFlux().actions.unselect();
   }
 
 
