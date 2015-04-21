@@ -2,17 +2,11 @@
 
 import os
 
-from osp.citations.hlom.network import GephiNetwork
-from flask import Flask, render_template, request, jsonify
 from osp.common.config import config
+from flask import Flask, render_template, request, jsonify
 
 
 app = Flask(__name__)
-
-
-# Load the network.
-npath = os.path.join(app.root_path, 'hlom.gexf')
-network = GephiNetwork.from_gexf(npath)
 
 
 @app.route('/')

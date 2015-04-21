@@ -10,38 +10,19 @@ var SearchBox = require('./search-box');
 module.exports = React.createClass({
 
 
-  mixins: [
-    Fluxxor.FluxMixin(React),
-    Fluxxor.StoreWatchMixin('SelectionStore')
-  ],
-
-
-  /**
-   * Get selection state.
-   */
-  getStateFromFlux: function() {
-    return {
-      selection: this.getFlux().store('SelectionStore').getData()
-    };
-  },
+  mixins: [Fluxxor.FluxMixin(React)],
 
 
   /**
    * Render the top-level structure.
    */
   render: function() {
-
-    var searchCx = classNames({
-      active: !this.state.selection.selected
-    });
-
     return (
-      <div id="search" className={searchCx}>
+      <div id="search">
         <SearchBox />
         <SearchList />
       </div>
     );
-
   }
 
 

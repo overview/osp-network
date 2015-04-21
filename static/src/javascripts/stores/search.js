@@ -12,7 +12,8 @@ module.exports = Fluxxor.createStore({
   actions: {
     SEARCH_ACTIVATE: 'activate',
     SEARCH_DEACTIVATE: 'deactivate',
-    SEARCH_QUERY: 'query'
+    SEARCH_QUERY: 'query',
+    IMAGE_CLICK: 'deactivate'
   },
 
 

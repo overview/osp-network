@@ -76,12 +76,7 @@ module.exports = {
      * @param {Number} y
      */
     click: function(x, y) {
-
-      // Close search, if it's open.
-      if (this.flux.store('SearchStore').active) {
-        this.flux.actions.search.deactivate();
-      }
-
+      this.dispatch('IMAGE_CLICK');
     }
 
   }
