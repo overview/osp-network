@@ -92,7 +92,20 @@ module.exports = React.createClass({
    * When the row is selected.
    */
   onClick: function() {
-    this.getFlux().actions.select(this.props.hit);
+
+    // TODO: Schema-ify this.
+    var text = {
+      cn:         this.props.hit._id,
+      author:     this.props.hit._source.author,
+      title:      this.props.hit._source.title,
+      publisher:  this.props.hit._source.publisher,
+      x:          this.props.hit._source.location.lon,
+      y:          this.props.hit._source.location.lat
+    };
+
+    // TODO: Normalize text format.
+    this.getFlux().actions.select(text);
+
   },
 
 

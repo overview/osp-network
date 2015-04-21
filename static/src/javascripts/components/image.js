@@ -112,17 +112,15 @@ module.exports = React.createClass({
 
 
   /**
-   * Focus on a node.
-   *
-   * @param {Object} node
+   * Focus on a text.
    */
-  select: function(node) {
+  select: function() {
 
-    var node = this.selection.selected;
+    var text = this.selection.selected;
 
-    // TODO: Break this out into a proper model.
-    var x = Math.round(node._source.location.lon);
-    var y = Math.round(node._source.location.lat);
+    // TODO: Move to model.
+    var x = Math.round(text.x);
+    var y = Math.round(text.y);
 
     // Focus on the node.
     var point = this.osd.viewport.imageToViewportCoordinates(x, y);
