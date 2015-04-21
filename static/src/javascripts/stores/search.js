@@ -89,9 +89,15 @@ module.exports = Fluxxor.createStore({
       .get('/search')
       .query({q:q})
       .end(function(err, res) {
+
+        // Unpin anchor text.
+        self.flux.actions.unselect();
+
+        // Show the new rows.
         self.loading = false;
         self.results = res.body.hits;
         self.emit('change');
+
       });
 
     this.lastQuery = q;

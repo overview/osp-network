@@ -40,13 +40,20 @@ module.exports = Fluxxor.createStore({
 
     var self = this;
 
+    // Show spinner.
+    this.neighbors = null;
+    this.emit('change');
+
     // Load neighbors.
     this.req = request
       .get('/neighbors')
       .query({ cn: node.cn })
       .end(function(err, res) {
+
+        // Show the new rows.
         self.neighbors = res.body.neighbors;
         self.emit('change');
+
       });
 
   }

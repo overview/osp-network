@@ -31,6 +31,11 @@ module.exports = React.createClass({
    */
   render: function() {
 
+    // No results.
+    if (_.isNull(this.state.neighbor.neighbors)) {
+      return <i className="fa fa-spin fa-cog"></i>;
+    }
+
     // Build up the list of neighbor rows.
     var rows = _.map(this.state.neighbor.neighbors, function(n) {
       return <NeighborRow row={n} key={n.node.label} />;
