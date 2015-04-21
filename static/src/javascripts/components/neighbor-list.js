@@ -47,19 +47,38 @@ module.exports = React.createClass({
     });
 
     return (
-      <div id="neighbor-list" className="text-list">
-        <table className={tableCx}>
+      <div>
 
-          <thead>
-            <th>Count</th>
-            <th>Text</th>
-          </thead>
+        <div className="text-list alert alert-dismissible">
 
-          <tbody>
-            {rows}
-          </tbody>
+          <button
+            className="close"
+            onClick={this.onClose}>
+            <i className="fa fa-times"></i>
+          </button>
 
-        </table>
+          <strong className="title">
+            <i className="fa fa-fw fa-thumb-tack"></i>
+            {this.state.neighbor.node.title}
+          </strong>
+
+        </div>
+
+        <div id="neighbor-list" className="text-list">
+          <table className={tableCx}>
+
+            <thead>
+              <th className="count">Count</th>
+              <th>Text</th>
+            </thead>
+
+            <tbody>
+              {rows}
+            </tbody>
+
+          </table>
+        </div>
+
       </div>
     );
 

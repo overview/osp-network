@@ -64,7 +64,7 @@ module.exports = React.createClass({
         <div id="search-list" className={listCx}>
           <table className={tableCx}>
             <thead>
-              <th>Degree</th>
+              <th className="count">Degree</th>
               <th>Text</th>
             </thead>
             <tbody>{rows}</tbody>
