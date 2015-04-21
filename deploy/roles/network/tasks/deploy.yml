@@ -1,0 +1,25 @@
+---
+
+- name: Deploy the code
+  register: code
+  git:
+    repo: '{{ network_repo }}'
+    dest: '{{ network_src }}'
+
+- name: NPM install
+  command: npm install
+  when: code.changed
+  args:
+    chdir: "{{ network_src }}"
+
+- name: Bower install
+  command: bower install
+  when: code.changed
+  args:
+    chdir: "{{ network_src }}"
+
+- name: Build the application
+  command: grunt compile:min
+  when: code.changed
+  args:
+    chdir: "{{ network_src }}"
