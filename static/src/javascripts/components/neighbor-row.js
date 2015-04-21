@@ -34,7 +34,7 @@ module.exports = React.createClass({
     });
 
     return (
-      <tr className="neighbor-row">
+      <tr className="text-row">
         <td className="count">{this.props.row.weight}</td>
         <td className="text">
 

@@ -35,12 +35,12 @@ module.exports = React.createClass({
 
     return (
       <tr
-        className="search-row"
+        className="text-row"
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}>
 
-        <td className="degree">{this.props.hit._source.degree}</td>
+        <td className="count">{this.props.hit._source.degree}</td>
 
         <td className="text">
 

@@ -10,6 +10,73 @@
     font-size: 5em;
   }
 
+  .text-list {
+    max-height: 80vh;
+    overflow: scroll;
+    border-radius: @border-radius-base;
+    background: rgba(0,0,0,0.7);
+    color: darken(white, 30%);
+    font-weight: 200;
+  }
+
+  table {
+
+    margin-bottom: 0;
+
+    th {
+      font-size: 10px;
+      text-transform: uppercase;
+      border-width: 1px;
+    }
+
+    td {
+      border-color: @color-bg;
+    }
+
+  }
+
+  tr.text-row {
+
+    &:hover {
+      cursor: pointer;
+      .title, .title em {
+        color: @color-hl;
+      }
+    }
+
+    em {
+      font-style: normal;
+      color: @brand-primary;
+    }
+
+    i {
+      margin-right: 6px;
+      color: @brand-primary;
+    }
+
+    p {
+      margin-bottom: 2px;
+    }
+
+    .title {
+      font-weight: bold;
+      .transition(color .1s ease);
+    }
+
+    .publisher {
+      font-size: 10px;
+      font-style: italic;
+    }
+
+    .count {
+      padding: 5px 10px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 1.2em;
+    }
+
+  }
+
 }
 
 #search-box {
@@ -46,73 +113,8 @@
 }
 
 #search-list {
-
   display: none;
-  max-height: 80vh;
-  overflow: scroll;
-  border-radius: @border-radius-base;
-  background: rgba(0,0,0,0.7);
-  color: darken(white, 30%);
-  font-weight: 200;
-
   &.active {
     display: block;
   }
-
-  table {
-
-    margin-bottom: 0;
-
-    th {
-      font-size: 10px;
-      text-transform: uppercase;
-      border-width: 1px;
-    }
-
-    td {
-      border-color: @color-bg;
-    }
-
-  }
-
-}
-
-.search-row {
-
-  &:hover {
-    cursor: pointer;
-    .title, .title em {
-      color: @color-hl;
-    }
-  }
-
-  td.degree {
-    text-align: center;
-    vertical-align: middle;
-    font-size: 1.2em;
-  }
-
-  .title {
-    font-weight: bold
-  }
-
-  .publisher {
-    font-size: 10px;
-    font-style: italic;
-  }
-
-  em {
-    font-style: normal;
-    color: @brand-primary;
-  }
-
-  i {
-    margin-right: 6px;
-    color: @brand-primary;
-  }
-
-  p {
-    margin-bottom: 2px;
-  }
-
 }

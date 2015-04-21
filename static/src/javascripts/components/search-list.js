@@ -51,6 +51,7 @@ module.exports = React.createClass({
       });
 
       var listCx = classNames({
+        'text-list': true,
         'active': this.state.search.active
       });
 
