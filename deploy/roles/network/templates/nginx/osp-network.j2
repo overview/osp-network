@@ -5,6 +5,10 @@ server {
   server_name localhost;
   charset utf-8;
 
+  location ^~ /static/ {
+    root /home/ubuntu/osp-network/;
+  }
+
   location / {
     try_files $uri @network;
   }
