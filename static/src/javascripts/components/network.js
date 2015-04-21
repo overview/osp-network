@@ -3,7 +3,7 @@
 var React = require('react');
 var Fluxxor = require('fluxxor');
 var Image = require('./image');
-var Search = require('./search');
+var Texts = require('./texts');
 
 
 module.exports = React.createClass({
@@ -19,7 +19,7 @@ module.exports = React.createClass({
     return (
       <div className="outer">
         <Image />
-        <Search />
+        <Texts />
       </div>
     );
   }
