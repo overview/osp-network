@@ -39,7 +39,7 @@ module.exports = React.createClass({
     this.osd = OpenSeadragon({
 
       id: 'image',
-      tileSources: 'http://localhost:5001/hlom.dzi',
+      tileSources: '/static/tiles/hlom.dzi',
       immediateRender: true,
       showNavigationControl: false,
       showNavigator: true,
