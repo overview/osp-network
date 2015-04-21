@@ -49,16 +49,16 @@ module.exports = React.createClass({
     return (
       <div id="neighbor-list" className="text-list">
         <table className={tableCx}>
+
+          <thead>
+            <th>Count</th>
+            <th>Text</th>
+          </thead>
+
           <tbody>
-
-            <tr>
-              <td onClick={this.onClose}>X</td>
-              <td>anchor</td>
-            </tr>
-
             {rows}
-
           </tbody>
+
         </table>
       </div>
     );
