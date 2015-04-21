@@ -70,7 +70,12 @@ def search():
 
 @app.route('/neighbors')
 def neighbors():
-    pass
+
+    """
+    Given all nodes adjacent to a node.
+    """
+
+    return jsonify({'neighbors': True})
 
 
 @app.route('/node')
