@@ -1,11 +1,9 @@
 
 
+var _ = require('lodash');
 var classNames = require('classnames');
 var React = require('react');
 var Fluxxor = require('fluxxor');
-var NeighborList = require('./neighbor-list');
-var SearchBox = require('./search-box');
-var SearchList = require('./search-list');
 
 
 module.exports = React.createClass({
@@ -28,21 +26,10 @@ module.exports = React.createClass({
 
 
   /**
-   * Render the top-level structure.
+   * Render neighbor results.
    */
   render: function() {
-
-    var list = this.state.selection.selected ?
-      <NeighborList /> :
-      <SearchList />;
-
-    return (
-      <div id="texts">
-        <SearchBox />
-        {list}
-      </div>
-    );
-
+    return <small>Neighbors</small>;
   }
 
 
