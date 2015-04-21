@@ -3,10 +3,16 @@
 import os
 
 from osp.common.config import config
+from osp.citations.hlom.network import GephiNetwork
 from flask import Flask, render_template, request, jsonify
 
 
 app = Flask(__name__)
+
+
+# Load the network.
+npath = os.path.join(app.root_path, 'hlom.gexf')
+graph = GephiNetwork.from_gexf(npath)
 
 
 @app.route('/')
@@ -75,7 +81,11 @@ def neighbors():
     Given all nodes adjacent to a node.
     """
 
-    return jsonify({'neighbors': True})
+    cn = request.args.get('cn')
+
+    return jsonify({
+        'neighbors': graph.neighbors(cn)[:500]
+    })
 
 
 @app.route('/node')

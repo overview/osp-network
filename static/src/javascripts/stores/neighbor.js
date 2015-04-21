@@ -38,12 +38,15 @@ module.exports = Fluxxor.createStore({
    */
   load: function(node) {
 
+    var self = this;
+
     // Load neighbors.
     this.req = request
       .get('/neighbors')
       .query({ cn: node.cn })
       .end(function(err, res) {
-        console.log(res);
+        self.neighbors = res.body.neighbors;
+        self.emit('change');
       });
 
   }

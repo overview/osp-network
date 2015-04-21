@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var classNames = require('classnames');
+var NeighborRow = require('./neighbor-row');
 var React = require('react');
 var Fluxxor = require('fluxxor');
 
@@ -11,16 +12,16 @@ module.exports = React.createClass({
 
   mixins: [
     Fluxxor.FluxMixin(React),
-    Fluxxor.StoreWatchMixin('SelectionStore'),
+    Fluxxor.StoreWatchMixin('NeighborStore'),
   ],
 
 
   /**
-   * Get selection state.
+   * Get neighbors state.
    */
   getStateFromFlux: function() {
     return {
-      selection: this.getFlux().store('SelectionStore').getData()
+      neighbor: this.getFlux().store('NeighborStore').getData()
     };
   },
 
@@ -29,6 +30,11 @@ module.exports = React.createClass({
    * Render neighbor results.
    */
   render: function() {
+
+    // Build up the list of neighbor rows.
+    var rows = _.map(this.state.neighbor.neighbors, function(n) {
+      return <NeighborRow row={n} key={n.node.label} />;
+    });
 
     var tableCx = classNames({
       'table': true,
@@ -44,6 +50,8 @@ module.exports = React.createClass({
               <td onClick={this.onClose}>X</td>
               <td>anchor</td>
             </tr>
+
+            {rows}
 
           </tbody>
         </table>
