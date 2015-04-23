@@ -82,7 +82,7 @@ def neighbors():
 
     query = (
         HLOM_Edge
-        .select(HLOM_Node, HLOM_Edge.weight)
+        .select()
         .where(HLOM_Edge.source==node)
         .join(HLOM_Node)
         .order_by(HLOM_Edge.weight.desc())
@@ -91,7 +91,10 @@ def neighbors():
 
     neighbors = []
     for n in query.naive():
-        neighbors.append({'node': n.node, 'wieght': n.weight})
+        neighbors.append({
+            'node': n.target.node,
+            'weight': n.weight
+        })
 
     return jsonify({'neighbors': neighbors })
 
