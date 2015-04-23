@@ -26,18 +26,15 @@
 
 - name: NPM install
   command: npm install
-  when: code.changed
   args:
     chdir: "{{ network_src }}"
 
 - name: Bower install
-  command: bower install
-  when: code.changed
+  command: bower install --allow-root
   args:
     chdir: "{{ network_src }}"
 
 - name: Build the application
   command: grunt compile:min
-  when: code.changed
   args:
     chdir: "{{ network_src }}"
