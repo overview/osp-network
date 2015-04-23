@@ -3,16 +3,12 @@
 import os
 
 from osp.common.config import config
-from osp.citations.hlom.network import GephiNetwork
+from osp.citations.hlom.models.node import HLOM_Node
+from osp.citations.hlom.models.edge import HLOM_Edge
 from flask import Flask, render_template, request, jsonify
 
 
 app = Flask(__name__)
-
-
-# Load the network.
-npath = os.path.join(app.root_path, 'hlom.gexf')
-graph = GephiNetwork.from_gexf(npath)
 
 
 @app.route('/')
@@ -82,15 +78,22 @@ def neighbors():
     """
 
     cn = request.args.get('cn')
+    node = HLOM_Node.get(HLOM_Node.control_number==cn)
 
-    return jsonify({
-        'neighbors': graph.neighbors(cn)[:100]
-    })
+    query = (
+        HLOM_Edge
+        .select(HLOM_Node, HLOM_Edge.weight)
+        .where(HLOM_Edge.source==node)
+        .join(HLOM_Node)
+        .order_by(HLOM_Edge.weight.desc())
+        .limit(100)
+    )
 
+    neighbors = []
+    for n in query.naive():
+        neighbors.append({'node': n.node, 'wieght': n.weight})
 
-@app.route('/node')
-def node():
-    pass
+    return jsonify({'neighbors': neighbors })
 
 
 if __name__ == '__main__':
