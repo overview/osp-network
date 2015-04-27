@@ -38,3 +38,8 @@
   command: grunt compile:min
   args:
     chdir: "{{ network_src }}"
+
+- name: Create HLOM tables
+  command: env/bin/osp hlom init_db
+  args:
+    chdir: '{{ network_src }}'

@@ -2,5 +2,6 @@
 flask
 networkx
 uwsgi
+pgmagick
 
 -e git+https://github.com/overview/osp.git@feature/network#egg=osp
