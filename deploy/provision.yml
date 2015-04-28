@@ -30,6 +30,7 @@
         exact_count: 1
         instance_tags:
           Name: osp-network
+          Environment: osp-network
           osp: network
         count_tag:
           osp: network
