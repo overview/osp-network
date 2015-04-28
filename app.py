@@ -92,8 +92,7 @@ def neighbors():
     neighbors = []
     for n in query.naive():
         neighbors.append({
-            'node': n.node,
-            'weight': n.weight
+            'node': n.node, 'weight': n.weight
         })
 
     return jsonify({'neighbors': neighbors })
