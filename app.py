@@ -82,9 +82,9 @@ def neighbors():
 
     query = (
         HLOM_Edge
-        .select()
+        .select(HLOM_Edge, HLOM_Node)
         .where(HLOM_Edge.source==node)
-        .join(HLOM_Node)
+        .join(HLOM_Node, on=(HLOM_Node.id==HLOM_Edge.target))
         .order_by(HLOM_Edge.weight.desc())
         .limit(100)
     )
@@ -92,7 +92,7 @@ def neighbors():
     neighbors = []
     for n in query.naive():
         neighbors.append({
-            'node': n.target.node,
+            'node': n.node,
             'weight': n.weight
         })
 

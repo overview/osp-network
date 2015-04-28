@@ -1,7 +1,6 @@
 ---
 
 - name: Deploy the code
-  register: code
   git:
     repo: '{{ network_repo }}'
     version: '{{ network_branch }}'
