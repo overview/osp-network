@@ -5,4 +5,4 @@ ec2_group: osp-ui
 ec2_image: ami-9eaa1cf6
 
 ec2_instance_type: m3.medium
-ec2_volume_size: 8
+ec2_volume_size: 20
