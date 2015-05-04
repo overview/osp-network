@@ -1,12 +1,16 @@
 
 
-var $ = require('jquery');
-var Backbone = require('backbone');
-var Network = require('./network');
-Backbone.$ = $;
+var React = require('react');
+var Fluxxor = require('fluxxor');
+var App = require('./components/app');
 
 
-$(function() {
-  // TODO|dev
-  new Network();
-});
+// TODO
+var stores = {}, actions = {};
+var flux = new Fluxxor.Flux(stores, actions);
+
+
+React.render(
+  <App flux={flux} />,
+  document.getElementById('network')
+);

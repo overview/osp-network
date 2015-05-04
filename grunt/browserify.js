@@ -3,10 +3,7 @@
 module.exports = {
 
   options: {
-    transform: [
-      'reactify',
-      'browserify-shim'
-    ],
+    transform: ['reactify'],
     watch: true,
     browserifyOptions: {
       debug: true
