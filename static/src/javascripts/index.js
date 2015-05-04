@@ -5,9 +5,10 @@ var Fluxxor = require('fluxxor');
 var App = require('./components/app');
 
 
-// TODO
-var stores = {}, actions = {};
-var flux = new Fluxxor.Flux(stores, actions);
+var flux = new Fluxxor.Flux(
+  require('./stores'),
+  require('./actions')
+);
 
 
 React.render(

@@ -15,6 +15,22 @@ module.exports = React.createClass({
    */
   render: function() {
     return <div id="image"></div>;
+  },
+
+
+  /**
+   * Spin up the image viewer.
+   */
+  componentDidMount: function() {
+    this._initOpenLayers();
+  },
+
+
+  /**
+   * Initialize OpenLayers.
+   */
+  _initOpenLayers: function() {
+    // TODO
   }
 
 
