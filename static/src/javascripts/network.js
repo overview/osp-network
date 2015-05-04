@@ -1,10 +1,10 @@
 
 
 var Backbone = require('backbone');
-require('osd');
+var ol = require('openlayers');
 
 
-var Network = module.exports = Backbone.View.extend({
+module.exports = Backbone.View.extend({
 
 
   el: '#network',
@@ -22,21 +22,7 @@ var Network = module.exports = Backbone.View.extend({
    * Initialize OSD.
    */
   _initImage: function() {
-
-    this.osd = OpenSeadragon({
-
-      id: 'network',
-      tileSources: '/static/tiles/hlom.dzi',
-      immediateRender: true,
-      showNavigationControl: false,
-      showNavigator: true,
-
-      gestureSettingsMouse: {
-        clickToZoom: false
-      }
-
-    });
-
+    console.log(ol);
   }
 
 
