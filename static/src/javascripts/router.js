@@ -12,6 +12,16 @@ module.exports = Backbone.Router.extend({
 
 
   /**
+   * Set the flux instance.
+   *
+   * @param {Object} options
+   */
+  initialize: function(options) {
+    this.flux = options.flux;
+  },
+
+
+  /**
    * Focus on a location.
    *
    * @param {String} x
@@ -19,7 +29,11 @@ module.exports = Backbone.Router.extend({
    * @param {String} z
    */
   xyz: function(x, y, z) {
-    console.log(x, y, z);
+    this.flux.actions.route.xyz(
+      Number(x),
+      Number(y),
+      Number(z)
+    );
   }
 
 

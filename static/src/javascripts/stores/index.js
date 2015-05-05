@@ -1,5 +1,10 @@
 
 
+var SelectionStore = require('./selection');
+var FocusStore = require('./focus');
+
+
 module.exports = {
-  selection: require('./selection')
+  selection: new SelectionStore(),
+  focus: new FocusStore()
 };

@@ -10,7 +10,7 @@ var Backbone = require('backbone');
 Backbone.$ = $;
 
 
-var flux = new Fluxxor.Flux(
+var flux = module.exports = new Fluxxor.Flux(
   require('./stores'),
   require('./actions')
 );
@@ -22,5 +22,5 @@ React.render(
 );
 
 
-new Router();
+new Router({ flux: flux });
 Backbone.history.start();

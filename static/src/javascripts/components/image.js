@@ -28,6 +28,7 @@ module.exports = React.createClass({
   componentDidMount: function() {
     this._initOpenLayers();
     this._initEvents();
+    this._initStores();
   },
 
 
@@ -83,6 +84,15 @@ module.exports = React.createClass({
 
 
   /**
+   * Listen for store changes.
+   */
+  _initStores: function() {
+    this.focusStore = this.getFlux().store('focus');
+    this.focusStore.on('change', _.bind(this.focus, this));
+  },
+
+
+  /**
    * When the map is moved.
    *
    * @param {Object} e - The moveend event.
@@ -109,6 +119,16 @@ module.exports = React.createClass({
    */
   onClick: function(e) {
     console.log(e);
+  },
+
+
+  /**
+   * Apply a new focus position.
+   */
+  focus: function() {
+    var focus = this.focusStore.getState().focus;
+    this.view.setCenter([focus.x, focus.y]);
+    this.view.setZoom(focus.z);
   }
 
 
