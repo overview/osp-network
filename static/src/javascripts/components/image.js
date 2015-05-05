@@ -5,6 +5,7 @@ var Backbone = require('backbone');
 var React = require('react');
 var Fluxxor = require('fluxxor');
 var L = require('leaflet');
+var fields = require('../data/fields');
 var router = require('../router');
 
 require('leaflet.Zoomify');
@@ -32,6 +33,7 @@ module.exports = React.createClass({
     this._initLeaflet();
     this._initEvents();
     this._initStores();
+    this._initFields();
   },
 
 
@@ -67,6 +69,45 @@ module.exports = React.createClass({
 
     // When the map is clicked.
     this.map.on('click', _.bind(this.onClick, this));
+
+  },
+
+
+  /**
+   * Render the field boxes.
+   */
+  _initFields: function() {
+
+    var self = this;
+
+    _.each(fields, function(f) {
+
+      var pts = [
+        [f.ymin, f.xmin],
+        [f.ymax, f.xmin],
+        [f.ymax, f.xmax],
+        [f.ymin, f.xmax],
+        [f.ymin, f.xmin]
+      ];
+
+      var opts = {
+        color: '#ffc600',
+        weight: 2,
+        opacity: 1
+      };
+
+      // Add the outline.
+      L.polyline(pts, opts).addTo(self.map);
+
+      var icon = L.divIcon({
+        html: f.label,
+        iconSize: null
+      });
+
+      // Add the label.
+      L.marker([f.ymin, f.xmin], { icon: icon }).addTo(self.map);
+
+    });
 
   },
 
