@@ -27,8 +27,8 @@ module.exports = React.createClass({
    */
   componentDidMount: function() {
     this._initLeaflet();
-    //this._initEvents();
-    //this._initStores();
+    this._initEvents();
+    this._initStores();
   },
 
 
@@ -37,17 +37,17 @@ module.exports = React.createClass({
    */
   _initLeaflet: function() {
 
-    var d = 220000; // TODO: Env-ify.
+    // TODO: Env-ify.
+    var d = 220000;
 
-    this.map = L.map('image').setView(new L.LatLng(0,0), 0);
-
-    L.tileLayer.zoomify('/static/tiles/', {
-      width: d,
-      height: d,
-      tolerance: 0.8,
+    var layer = L.tileLayer.zoomify('/static/tiles/', {
       detectRetina: true,
-      //tileSize: 128
-    }).addTo(this.map);
+      width: d,
+      height: d
+    });
+
+    this.map = L.map('image').setView([0,0], 0);
+    this.map.addLayer(layer);
 
   },
 
@@ -82,11 +82,11 @@ module.exports = React.createClass({
    */
   onMove: function(e) {
 
-    var c = this.view.getCenter();
-    var z = this.view.getZoom();
+    var c = this.map.getCenter();
+    var z = this.map.getZoom();
 
-    var x = c[0].toFixed(4);
-    var y = c[1].toFixed(4);
+    var x = c.lng.toFixed(4);
+    var y = c.lat.toFixed(4);
 
     Backbone.history.navigate([x, y, z].join('/'), {
       replace: true
@@ -110,8 +110,7 @@ module.exports = React.createClass({
    */
   focus: function() {
     var focus = this.focusStore.getState().focus;
-    this.view.setCenter([focus.x, focus.y]);
-    this.view.setZoom(focus.z);
+    this.map.setView([focus.y, focus.x], focus.z);
   }
 
 
