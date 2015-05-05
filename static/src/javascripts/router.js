@@ -7,7 +7,8 @@ module.exports = Backbone.Router.extend({
 
 
   routes: {
-    ':x/:y/:z': 'xyz'
+    ':x/:y/:z': 'xyz',
+    ':cn': 'cn'
   },
 
 
@@ -34,6 +35,16 @@ module.exports = Backbone.Router.extend({
       Number(y),
       Number(z)
     );
+  },
+
+
+  /**
+   * Focus on a text.
+   *
+   * @param {String} cn
+   */
+  cn: function(cn) {
+    this.flux.actions.route.cn(cn);
   }
 
 
