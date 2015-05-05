@@ -3,7 +3,11 @@
 var React = require('react');
 var Fluxxor = require('fluxxor');
 var App = require('./components/app');
-var router = require('./router');
+var Router = require('./router');
+
+var $ = require('jquery');
+var Backbone = require('backbone');
+Backbone.$ = $;
 
 
 var flux = new Fluxxor.Flux(
@@ -18,4 +22,5 @@ React.render(
 );
 
 
-router.init();
+new Router();
+Backbone.history.start();

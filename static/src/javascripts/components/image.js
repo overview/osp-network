@@ -1,6 +1,7 @@
 
 
 var _ = require('lodash');
+var Backbone = require('backbone');
 var React = require('react');
 var Fluxxor = require('fluxxor');
 var ol = require('openlayers');
@@ -94,7 +95,9 @@ module.exports = React.createClass({
     var x = c[0].toFixed(4);
     var y = c[1].toFixed(4);
 
-    router.setRoute([x, y, z].join('/'));
+    Backbone.history.navigate([x, y, z].join('/'), {
+      replace: true
+    });
 
   },
 

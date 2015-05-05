@@ -1,9 +1,14 @@
 
 
-var Router = require('director').Router;
+var Backbone = require('backbone');
 
 
-module.exports = new Router({
+module.exports = Backbone.Router.extend({
+
+
+  routes: {
+    ':x/:y/:z': 'xyz'
+  },
 
 
   /**
@@ -13,7 +18,7 @@ module.exports = new Router({
    * @param {String} y
    * @param {String} z
    */
-  '/:x/:y/:z': function(x, y, z) {
+  xyz: function(x, y, z) {
     console.log(x, y, z);
   }
 
