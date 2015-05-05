@@ -1,7 +1,7 @@
 {
   "name": "osp-network",
   "version": "0.0.0",
-  "description": "A 22.5 billion pixel render of the OSP citation graph.",
+  "description": "A 50 billion pixel render of the OSP citation graph.",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -15,6 +15,7 @@
   "homepage": "https://github.com/overview/osp-network",
   "devDependencies": {
     "browserify": "^9.0.8",
+    "browserify-shim": "^3.8.6",
     "grunt": "^0.4.5",
     "grunt-browserify": "^3.7.0",
     "grunt-contrib-clean": "^0.6.0",
@@ -40,5 +41,8 @@
     "openlayers": "^3.4.0",
     "react": "^0.13.1",
     "superagent": "^1.2.0"
+  },
+  "browser": {
+    "zlayer": "./bower_components/leaflet.zoomify/L.TileLayer.Zoomify.js"
   }
 }
