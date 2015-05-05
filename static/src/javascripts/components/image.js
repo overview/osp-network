@@ -24,6 +24,7 @@ module.exports = React.createClass({
    */
   componentDidMount: function() {
     this._initOpenLayers();
+    this._initEvents();
   },
 
 
@@ -35,7 +36,6 @@ module.exports = React.createClass({
     var d = 10000; // TODO: Env-ify.
 
     var proj = new ol.proj.Projection({
-      code: 'ZOOMIFY',
       units: 'pixels',
       extent: [0, 0, d, d]
     });
@@ -60,6 +60,24 @@ module.exports = React.createClass({
       target: this.getDOMNode(),
       view: view,
       layers: [layer]
+    });
+
+  },
+
+
+  /**
+   * Publish move and click events.
+   */
+  _initEvents: function() {
+
+    // When the map is moved.
+    this.map.on('moveend', function(e) {
+      console.log(e);
+    });
+
+    // When the map is clicked.
+    this.map.on('click', function(e) {
+      console.log(e);
     });
 
   }
