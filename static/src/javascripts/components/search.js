@@ -2,8 +2,8 @@
 
 var React = require('react');
 var Fluxxor = require('fluxxor');
-var Image = require('./image');
-var Search = require('./search');
+var SearchBox = require('./search-box');
+var SearchList = require('./search-list');
 
 
 module.exports = React.createClass({
@@ -13,15 +13,13 @@ module.exports = React.createClass({
 
 
   /**
-   * Render the application.
+   * Render search interface.
    */
   render: function() {
     return (
-      <div className="container-fluid">
-        <div className="row">
-          <Image />
-          <Search />
-        </div>
+      <div id="search">
+        <SearchBox />
+        <SearchList />
       </div>
     );
   }
