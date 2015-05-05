@@ -92,7 +92,7 @@ module.exports = React.createClass({
 
       var opts = {
         color: '#ffc600',
-        weight: 2,
+        weight: 0.8,
         opacity: 1
       };
 
