@@ -147,7 +147,7 @@ module.exports = React.createClass({
    * @param {Object} e - The click event.
    */
   onClick: function(e) {
-    console.log(e);
+    this.getFlux().actions.image.click();
   },
 
 

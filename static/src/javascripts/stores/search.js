@@ -11,7 +11,8 @@ module.exports = Fluxxor.createStore({
   actions: {
     SEARCH_ACTIVATE: 'activate',
     SEARCH_DEACTIVATE: 'deactivate',
-    SEARCH_QUERY: 'query'
+    SEARCH_QUERY: 'query',
+    IMAGE_CLICK: 'deactivate'
   },
 
 
@@ -91,7 +92,6 @@ module.exports = Fluxxor.createStore({
         self.loading = false;
         self.results = res.body.hits;
         self.emit('change');
-        console.log(self.results);
 
       });
 
