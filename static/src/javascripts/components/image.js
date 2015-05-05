@@ -37,7 +37,7 @@ module.exports = React.createClass({
    */
   _initOpenLayers: function() {
 
-    var d = 10000; // TODO: Env-ify.
+    var d = 220000; // TODO: Env-ify.
 
     var proj = new ol.proj.Projection({
       units: 'pixels',
