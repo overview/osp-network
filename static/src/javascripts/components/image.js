@@ -6,7 +6,9 @@ var React = require('react');
 var Fluxxor = require('fluxxor');
 var L = require('leaflet');
 var router = require('../router');
-require('zlayer');
+
+require('leaflet.Zoomify');
+require('leaflet.MousePosition');
 
 
 module.exports = React.createClass({
@@ -38,17 +40,19 @@ module.exports = React.createClass({
    */
   _initLeaflet: function() {
 
-    // TODO: Env-ify.
-    var d = 220000;
-
+    // Tile layer.
     var layer = L.tileLayer.zoomify('/static/tiles/', {
       detectRetina: true,
-      width: d,
-      height: d
+      width:  220000,
+      height: 220000
     });
+
+    // Cursor X/Y position.
+    var position = L.control.mousePosition();
 
     this.map = L.map('image').setView([0,0], 0);
     this.map.addLayer(layer);
+    this.map.addControl(position);
 
   },
 

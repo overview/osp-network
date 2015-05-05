@@ -43,6 +43,7 @@
     "superagent": "^1.2.0"
   },
   "browser": {
-    "zlayer": "./bower_components/leaflet.zoomify/L.TileLayer.Zoomify.js"
+    "leaflet.Zoomify": "./bower_components/Leaflet.Zoomify/L.TileLayer.Zoomify.js",
+    "leaflet.MousePosition": "./bower_components/Leaflet.MousePosition/src/L.Control.MousePosition.js"
   }
 }
