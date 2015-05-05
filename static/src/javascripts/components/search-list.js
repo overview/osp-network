@@ -14,7 +14,7 @@ module.exports = React.createClass({
    * Render search list.
    */
   render: function() {
-    return <h3>list</h3>;
+    return null;
   }
 
 

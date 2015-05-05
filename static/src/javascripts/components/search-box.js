@@ -10,6 +10,7 @@ module.exports = React.createClass({
 
   mixins: [
     Fluxxor.FluxMixin(React),
+    Fluxxor.StoreWatchMixin('search'),
     React.addons.LinkedStateMixin,
   ],
 
@@ -29,7 +30,7 @@ module.exports = React.createClass({
    */
   getStateFromFlux: function() {
     return {
-      search: this.getFlux().store('search').getData()
+      search: this.getFlux().store('search').getState()
     };
   },
 

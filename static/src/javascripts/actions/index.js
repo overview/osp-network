@@ -2,5 +2,6 @@
 
 module.exports = {
   selection: require('./selection'),
-  route: require('./route')
+  route: require('./route'),
+  search: require('./search')
 };
