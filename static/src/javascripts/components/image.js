@@ -1,8 +1,10 @@
 
 
+var _ = require('lodash');
 var React = require('react');
 var Fluxxor = require('fluxxor');
 var ol = require('openlayers');
+var router = require('../router');
 
 
 module.exports = React.createClass({
@@ -40,7 +42,7 @@ module.exports = React.createClass({
       extent: [0, 0, d, d]
     });
 
-    var view = new ol.View({
+    this.view = new ol.View({
       projection: proj,
       center: [d/2, -d/2],
       zoom: 0
@@ -58,7 +60,7 @@ module.exports = React.createClass({
 
     this.map = new ol.Map({
       target: this.getDOMNode(),
-      view: view,
+      view: this.view,
       layers: [layer]
     });
 
@@ -71,15 +73,39 @@ module.exports = React.createClass({
   _initEvents: function() {
 
     // When the map is moved.
-    this.map.on('moveend', function(e) {
-      console.log(e);
-    });
+    this.map.on('moveend', _.bind(this.onMove, this));
 
     // When the map is clicked.
-    this.map.on('click', function(e) {
-      console.log(e);
-    });
+    this.map.on('click', _.bind(this.onClick, this));
 
+  },
+
+
+  /**
+   * When the map is moved.
+   *
+   * @param {Object} e - The moveend event.
+   */
+  onMove: function(e) {
+
+    var c = this.view.getCenter();
+    var z = this.view.getZoom();
+
+    var x = c[0].toFixed(4);
+    var y = c[1].toFixed(4);
+
+    router.setRoute([x, y, z].join('/'));
+
+  },
+
+
+  /**
+   * When the map is clicked.
+   *
+   * @param {Object} e - The click event.
+   */
+  onClick: function(e) {
+    console.log(e);
   }
 
 
