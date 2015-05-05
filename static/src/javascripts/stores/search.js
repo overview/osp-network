@@ -1,6 +1,7 @@
 
 
 var _ = require('lodash');
+var request = require('superagent');
 var Fluxxor = require('fluxxor');
 
 
@@ -66,7 +67,36 @@ module.exports = Fluxxor.createStore({
    * @param {String} q - The query string.
    */
   query: function(q) {
-    console.log(q);
+
+    var self = this;
+
+    // Catch duplicates.
+    if (_.isString(q)) q = q.trim();
+    if (this.lastQuery === q) return;
+
+    // Cancel an in-flight request.
+    if (this.req) this.req.abort();
+
+    // Show spinner.
+    this.loading = true;
+    this.emit('change');
+
+    // Load results.
+    this.req = request
+      .get('/search')
+      .query({q:q})
+      .end(function(err, res) {
+
+        // Show the new rows.
+        self.loading = false;
+        self.results = res.body.hits;
+        self.emit('change');
+        console.log(self.results);
+
+      });
+
+    this.lastQuery = q;
+
   },
 
 
