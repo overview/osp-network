@@ -49,12 +49,13 @@ module.exports = React.createClass({
       height: 220000
     });
 
-    // Cursor X/Y position.
+    // Cursor position.
     var position = L.control.mousePosition();
 
-    this.map = L.map('image').setView([0,0], 0);
-    this.map.addLayer(layer);
+    this.map = L.map('image')
+    this.map.setView([0,0], 0);
     this.map.addControl(position);
+    this.map.addLayer(layer);
 
   },
 
