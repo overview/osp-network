@@ -2,6 +2,7 @@
 
 var React = require('react');
 var Fluxxor = require('fluxxor');
+var countUp = require('countup');
 
 
 module.exports = React.createClass({
@@ -17,21 +18,25 @@ module.exports = React.createClass({
         <h4>The Open Syllabus Project</h4>
 
         <p>
-          <span className="count" id="s-count">1,177,109</span> syllabi.{' '}
-          <span className="count" id="t-count">744,036</span> texts.{' '}
-          <span className="count" id="c-count">9,858,427</span> citations.
+          <span className="count" id="s-count"></span> syllabi.{' '}
+          <span className="count" id="t-count"></span> texts.{' '}
+          <span className="count" id="c-count"></span> citations.
         </p>
 
         <p>
+
           <a href="http://opensyllabusproject.org" target="_blank">
             Learn more
           </a>{', '}
+
           <a href="https://github.com/overview/osp-network" target="_blank">
             fork the code
           </a>{', or '}
+
           <a href="https://twitter.com/opensyllabus" target="_blank">
             get in touch
           </a>{'!'}
+
         </p>
 
       </header>
@@ -43,7 +48,9 @@ module.exports = React.createClass({
    * Run the count-ups!
    */
   componentDidMount: function() {
-    // TODO
+    new countUp('s-count', 0, 1177109, 0, 2).start();
+    new countUp('t-count', 0, 744036,  0, 2).start();
+    new countUp('c-count', 0, 9858427, 0, 2).start();
   },
 
 

@@ -44,6 +44,10 @@
   },
   "browser": {
     "leaflet.Zoomify": "./bower_components/Leaflet.Zoomify/L.TileLayer.Zoomify.js",
-    "leaflet.MousePosition": "./bower_components/Leaflet.MousePosition/src/L.Control.MousePosition.js"
+    "leaflet.MousePosition": "./bower_components/Leaflet.MousePosition/src/L.Control.MousePosition.js",
+    "countup": "./bower_components/countUp.js/countUp.js"
+  },
+  "browserify-shim": {
+    "countup": "countUp"
   }
 }
