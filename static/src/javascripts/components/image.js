@@ -33,6 +33,7 @@ module.exports = React.createClass({
     this._initLeaflet();
     this._initEvents();
     this._initFields();
+    this._initHighlight();
     this._initStores();
   },
 
@@ -124,6 +125,19 @@ module.exports = React.createClass({
 
 
   /**
+   * Initialize the highlight marker.
+   */
+  _initHighlight: function() {
+    this.hlMarker = L.circleMarker([0,0], {
+      fillOpacity: 0.9,
+      fillColor: '#ffc600',
+      weight: 8,
+      color: 'red'
+    });
+  },
+
+
+  /**
    * Listen for store changes.
    */
   _initStores: function() {
@@ -196,7 +210,8 @@ module.exports = React.createClass({
       this.map.getMaxZoom()
     );
 
-    // TODO: Render the marker.
+    this.hlMarker.setLatLng(point);
+    this.map.addLayer(this.hlMarker);
 
   },
 
@@ -205,7 +220,7 @@ module.exports = React.createClass({
    * Clear the highlight marker.
    */
   unhighlight: function() {
-    // TODO
+    this.map.removeLayer(this.hlMarker);
   },
 
 
