@@ -46,20 +46,15 @@ module.exports = React.createClass({
 
         <td className="text">
 
-          <p>
-            <i className={iconCx}></i>
-            <span className="title"
-              dangerouslySetInnerHTML={{__html: this.title()}}>
-            </span>
-          </p>
+          <span className="title"
+            dangerouslySetInnerHTML={{__html: this.title()}}>
+          </span>
 
-          <p className="author"
+          {', '}
+
+          <span className="author"
             dangerouslySetInnerHTML={{__html: this.author()}}>
-          </p>
-
-          <p className="publisher"
-            dangerouslySetInnerHTML={{__html: this.publisher()}}>
-          </p>
+          </span>
 
         </td>
 

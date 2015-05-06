@@ -7,11 +7,88 @@
   left: 50px;
 }
 
+#search-box {
+
+  // Pop the color of the search icon.
+  &.active {
+    i {
+      color: @color-hl;
+    }
+  }
+
+  input, span.input-group-addon {
+    .dark-panel();
+    border: none;
+  }
+
+  input {
+
+    padding: 0;
+    font-weight: 200;
+
+    &:focus {
+      box-shadow: none;
+    }
+
+  }
+
+}
+
 #search-list {
 
+  .dark-panel();
+
   display: none;
+  max-height: 80vh;
+  margin-top: 8px;
+  overflow: scroll;
+  font-weight: 300;
+  font-size: 13px;
+
+  // Show the result list when active.
   &.active {
     display: block;
+  }
+
+  table {
+
+    margin: 0;
+
+    th {
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    tr.text-row {
+
+      &:hover {
+        cursor: pointer;
+        // Pop the title on hover.
+        .title, .title em {
+          color: @color-hl;
+        }
+      }
+
+      td {
+        border-color: @color-bg;
+      }
+
+      td.count {
+        text-align: center;
+        vertical-align: middle;
+      }
+
+      span.title {
+        font-weight: bold;
+      }
+
+      em {
+        font-style: normal;
+        color: @brand-primary;
+      }
+
+    }
+
   }
 
 }
