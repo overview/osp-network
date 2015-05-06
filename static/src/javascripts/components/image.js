@@ -128,12 +128,14 @@ module.exports = React.createClass({
    * Initialize the highlight marker.
    */
   _initHighlight: function() {
+
     this.hlMarker = L.circleMarker([0,0], {
-      fillOpacity: 0.9,
-      fillColor: '#ffc600',
-      weight: 8,
-      color: 'red'
+      weight: 3,
+      color: '#ffc600',
+      opacity: 1,
+      fill: false
     });
+
   },
 
 
