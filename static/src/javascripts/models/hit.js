@@ -8,15 +8,35 @@ module.exports = Backbone.NestedModel.extend({
 
 
   /**
-   * If a field is highlighted, get the highlighted value. If not, fall back
-   * on the raw field value.
+   * Get an original source value
    *
    * @param {String} field - The field key.
+   * @returns {String}
+   */
+  getSource: function(field) {
+    return this.get('_source.'+field);
+  },
+
+
+  /**
+   * Get a hit-highlighted value.
+   *
+   * @param {String} field - The field key.
+   * @returns {String}
    */
   getHighlight: function(field) {
-    var hPath = 'highlight.'+field;
-    var sPath = '_source.'+field;
-    return this.get(hPath) ? this.get(hPath) : this.get(sPath);
+    return this.get('highlight.'+field);
+  },
+
+
+  /**
+   * Try to get a highlighted value, and fall back to the source.
+   *
+   * @param {String} field - The field key.
+   * @returns {String}
+   */
+  getHighlightOrSource: function(field) {
+    return this.getHighlight(field) || this.getSource(field);
   }
 
 

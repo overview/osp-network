@@ -43,14 +43,14 @@ module.exports = React.createClass({
         onClick={this.onClick}>
 
         <td className="count">
-          {this.props.hit.get('_source.degree')}
+          {this.props.hit.getSource('degree')}
         </td>
 
         <td className="text">
 
           <span className="title"
             dangerouslySetInnerHTML={{
-              __html: this.props.hit.getHighlight('title')
+              __html: this.props.hit.getHighlightOrSource('title')
             }}>
           </span>
 
@@ -58,7 +58,7 @@ module.exports = React.createClass({
 
           <span className="author"
             dangerouslySetInnerHTML={{
-              __html: this.props.hit.getHighlight('author')
+              __html: this.props.hit.getHighlightOrSource('author')
             }}>
           </span>
 
