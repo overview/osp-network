@@ -42,7 +42,12 @@ module.exports = React.createClass({
    */
   _initLeaflet: function() {
 
-    // Tile layer.
+    // Zoom buttons.
+    var zoom = L.control.zoom({
+      position: 'topright'
+    });
+
+    // Zoomify layer.
     var layer = L.tileLayer.zoomify('/static/tiles/', {
       detectRetina: true,
       width:  220000,
@@ -52,8 +57,12 @@ module.exports = React.createClass({
     // Cursor position.
     var position = L.control.mousePosition();
 
-    this.map = L.map('image')
+    this.map = L.map('image', {
+      zoomControl: false
+    });
+
     this.map.setView([0,0], 0);
+    this.map.addControl(zoom);
     this.map.addControl(position);
     this.map.addLayer(layer);
 

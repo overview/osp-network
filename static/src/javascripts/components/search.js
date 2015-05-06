@@ -4,6 +4,7 @@ var React = require('react');
 var Fluxxor = require('fluxxor');
 var SearchBox = require('./search-box');
 var SearchList = require('./search-list');
+var Branding = require('./branding');
 
 
 module.exports = React.createClass({
@@ -18,15 +19,9 @@ module.exports = React.createClass({
   render: function() {
     return (
       <div id="search">
-
-        <header id="branding">
-          <h4>The Open Syllabus Project</h4>
-          <p>1M syllabi. 750k texts. 10M citations</p>
-        </header>
-
+        <Branding />
         <SearchBox />
         <SearchList />
-
       </div>
     );
   }
