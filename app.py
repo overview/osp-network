@@ -28,7 +28,7 @@ def search():
         query = {
             'multi_match': {
                 'query': q,
-                'fields': ['_all'],
+                'fields': ['title', 'author'],
                 'type': 'phrase_prefix'
             }
         }
@@ -56,11 +56,7 @@ def search():
                 'author': {
                     'number_of_fragments': 1,
                     'fragment_size': 1000
-                },
-                'publisher': {
-                    'number_of_fragments': 1,
-                    'fragment_size': 1000
-                },
+                }
             }
         }
     })
