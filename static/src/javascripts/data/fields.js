@@ -4,58 +4,74 @@ module.exports = [
 
   {
     label: 'Computer Science',
-    xmin: -136,
-    xmax: -86,
-    ymin: -57,
-    ymax: -26
+    xmin: 28,
+    xmax: 67,
+    ymin: -178,
+    ymax: -147
   },
 
   {
     label: 'Religious Studies',
-    xmin: -40,
-    xmax: -1,
-    ymin: -73,
-    ymax: -42
+    xmin: 100,
+    xmax: 126,
+    ymin: -208,
+    ymax: -160
   },
 
   {
     label: 'Music',
-    xmin: 13,
-    xmax: 75,
-    ymin: -60,
-    ymax: -14
+    xmin: 135,
+    xmax: 180,
+    ymin: -176,
+    ymax: -136
   },
 
   {
     label: 'Literature',
-    xmin: 0,
-    xmax: 75,
-    ymin: 0,
-    ymax: 52
+    xmin: 129,
+    xmax: 180,
+    ymin: -131,
+    ymax: -86
   },
 
   {
     label: 'Cultural Studies',
-    xmin: -35,
-    xmax: -4,
-    ymin: 33,
-    ymax: 67
+    xmin: 103,
+    xmax: 124,
+    ymin: -106,
+    ymax: -60
   },
 
   {
     label: 'History / Poly Sci / Int. Affairs',
-    xmin: -110,
-    xmax: -50,
-    ymin: 38,
-    ymax: 68
+    xmin: 52,
+    xmax: 90,
+    ymin: -95,
+    ymax: -68
   },
 
   {
     label: 'Economics / Business',
-    xmin: -130,
-    xmax: -90,
-    ymin: -20,
-    ymax: 32
+    xmin: 44,
+    xmax: 65,
+    ymin: -142,
+    ymax: -100
+  },
+
+  {
+    label: 'Philosophy / Classics',
+    xmin: 104,
+    xmax: 126,
+    ymin: -133,
+    ymax: -114
+  },
+
+  {
+    label: 'Government / Law',
+    xmin: 68,
+    xmax: 98,
+    ymin: -121,
+    ymax: -101
   },
 
 ];

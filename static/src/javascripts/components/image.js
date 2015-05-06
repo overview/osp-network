@@ -32,8 +32,8 @@ module.exports = React.createClass({
   componentDidMount: function() {
     this._initLeaflet();
     this._initEvents();
-    this._initStores();
     this._initFields();
+    this._initStores();
   },
 
 
@@ -196,7 +196,7 @@ module.exports = React.createClass({
       this.map.getMaxZoom()
     );
 
-    L.circleMarker(point).addTo(this.map);
+    // TODO: Render the marker.
 
   },
 
