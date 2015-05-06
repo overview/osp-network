@@ -74,8 +74,14 @@ module.exports = React.createClass({
    * When the row is highlighted.
    */
   onMouseEnter: function() {
+
     this.setState({ highlighted: true });
-    this.getFlux().actions.selection.highlight(this.props.hit);
+
+    // Publish a selection instance.
+    this.getFlux().actions.selection.highlight(
+      this.props.hit.toSelection()
+    );
+
   },
 
 
@@ -92,7 +98,9 @@ module.exports = React.createClass({
    * When the row is selected.
    */
   onClick: function() {
-    this.getFlux().actions.selection.select(this.props.hit);
+    this.getFlux().actions.selection.select(
+      this.props.hit.toSelection()
+    );
   }
 
 

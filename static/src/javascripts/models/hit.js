@@ -1,6 +1,7 @@
 
 
 var Backbone = require('backbone');
+var Selection = require('./selection');
 require('backbone-nested');
 
 
@@ -41,13 +42,21 @@ module.exports = Backbone.NestedModel.extend({
 
 
   /**
-   * Get the spatial coordinate as [x, y].
+   * Produce a selection instance.
    *
    * @returns {Array}
    */
-  getCoordinate: function() {
-    var loc = this.getSource('location');
-    return [loc.lon, loc.lat];
+  toSelection: function() {
+
+    var location = this.getSource('location');
+
+    return new Selection({
+      title: this.getSource('title'),
+      author: this.getSource('author'),
+      x: location.lon,
+      y: location.lat
+    });
+
   }
 
 

@@ -255,7 +255,7 @@ module.exports = React.createClass({
    */
   _getNodePoint: function(node) {
     return this.map.unproject(
-      node.getCoordinate(),
+      node.getXY(),
       this.map.getMaxZoom()
     );
   }
