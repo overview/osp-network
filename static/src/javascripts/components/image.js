@@ -205,13 +205,11 @@ module.exports = React.createClass({
    */
   highlight: function() {
 
+    // Get the node point.
     var node = this.selectionStore.highlighted;
+    var point = this._getNodePoint(node);
 
-    var point = this.map.unproject(
-      node.getCoordinate(),
-      this.map.getMaxZoom()
-    );
-
+    // Render the marker.
     this.hlMarker.setLatLng(point);
     this.map.addLayer(this.hlMarker);
 
@@ -230,7 +228,14 @@ module.exports = React.createClass({
    * Focus on the selected record.
    */
   select: function() {
-    // TODO
+
+    // Get the node point.
+    var node = this.selectionStore.highlighted;
+    var point = this._getNodePoint(node);
+
+    // Focus the map.
+    this.map.setView(point, 8);
+
   },
 
 
@@ -240,6 +245,19 @@ module.exports = React.createClass({
   focus: function() {
     var f = this.focusStore.getState().focus;
     this.map.setView([f.y, f.x], f.z);
+  },
+
+
+  /**
+   * Get a lat/lon from a node.
+   *
+   * @param {Object} node
+   */
+  _getNodePoint: function(node) {
+    return this.map.unproject(
+      node.getCoordinate(),
+      this.map.getMaxZoom()
+    );
   }
 
 
