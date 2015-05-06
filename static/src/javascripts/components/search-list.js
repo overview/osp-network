@@ -5,6 +5,7 @@ var React = require('react/addons');
 var Fluxxor = require('fluxxor');
 var classNames = require('classnames');
 var SearchRow = require('./search-row');
+var Hit = require('../models/hit');
 
 
 module.exports = React.createClass({
@@ -47,7 +48,7 @@ module.exports = React.createClass({
 
       // Build up the list of result rows.
       var rows = _.map(this.state.search.results.hits, function(h) {
-        return <SearchRow hit={h} key={h._id} />;
+        return <SearchRow hit={new Hit(h)} key={h._id} />;
       });
 
       var listCx = classNames({

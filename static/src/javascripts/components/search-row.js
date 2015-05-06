@@ -42,18 +42,24 @@ module.exports = React.createClass({
         onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}>
 
-        <td className="count">{this.props.hit._source.degree}</td>
+        <td className="count">
+          {this.props.hit.get('_source.degree')}
+        </td>
 
         <td className="text">
 
           <span className="title"
-            dangerouslySetInnerHTML={{__html: this.title()}}>
+            dangerouslySetInnerHTML={{
+              __html: this.props.hit.getHighlight('title')
+            }}>
           </span>
 
           {', '}
 
           <span className="author"
-            dangerouslySetInnerHTML={{__html: this.author()}}>
+            dangerouslySetInnerHTML={{
+              __html: this.props.hit.getHighlight('author')
+            }}>
           </span>
 
         </td>
@@ -87,49 +93,6 @@ module.exports = React.createClass({
    */
   onClick: function() {
     this.getFlux().actions.selection.select(this.props.hit);
-  },
-
-
-  /**
-   * If a field is highlighted, get the highlighted value. If not, fall back
-   * on the raw field value.
-   *
-   * @param {String} field - The field key.
-   */
-  _getHighlight: function(field) {
-
-    var path = 'highlight.'+field
-
-    var value = _.deepHas(this.props.hit, path) ?
-      this.props.hit.highlight[field][0] :
-      this.props.hit._source[field];
-
-    return value || '';
-
-  },
-
-
-  /**
-   * Author field.
-   */
-  author: function() {
-    return this._getHighlight('author');
-  },
-
-
-  /**
-   * Title field.
-   */
-  title: function() {
-    return this._getHighlight('title');
-  },
-
-
-  /**
-   * Publisher field.
-   */
-  publisher: function() {
-    return this._getHighlight('publisher');
   }
 
 
