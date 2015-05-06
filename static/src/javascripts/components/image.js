@@ -140,6 +140,11 @@ module.exports = React.createClass({
       _.bind(this.unhighlight, this)
     );
 
+    this.selectionStore.on(
+      'select',
+      _.bind(this.select, this)
+    );
+
     this.focusStore.on(
       'change',
       _.bind(this.focus, this)
@@ -196,11 +201,19 @@ module.exports = React.createClass({
 
 
   /**
+   * Focus on the selected record.
+   */
+  select: function() {
+    // TODO
+  },
+
+
+  /**
    * Apply a new focus position.
    */
   focus: function() {
-    var focus = this.focusStore.getState().focus;
-    this.map.setView([focus.y, focus.x], focus.z);
+    var f = this.focusStore.getState().focus;
+    this.map.setView([f.y, f.x], f.z);
   }
 
 
