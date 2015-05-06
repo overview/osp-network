@@ -58,7 +58,8 @@ module.exports = React.createClass({
     var position = L.control.mousePosition();
 
     this.map = L.map('image', {
-      zoomControl: false
+      zoomControl: false,
+      crs: L.CRS.Simple
     });
 
     this.map.setView([0,0], 0);
@@ -187,8 +188,16 @@ module.exports = React.createClass({
    * Render a highlight marker.
    */
   highlight: function() {
+
     var node = this.selectionStore.highlighted;
-    // TODO
+
+    var point = this.map.unproject(
+      node.getCoordinate(),
+      this.map.getMaxZoom()
+    );
+
+    L.circleMarker(point).addTo(this.map);
+
   },
 
 

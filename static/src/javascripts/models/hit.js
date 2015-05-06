@@ -37,6 +37,17 @@ module.exports = Backbone.NestedModel.extend({
    */
   getHighlightOrSource: function(field) {
     return this.getHighlight(field) || this.getSource(field);
+  },
+
+
+  /**
+   * Get the spatial coordinate as [x, y].
+   *
+   * @returns {Array}
+   */
+  getCoordinate: function() {
+    var loc = this.getSource('location');
+    return [loc.lon, loc.lat];
   }
 
 
