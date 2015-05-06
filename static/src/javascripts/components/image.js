@@ -126,8 +126,25 @@ module.exports = React.createClass({
    * Listen for store changes.
    */
   _initStores: function() {
+
+    this.selectionStore = this.getFlux().store('selection');
     this.focusStore = this.getFlux().store('focus');
-    this.focusStore.on('change', _.bind(this.focus, this));
+
+    this.selectionStore.on(
+      'highlight',
+      _.bind(this.highlight, this)
+    );
+
+    this.selectionStore.on(
+      'unhighlight',
+      _.bind(this.unhighlight, this)
+    );
+
+    this.focusStore.on(
+      'change',
+      _.bind(this.focus, this)
+    );
+
   },
 
 
@@ -158,6 +175,23 @@ module.exports = React.createClass({
    */
   onClick: function(e) {
     this.getFlux().actions.image.click();
+  },
+
+
+  /**
+   * Render a highlight marker.
+   */
+  highlight: function() {
+    var node = this.selectionStore.highlighted;
+    console.log(node);
+  },
+
+
+  /**
+   * Clear the highlight marker.
+   */
+  unhighlight: function() {
+    // TODO
   },
 
 
