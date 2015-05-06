@@ -183,7 +183,7 @@ module.exports = React.createClass({
    */
   highlight: function() {
     var node = this.selectionStore.highlighted;
-    console.log(node);
+    // TODO
   },
 
 

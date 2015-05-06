@@ -15,7 +15,7 @@ module.exports = React.createClass({
     return (
       <header id="branding">
 
-        <h4>The Open Syllabus Project</h4>
+        <h4><i className="fa fa-floppy-o"></i> The Open Syllabus Project</h4>
 
         <p>
           <span className="count" id="s-count"></span> syllabi.{' '}
