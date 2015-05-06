@@ -3,6 +3,8 @@
 import os
 
 from osp.common.config import config
+from osp.citations.hlom.models.node import HLOM_Node
+from osp.citations.hlom.models.edge import HLOM_Edge
 from flask import Flask, render_template, request, jsonify
 
 
@@ -62,6 +64,34 @@ def search():
     })
 
     return jsonify(results)
+
+
+@app.route('/neighbors')
+def neighbors():
+
+    """
+    Given all nodes adjacent to a node.
+    """
+
+    cn = request.args.get('cn')
+    node = HLOM_Node.get(HLOM_Node.control_number==cn)
+
+    query = (
+        HLOM_Edge
+        .select(HLOM_Edge.weight, HLOM_Node.node)
+        .join(HLOM_Node, on=(HLOM_Node.id==HLOM_Edge.target))
+        .where(HLOM_Edge.source==node)
+        .order_by(HLOM_Edge.weight.desc())
+        .limit(100)
+    )
+
+    neighbors = []
+    for n in query.naive():
+        neighbors.append({
+            'node': n.node, 'weight': n.weight
+        })
+
+    return jsonify({'neighbors': neighbors })
 
 
 if __name__ == '__main__':

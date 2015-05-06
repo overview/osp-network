@@ -51,10 +51,11 @@ module.exports = Backbone.NestedModel.extend({
     var location = this.getSource('location');
 
     return new Selection({
-      title: this.getSource('title'),
+      cn:     this.get('_id'),
+      title:  this.getSource('title'),
       author: this.getSource('author'),
-      x: location.lon,
-      y: location.lat
+      x:      location.lon,
+      y:      location.lat
     });
 
   }

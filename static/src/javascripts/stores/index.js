@@ -1,12 +1,14 @@
 
 
-var SelectionStore = require('./selection');
-var FocusStore = require('./focus');
-var SearchStore = require('./search');
+var Selection = require('./selection');
+var Focus = require('./focus');
+var Neighbors = require('./neighbors');
+var Search = require('./search');
 
 
 module.exports = {
-  selection: new SelectionStore(),
-  focus: new FocusStore(),
-  search: new SearchStore()
+  selection: new Selection(),
+  focus: new Focus(),
+  neighbors: new Neighbors(),
+  search: new Search()
 };
