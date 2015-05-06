@@ -66,6 +66,7 @@ module.exports = React.createClass({
           <table className={tableCx}>
             <thead>
               <th>Degree</th>
+              <th></th>
               <th>Text</th>
             </thead>
             <tbody>{rows}</tbody>

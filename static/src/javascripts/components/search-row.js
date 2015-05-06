@@ -46,6 +46,10 @@ module.exports = React.createClass({
           {this.props.hit.getSource('degree')}
         </td>
 
+        <td className="icon">
+          <i className={iconCx}></i>
+        </td>
+
         <td className="text">
 
           <span className="title"
