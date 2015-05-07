@@ -45,10 +45,8 @@ module.exports = React.createClass({
         <div className="card">
 
           <figure className="front">
-            <div>
-              <SearchBox />
-              <SearchList />
-            </div>
+            <SearchBox />
+            <SearchList />
           </figure>
 
           <figure className="back">
