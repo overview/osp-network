@@ -42,7 +42,7 @@ module.exports = React.createClass({
 
     // No results.
     if (total === 0) {
-      return <i className="fa fa-ban"></i>;
+      return <i className="fa fa-ban spinner"></i>;
     }
 
     else {

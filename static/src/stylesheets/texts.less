@@ -8,10 +8,12 @@
   left: @px-gutter;
   perspective: 3000px;
 
+  // By default, hide the neighbors list.
   figure.back {
     display: none;
   }
 
+  // Show neighbors when a node is selected.
   &.selected {
     figure.front {
       display: none;
@@ -19,6 +21,12 @@
     figure.back {
       display: block;
     }
+  }
+
+  // Loading icons.
+  i.spinner {
+    font-size: 7em;
+    color: @color-hl;
   }
 
 }
