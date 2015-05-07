@@ -3,6 +3,7 @@
 var classNames = require('classnames');
 var React = require('react');
 var Fluxxor = require('fluxxor');
+
 var Branding = require('./branding');
 var NeighborList = require('./neighbor-list');
 var SearchBox = require('./search-box');

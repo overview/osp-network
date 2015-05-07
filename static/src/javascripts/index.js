@@ -1,13 +1,13 @@
 
 
-var React = require('react');
-var Fluxxor = require('fluxxor');
-var App = require('./components/app');
-var Router = require('./router');
-
 var $ = require('jquery');
 var Backbone = require('backbone');
+var React = require('react');
+var Fluxxor = require('fluxxor');
 Backbone.$ = $;
+
+var App = require('./components/app');
+var Router = require('./router');
 
 
 var flux = module.exports = new Fluxxor.Flux(

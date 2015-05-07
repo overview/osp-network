@@ -1,11 +1,12 @@
 
 
 var _ = require('lodash');
+var classNames = require('classnames');
 var React = require('react/addons');
 var Fluxxor = require('fluxxor');
-var classNames = require('classnames');
-var NodeES = require('../models/node-es');
+
 var SearchRow = require('./search-row');
+var NodeES = require('../models/node-es');
 
 
 module.exports = React.createClass({
@@ -48,7 +49,8 @@ module.exports = React.createClass({
 
       // Build up the list of result rows.
       var rows = _.map(this.state.search.results.hits, function(h) {
-        return <SearchRow node={new NodeES(h)} key={h._id} />;
+        var n = new NodeES(h);
+        return <SearchRow node={n} key={h._id} />;
       });
 
       var listCx = classNames({

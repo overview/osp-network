@@ -5,6 +5,7 @@ var Backbone = require('backbone');
 var React = require('react');
 var Fluxxor = require('fluxxor');
 var L = require('leaflet');
+
 var fields = require('../data/fields');
 var router = require('../router');
 

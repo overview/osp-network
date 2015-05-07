@@ -1,8 +1,9 @@
 
 
 var Backbone = require('backbone');
-var Selection = require('./selection');
 require('backbone-nested');
+
+var Selection = require('./selection');
 
 
 module.exports = Backbone.NestedModel.extend({
