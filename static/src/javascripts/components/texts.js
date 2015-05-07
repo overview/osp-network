@@ -38,7 +38,7 @@ module.exports = React.createClass({
     });
 
     return (
-      <div id="search" className={searchCx}>
+      <div id="texts" className={searchCx}>
 
         <Branding />
 
