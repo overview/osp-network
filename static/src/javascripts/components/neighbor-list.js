@@ -50,7 +50,7 @@ module.exports = React.createClass({
     });
 
     return (
-      <div id="neighbor-list">
+      <div id="neighbor-list" className="text-list">
         <table className={tableCx}>
 
           <thead>

@@ -37,62 +37,11 @@
 
 #search-list {
 
-  .dark-panel();
-
   display: none;
-  max-height: 70vh;
-  overflow: scroll;
-  font-weight: 300;
-  font-size: 13px;
 
-  // Show the result list when active.
+  // Show search results when the input is active.
   &.active {
     display: block;
-  }
-
-  table {
-
-    margin: 0;
-
-    th {
-      font-size: 10px;
-      text-transform: uppercase;
-    }
-
-    tr.text-row {
-
-      &:hover {
-        cursor: pointer;
-        // Pop the title on hover.
-        .title, .title em {
-          color: @color-hl;
-        }
-      }
-
-      td {
-        border-color: @color-bg;
-      }
-
-      td.count {
-        text-align: center;
-        vertical-align: middle;
-      }
-
-      td.icon {
-        padding-right: 0;
-      }
-
-      span.title {
-        font-weight: bold;
-      }
-
-      em {
-        font-style: normal;
-        color: @brand-primary;
-      }
-
-    }
-
   }
 
 }

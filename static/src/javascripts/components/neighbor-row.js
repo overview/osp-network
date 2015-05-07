@@ -37,7 +37,7 @@ module.exports = React.createClass({
         onClick={this.onClick}>
 
         <td className="count">
-          {this.props.node.get('count')}
+          {this.props.node.get('weight')}
         </td>
 
         <td className="icon">
