@@ -15,8 +15,15 @@ module.exports = Backbone.NestedModel.extend({
    * @returns {Array}
    */
   toSelection: function() {
-    // TODO
-  }
 
+    return new Selection({
+      cn:     this.get('node.label'),
+      author: this.get('node.author'),
+      title:  this.get('node.title'),
+      x:      this.get('node.x'),
+      y:      this.get('node.y')
+    });
+
+  }
 
 });

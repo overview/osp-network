@@ -36,13 +36,27 @@ module.exports = React.createClass({
         onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}>
 
-        <td className="count">count</td>
+        <td className="count">
+          {this.props.node.get('count')}
+        </td>
 
         <td className="icon">
           <i className={iconCx}></i>
         </td>
 
-        <td className="text">icon</td>
+        <td className="text">
+
+          <span className="title">
+            {this.props.node.get('node.title')}
+          </span>
+
+          {', '}
+
+          <span className="author">
+            {this.props.node.get('node.author')}
+          </span>
+
+        </td>
 
       </tr>
     );
