@@ -6,24 +6,26 @@
   width: @px-search-width;
   top: @px-gutter;
   left: @px-gutter;
+  perspective: 3000px;
+
+  .card {
+    .transform-style(preserve-3d);
+    .transition(transform 1s);
+  }
+
+  figure {
+    position: absolute;
+    .backface-visibility(hidden);
+  }
 
   // By default, show the "front" card.
-  figure.front {
-    display: block;
-  }
   figure.back {
-    display: none;
+    .rotateY(180deg);
   }
 
   // Flip the cards when a node is selected.
-  &.selected {
-    figure.front {
-      display: none;
-    }
-    figure.back {
-      display: block;
-    }
-
+  &.selected .card {
+    .rotateY(180deg);
   }
 
 }

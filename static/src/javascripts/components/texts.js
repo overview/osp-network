@@ -42,11 +42,13 @@ module.exports = React.createClass({
 
         <Branding />
 
-        <div id="card">
+        <div className="card">
 
           <figure className="front">
-            <SearchBox />
-            <SearchList />
+            <div>
+              <SearchBox />
+              <SearchList />
+            </div>
           </figure>
 
           <figure className="back">

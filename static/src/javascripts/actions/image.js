@@ -8,6 +8,7 @@ module.exports = {
    */
   click: function() {
     this.dispatch('IMAGE_CLICK');
+    this.flux.actions.selection.unselect(); // TODO|dev
   }
 
 
