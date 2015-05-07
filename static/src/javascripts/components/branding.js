@@ -9,13 +9,16 @@ module.exports = React.createClass({
 
 
   /**
-   * Render search interface.
+   * Render the logo and links.
    */
   render: function() {
     return (
       <header id="branding">
 
-        <h4><i className="fa fa-floppy-o"></i> The Open Syllabus Project</h4>
+        <h4>
+          <i className="fa fa-fw fa-floppy-o"></i>{' '}
+          The Open Syllabus Project
+        </h4>
 
         <p>
           <span className="count" id="s-count"></span> syllabi.{' '}

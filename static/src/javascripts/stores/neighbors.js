@@ -18,7 +18,6 @@ module.exports = Fluxxor.createStore({
    */
   initialize: function() {
     this.results = null;
-    this.node = null;
   },
 
 
@@ -27,8 +26,7 @@ module.exports = Fluxxor.createStore({
    */
   getState: function() {
     return {
-      results: this.results,
-      node: this.node
+      results: this.results
     };
   },
 
@@ -41,7 +39,6 @@ module.exports = Fluxxor.createStore({
   load: function(node) {
 
     var self = this;
-    this.node = node;
 
     // Show spinner.
     this.results = null;

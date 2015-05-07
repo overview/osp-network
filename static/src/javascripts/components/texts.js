@@ -6,6 +6,7 @@ var Fluxxor = require('fluxxor');
 
 var Branding = require('./branding');
 var NeighborList = require('./neighbor-list');
+var NeighborCard = require('./neighbor-card');
 var SearchBox = require('./search-box');
 var SearchList = require('./search-list');
 
@@ -51,6 +52,7 @@ module.exports = React.createClass({
           </figure>
 
           <figure className="back">
+            <NeighborCard />
             <NeighborList />
           </figure>
 
