@@ -5,6 +5,7 @@ var Backbone = require('backbone');
 var React = require('react');
 var Fluxxor = require('fluxxor');
 var L = require('leaflet');
+var MiniMap = require('leaflet-minimap');
 
 var fields = require('../data/fields');
 var router = require('../router');
@@ -44,20 +45,37 @@ module.exports = React.createClass({
    */
   _initLeaflet: function() {
 
+    var d = 220000; // TODO: Config-ify.
+
+    // Cursor position.
+    var position = L.control.mousePosition();
+
     // Zoom buttons.
     var zoom = L.control.zoom({
       position: 'topright'
     });
 
-    // Zoomify layer.
+    // Map layer.
     var layer = L.tileLayer.zoomify('/static/tiles/', {
       detectRetina: true,
-      width:  220000,
-      height: 220000
+      width: d, height: d
     });
 
-    // Cursor position.
-    var position = L.control.mousePosition();
+    // Mini layer.
+    var miniLayer = L.tileLayer.zoomify('/static/tiles/', {
+      width: d, height: d
+    });
+
+    // Mini map.
+    var miniMap = new MiniMap(miniLayer, {
+      height: 240,
+      width: 240,
+      aimingRectOptions: {
+        fillOpacity: 0,
+        color: '#ffc600',
+        weight: 1
+      }
+    });
 
     this.map = L.map('image', {
       zoomControl: false,
@@ -67,6 +85,7 @@ module.exports = React.createClass({
     this.map.setView([0,0], 0);
     this.map.addControl(zoom);
     this.map.addControl(position);
+    this.map.addControl(miniMap);
     this.map.addLayer(layer);
 
   },
