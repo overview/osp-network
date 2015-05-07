@@ -48,7 +48,7 @@ module.exports = React.createClass({
 
       // Build up the list of result rows.
       var rows = _.map(this.state.search.results.hits, function(h) {
-        return <SearchRow hit={new NodeES(h)} key={h._id} />;
+        return <SearchRow node={new NodeES(h)} key={h._id} />;
       });
 
       var listCx = classNames({

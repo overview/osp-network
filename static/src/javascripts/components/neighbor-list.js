@@ -3,8 +3,9 @@
 var _ = require('lodash');
 var classNames = require('classnames');
 var React = require('react');
-var NeighborRow = require('./neighbor-row');
 var Fluxxor = require('fluxxor');
+var NeighborRow = require('./neighbor-row');
+var NodeGEXF = require('../models/node-gexf');
 
 
 module.exports = React.createClass({
@@ -37,8 +38,8 @@ module.exports = React.createClass({
     }
 
     // Build up the list of neighbor rows.
-    var rows = _.map(this.state.neighbors.results, function(n) {
-      return <NeighborRow row={n} key={n.node.label} />;
+    var rows = _.map(this.state.neighbors.results, function(r) {
+      return <NeighborRow node={new NodeGEXF(r)} key={r.node.label} />;
     });
 
     var tableCx = classNames({

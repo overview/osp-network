@@ -64,7 +64,7 @@ module.exports = React.createClass({
 
     // Publish a selection instance.
     this.getFlux().actions.selection.highlight(
-      this.props.hit.toSelection()
+      this.props.node.toSelection()
     );
 
   },
@@ -84,7 +84,7 @@ module.exports = React.createClass({
    */
   onClick: function() {
     this.getFlux().actions.selection.select(
-      this.props.hit.toSelection()
+      this.props.node.toSelection()
     );
   }
 

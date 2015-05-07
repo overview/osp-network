@@ -42,7 +42,7 @@ module.exports = React.createClass({
         onClick={this.onClick}>
 
         <td className="count">
-          {this.props.hit.getSource('degree')}
+          {this.props.node.getSource('degree')}
         </td>
 
         <td className="icon">
@@ -53,7 +53,7 @@ module.exports = React.createClass({
 
           <span className="title"
             dangerouslySetInnerHTML={{
-              __html: this.props.hit.getHighlightOrSource('title')
+              __html: this.props.node.getHighlightOrSource('title')
             }}>
           </span>
 
@@ -61,7 +61,7 @@ module.exports = React.createClass({
 
           <span className="author"
             dangerouslySetInnerHTML={{
-              __html: this.props.hit.getHighlightOrSource('author')
+              __html: this.props.node.getHighlightOrSource('author')
             }}>
           </span>
 
@@ -82,7 +82,7 @@ module.exports = React.createClass({
 
     // Publish a selection instance.
     this.getFlux().actions.selection.highlight(
-      this.props.hit.toSelection()
+      this.props.node.toSelection()
     );
 
   },
@@ -102,7 +102,7 @@ module.exports = React.createClass({
    */
   onClick: function() {
     this.getFlux().actions.selection.select(
-      this.props.hit.toSelection()
+      this.props.node.toSelection()
     );
   }
 
