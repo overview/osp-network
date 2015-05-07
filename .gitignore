@@ -5,4 +5,3 @@ static/dist
 static/tiles
 *.egg-info
 *.gexf
-*.json
