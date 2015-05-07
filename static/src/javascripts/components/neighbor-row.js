@@ -41,31 +41,13 @@ module.exports = React.createClass({
         onMouseLeave={this.onMouseLeave}
         onClick={this.onClick}>
 
-        <td className="count">
-          {this.props.hit.getSource('degree')}
-        </td>
+        <td className="count">count</td>
 
         <td className="icon">
           <i className={iconCx}></i>
         </td>
 
-        <td className="text">
-
-          <span className="title"
-            dangerouslySetInnerHTML={{
-              __html: this.props.hit.getHighlightOrSource('title')
-            }}>
-          </span>
-
-          {', '}
-
-          <span className="author"
-            dangerouslySetInnerHTML={{
-              __html: this.props.hit.getHighlightOrSource('author')
-            }}>
-          </span>
-
-        </td>
+        <td className="text">icon</td>
 
       </tr>
     );

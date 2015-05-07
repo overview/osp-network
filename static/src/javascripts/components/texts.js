@@ -3,10 +3,10 @@
 var classNames = require('classnames');
 var React = require('react');
 var Fluxxor = require('fluxxor');
+var Branding = require('./branding');
+var NeighborList = require('./neighbor-list');
 var SearchBox = require('./search-box');
 var SearchList = require('./search-list');
-var Branding = require('./branding');
-var Neighbors = require('./neighbors');
 
 
 module.exports = React.createClass({
@@ -50,7 +50,7 @@ module.exports = React.createClass({
           </figure>
 
           <figure className="back">
-            <Neighbors />
+            <NeighborList />
           </figure>
 
         </div>

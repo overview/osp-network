@@ -17,7 +17,7 @@ module.exports = Fluxxor.createStore({
    * Initialize results.
    */
   initialize: function() {
-    this.neighbors = null;
+    this.results = null;
     this.node = null;
   },
 
@@ -27,7 +27,7 @@ module.exports = Fluxxor.createStore({
    */
   getState: function() {
     return {
-      neighbors: this.neighbors,
+      results: this.results,
       node: this.node
     };
   },
@@ -44,7 +44,7 @@ module.exports = Fluxxor.createStore({
     this.node = node;
 
     // Show spinner.
-    this.neighbors = null;
+    this.results = null;
     this.emit('change');
 
     // Load neighbors.
@@ -54,7 +54,7 @@ module.exports = Fluxxor.createStore({
       .end(function(err, res) {
 
         // Show the new rows.
-        self.neighbors = res.body.neighbors;
+        self.results = res.body.neighbors;
         self.emit('change');
 
       });
