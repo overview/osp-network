@@ -5,6 +5,7 @@ var classNames = require('classnames');
 var React = require('react');
 var Fluxxor = require('fluxxor');
 
+var NodeES = require('../models/node-es');
 var RowMixin = require('../mixins/row');
 
 
@@ -15,6 +16,16 @@ module.exports = React.createClass({
     Fluxxor.FluxMixin(React),
     RowMixin
   ],
+
+
+  /**
+   * Wrap the incoming node instance.
+   */
+  componentWillMount: function() {
+    this.setState({
+      node: new NodeES(this.props.node)
+    });
+  },
 
 
   /**
@@ -37,7 +48,7 @@ module.exports = React.createClass({
         onClick={this.onClick}>
 
         <td className="count">
-          {this.props.node.getSource('degree')}
+          {this.state.node.getSource('degree')}
         </td>
 
         <td className="icon">
@@ -48,7 +59,7 @@ module.exports = React.createClass({
 
           <span className="title"
             dangerouslySetInnerHTML={{
-              __html: this.props.node.getHighlightOrSource('title')
+              __html: this.state.node.getHighlightOrSource('title')
             }}>
           </span>
 
@@ -56,7 +67,7 @@ module.exports = React.createClass({
 
           <span className="author"
             dangerouslySetInnerHTML={{
-              __html: this.props.node.getHighlightOrSource('author')
+              __html: this.state.node.getHighlightOrSource('author')
             }}>
           </span>
 

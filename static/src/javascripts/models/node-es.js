@@ -10,7 +10,7 @@ module.exports = Backbone.NestedModel.extend({
 
 
   /**
-   * Get an original source value
+   * Get an original source value.
    *
    * @param {String} field - The field key.
    * @returns {String}

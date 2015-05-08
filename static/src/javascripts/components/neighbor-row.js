@@ -5,6 +5,7 @@ var classNames = require('classnames');
 var React = require('react');
 var Fluxxor = require('fluxxor');
 
+var NodeGEXF = require('../models/node-gexf');
 var RowMixin = require('../mixins/row');
 
 
@@ -15,6 +16,16 @@ module.exports = React.createClass({
     Fluxxor.FluxMixin(React),
     RowMixin
   ],
+
+
+  /**
+   * Wrap the incoming node instance.
+   */
+  componentWillMount: function() {
+    this.setState({
+      node: new NodeGEXF(this.props.node)
+    });
+  },
 
 
   /**
@@ -37,7 +48,7 @@ module.exports = React.createClass({
         onClick={this.onClick}>
 
         <td className="count">
-          {this.props.node.get('weight')}
+          {this.state.node.get('weight')}
         </td>
 
         <td className="icon">
@@ -47,13 +58,13 @@ module.exports = React.createClass({
         <td className="text">
 
           <span className="title">
-            {this.props.node.get('node.title')}
+            {this.state.node.get('node.title')}
           </span>
 
           {', '}
 
           <span className="author">
-            {this.props.node.get('node.author')}
+            {this.state.node.get('node.author')}
           </span>
 
         </td>

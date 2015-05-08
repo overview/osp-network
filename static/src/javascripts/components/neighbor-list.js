@@ -6,7 +6,6 @@ var React = require('react');
 var Fluxxor = require('fluxxor');
 
 var NeighborRow = require('./neighbor-row');
-var NodeGEXF = require('../models/node-gexf');
 
 
 module.exports = React.createClass({
@@ -40,8 +39,7 @@ module.exports = React.createClass({
 
     // Build up the list of neighbor rows.
     var rows = _.map(this.state.neighbors.results, function(r) {
-      var n = new NodeGEXF(r);
-      return <NeighborRow node={n} key={r.node.label} />;
+      return <NeighborRow node={r} key={r.node.label} />;
     });
 
     var tableCx = classNames({

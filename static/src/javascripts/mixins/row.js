@@ -22,7 +22,7 @@ module.exports = {
 
     // Publish a selection instance.
     this.getFlux().actions.selection.highlight(
-      this.props.node.toSelection()
+      this.state.node.toSelection()
     );
 
   },
@@ -42,7 +42,7 @@ module.exports = {
    */
   onClick: function() {
     this.getFlux().actions.selection.select(
-      this.props.node.toSelection()
+      this.state.node.toSelection()
     );
   }
 

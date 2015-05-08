@@ -39,7 +39,9 @@ module.exports = React.createClass({
 
         <p>
           <i className="fa fa-fw fa-thumb-tack"></i>{' '}
-          Texts most frequently assigned with
+          <span className="assigned-with">
+            Texts most frequently assigned with
+          </span>
         </p>
 
         <p className="text">
