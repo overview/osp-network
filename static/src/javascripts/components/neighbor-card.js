@@ -34,7 +34,7 @@ module.exports = React.createClass({
     return (
       <header id="neighbor-card">
 
-        <i className="fa fa-fw fa-times-circle back"
+        <i className="fa fa-times-circle back"
           onClick={this.onClose}></i>
 
         <p>
