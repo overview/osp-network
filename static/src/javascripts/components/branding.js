@@ -51,9 +51,9 @@ module.exports = React.createClass({
    * Fancy counting animations! Because I can!
    */
   componentDidMount: function() {
-    new countUp('s-count', 0, 1177109, 0, 3).start();
-    new countUp('t-count', 0, 744036,  0, 3).start();
-    new countUp('c-count', 0, 9858427, 0, 3).start();
+    new countUp('s-count', 0, 1177109, 0, 2).start();
+    new countUp('t-count', 0, 744036,  0, 2).start();
+    new countUp('c-count', 0, 9858427, 0, 2).start();
   }
 
 
