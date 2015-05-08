@@ -46,7 +46,6 @@ module.exports = React.createClass({
 
         <p className="text">
 
-
           <span className="title">
             {this.state.selection.selected.get('title')}
           </span>{', by '}

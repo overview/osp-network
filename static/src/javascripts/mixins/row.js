@@ -14,6 +14,14 @@ module.exports = {
 
 
   /**
+   * Only to render a highlight.
+   */
+  shouldComponentUpdate: function(props, state) {
+    return this.state.highlighted != state.highlighted;
+  },
+
+
+  /**
    * When the row is highlighted.
    */
   onMouseEnter: function() {
