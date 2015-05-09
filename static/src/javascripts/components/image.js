@@ -78,8 +78,8 @@ module.exports = React.createClass({
     });
 
     this.map = L.map('image', {
-      zoomControl: false,
-      crs: L.CRS.Simple
+      crs: L.CRS.Simple,
+      zoomControl: false
     });
 
     this.map.setView([0,0], 0);
