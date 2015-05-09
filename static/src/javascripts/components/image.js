@@ -57,17 +57,17 @@ module.exports = React.createClass({
 
     // Map layer.
     var layer = L.tileLayer.zoomify('/static/tiles/', {
+      width: d, height: d,
       detectRetina: true,
       tileSize: 128,
       unloadInvisibleTiles: true,
-      updateWhenIdle: true,
-      width: d,
-      height: d
+      updateWhenIdle: true
     });
 
     // Mini layer.
     var miniLayer = L.tileLayer.zoomify('/static/tiles/', {
-      width: d, height: d
+      width: d, height: d,
+      tileSize: 128
     });
 
     // Mini map.
