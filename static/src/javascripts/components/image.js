@@ -45,7 +45,7 @@ module.exports = React.createClass({
    */
   _initLeaflet: function() {
 
-    var d = 220000; // TODO: Config-ify.
+    var d = 10000; // TODO: Config-ify.
 
     // Cursor position.
     var position = L.control.mousePosition();
@@ -58,7 +58,11 @@ module.exports = React.createClass({
     // Map layer.
     var layer = L.tileLayer.zoomify('/static/tiles/', {
       detectRetina: true,
-      width: d, height: d
+      tileSize: 128,
+      unloadInvisibleTiles: true,
+      updateWhenIdle: true,
+      width: d,
+      height: d
     });
 
     // Mini layer.
@@ -79,7 +83,8 @@ module.exports = React.createClass({
 
     this.map = L.map('image', {
       crs: L.CRS.Simple,
-      zoomControl: false
+      fadeAnimation: false,
+      zoomControl: false,
     });
 
     this.map.setView([0,0], 0);
