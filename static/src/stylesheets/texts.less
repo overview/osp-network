@@ -8,16 +8,16 @@
   left: @px-gutter;
 
   // By default, hide the neighbors list.
-  figure.back {
+  section.neighbors {
     display: none;
   }
 
   // Show neighbors when a node is selected.
   &.selected {
-    figure.front {
+    section.search {
       display: none;
     }
-    figure.back {
+    section.neighbors {
       display: block;
     }
   }

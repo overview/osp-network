@@ -44,19 +44,15 @@ module.exports = React.createClass({
 
         <Branding />
 
-        <div className="card">
+        <section className="search">
+          <SearchBox />
+          <SearchList />
+        </section>
 
-          <figure className="front">
-            <SearchBox />
-            <SearchList />
-          </figure>
-
-          <figure className="back">
-            <NeighborCard />
-            <NeighborList />
-          </figure>
-
-        </div>
+        <section className="neighbors">
+          <NeighborCard />
+          <NeighborList />
+        </section>
 
       </div>
     );
