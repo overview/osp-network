@@ -3,9 +3,20 @@
 #texts {
 
   position: fixed;
-  width: @px-search-width;
-  top: @px-gutter;
   left: @px-gutter;
+  top: 0;
+  width: @px-search-width;
+  height: 100vh;
+
+  .display(flex);
+  .flex-direction(column);
+
+  section {
+    margin-bottom: 60px;
+    .display(flex);
+    .flex-direction(column);
+    .flex(2);
+  }
 
   // By default, hide the neighbors list.
   section.neighbors {
@@ -18,7 +29,7 @@
       display: none;
     }
     section.neighbors {
-      display: block;
+      display: inherit;
     }
   }
 
@@ -35,7 +46,6 @@
   .dark-panel();
   .border-radius(2px);
 
-  max-height: 70vh;
   overflow: scroll;
   font-weight: 300;
   font-size: 13px;
