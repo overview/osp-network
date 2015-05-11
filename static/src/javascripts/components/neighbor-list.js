@@ -34,7 +34,11 @@ module.exports = React.createClass({
 
     // No results.
     if (_.isNull(this.state.neighbors.results)) {
-      return <i className="fa fa-spin fa-cog spinner"></i>;
+      return (
+        <div className="icon">
+          <i className="fa fa-spin fa-cog spinner"></i>
+        </div>
+      );
     }
 
     // Build up the list of neighbor rows.

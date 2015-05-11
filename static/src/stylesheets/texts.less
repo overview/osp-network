@@ -8,12 +8,17 @@
   width: @px-search-width;
   height: 100vh;
 
+  // Top-level flex container.
   .display(flex);
   .flex-direction(column);
 
   section {
+
     overflow: hidden;
     margin-bottom: 60px;
+
+    // Each section is also a flex container, since each contains a fixed-
+    // height header and a variable-height result list.
     .display(flex);
     .flex-direction(column);
     .flex(2);
@@ -36,7 +41,6 @@
 
   // Loading icons.
   i.spinner {
-    display: table;
     font-size: 7em;
     color: @color-hl;
   }
