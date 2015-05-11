@@ -28,6 +28,19 @@ module.exports = React.createClass({
 
 
   /**
+   * Scroll to the top when new results are displayed.
+   */
+  componentDidUpdate: function(prevProps, prevState) {
+
+    // New results when results get populated.
+    if (!prevState.neighbors.results && this.state.neighbors.results) {
+      this.getDOMNode().scrollTop = 0;
+    }
+
+  },
+
+
+  /**
    * Render neighbor results.
    */
   render: function() {

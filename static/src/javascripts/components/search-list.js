@@ -32,7 +32,7 @@ module.exports = React.createClass({
    */
   componentDidUpdate: function(prevProps, prevState) {
 
-    // New results if loading flips from on -> off.
+    // New results when loading flips off.
     if (prevState.search.loading && !this.state.search.loading) {
       this.getDOMNode().scrollTop = 0;
     }
