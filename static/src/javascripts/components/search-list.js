@@ -28,6 +28,19 @@ module.exports = React.createClass({
 
 
   /**
+   * Scroll to the top when new results are displayed.
+   */
+  componentDidUpdate: function(prevProps, prevState) {
+
+    // New results if loading flips from true -> false.
+    if (prevState.search.loading && !this.state.search.loading) {
+      this.getDOMNode().scrollTop = 0;
+    }
+
+  },
+
+
+  /**
    * Render search results.
    */
   render: function() {
