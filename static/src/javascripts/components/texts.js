@@ -16,7 +16,7 @@ module.exports = React.createClass({
 
   mixins: [
     Fluxxor.FluxMixin(React),
-    Fluxxor.StoreWatchMixin('selection')
+    Fluxxor.StoreWatchMixin('selection', 'search')
   ],
 
 
@@ -25,7 +25,8 @@ module.exports = React.createClass({
    */
   getStateFromFlux: function() {
     return {
-      selection: this.getFlux().store('selection').getState()
+      selection: this.getFlux().store('selection').getState(),
+      search: this.getFlux().store('search').getState()
     };
   },
 
@@ -36,6 +37,7 @@ module.exports = React.createClass({
   render: function() {
 
     var searchCx = classNames({
+      expanded: this.state.selection.selected || this.state.search.active,
       selected: this.state.selection.selected
     });
 

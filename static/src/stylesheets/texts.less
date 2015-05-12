@@ -6,16 +6,23 @@
   left: @px-gutter;
   top: 0;
   width: @px-search-width;
-  height: 100vh;
 
   // Top-level flex container.
   .display(flex);
   .flex-direction(column);
 
+  // When the search / neighbors list is visible, fill the full screen height.
+  // Off by default to allow pointer events on the image below the header.
+  &.expanded {
+    height: 100vh;
+    section {
+      margin-bottom: 60px;
+    }
+  }
+
   section {
 
     overflow: hidden;
-    margin-bottom: 60px;
 
     // Each section is also a flex container, since each contains a fixed-
     // height header and a variable-height result list.
