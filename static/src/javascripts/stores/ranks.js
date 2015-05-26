@@ -33,6 +33,8 @@ module.exports = Fluxxor.createStore({
    */
   query: function() {
 
+    var self = this;
+
     // Show spinner.
     this.loading = true;
     this.emit('change');
@@ -40,7 +42,8 @@ module.exports = Fluxxor.createStore({
     request
     .get('/rank')
     .end(function(err, res) {
-      console.log(res);
+      self.results = res.body.texts;
+      self.emit('change');
     });
 
   },
