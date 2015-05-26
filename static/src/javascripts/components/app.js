@@ -3,9 +3,6 @@
 var React = require('react');
 var Fluxxor = require('fluxxor');
 
-var Image = require('./image');
-var Texts = require('./texts');
-
 
 module.exports = React.createClass({
 
@@ -18,10 +15,9 @@ module.exports = React.createClass({
    */
   render: function() {
     return (
-      <div className="container-fluid">
+      <div className="container">
         <div className="row">
-          <Image />
-          <Texts />
+          <h1>Search</h1>
         </div>
       </div>
     );
