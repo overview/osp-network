@@ -51,7 +51,9 @@ def rank():
     Rank texts.
     """
 
+    ranking.reset()
     ranks = ranking.rank()
+
     return jsonify({'texts': format_ranks(ranks)})
 
 
