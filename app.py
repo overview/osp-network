@@ -8,7 +8,6 @@ from flask import Flask, render_template, request, jsonify
 
 
 app = Flask(__name__)
-ranking = Ranking()
 
 
 def format_ranks(ranks):
@@ -31,9 +30,8 @@ def format_ranks(ranks):
         texts.append({
             'title':    prettify_field(record.marc.title()),
             'author':   prettify_field(record.marc.author()),
-            'count':    record.count,
             'rank':     r['rank'],
-            'score':    r['score'],
+            'count':    record.count,
         })
 
     return texts
@@ -51,10 +49,19 @@ def rank():
     Rank texts.
     """
 
-    ranking.reset()
-    ranks = ranking.rank()
+    ranking = Ranking()
 
-    return jsonify({'texts': format_ranks(ranks)})
+    # Filter state.
+    state = request.args.get('state')
+    if state: ranking.filter_state(state)
+
+    # Filter institution.
+    inst = request.args.get('inst')
+    if inst: ranking.filter_institution(inst)
+
+    return jsonify({
+        'texts': format_ranks(ranking.rank())
+    })
 
 
 if __name__ == '__main__':

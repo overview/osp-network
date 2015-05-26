@@ -17,7 +17,15 @@ module.exports = React.createClass({
     return (
       <div className="container">
         <div className="row">
-          <h1>Search</h1>
+
+          <div className="col-md-5">
+            <h5>filters</h5>
+          </div>
+
+          <div className="col-md-7">
+            <h5>results</h5>
+          </div>
+
         </div>
       </div>
     );
