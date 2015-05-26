@@ -2,11 +2,12 @@
 
 import os
 
-from osp.common.config import config
+from osp.citations.hlom.ranking import Ranking
 from flask import Flask, render_template, request, jsonify
 
 
 app = Flask(__name__)
+ranking = Ranking()
 
 
 @app.route('/')
@@ -18,10 +19,22 @@ def search():
 def rank():
 
     """
-    TODO: Ranking API.
+    Rank texts.
     """
 
-    return jsonify({'test': True})
+    ranks = ranking.rank()
+
+    texts = []
+    for r in ranks:
+        texts.append({
+            'rank': r['rank'],
+            'count': r['record'].count,
+            'score': r['score'],
+            'title': r['record'].marc.title(),
+            'author': r['record'].marc.author(),
+        })
+
+    return jsonify({'texts': texts})
 
 
 if __name__ == '__main__':
