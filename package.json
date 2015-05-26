@@ -1,18 +1,18 @@
 {
-  "name": "osp-network",
+  "name": "osp-search",
   "version": "0.0.0",
-  "description": "A 50 billion pixel render of the OSP citation graph.",
+  "description": "Search texts cited in the OSP corpus.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/overview/osp-network.git"
+    "url": "git://github.com/overview/osp-search.git"
   },
   "author": "David McClure <davidwilliammcclure@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/overview/osp-network/issues"
+    "url": "https://github.com/overview/osp-search/issues"
   },
-  "homepage": "https://github.com/overview/osp-network",
+  "homepage": "https://github.com/overview/osp-search",
   "devDependencies": {
     "browserify": "^9.0.8",
     "browserify-shim": "^3.8.6",

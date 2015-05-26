@@ -1,3 +1,5 @@
-# OSP Network
+# OSP Search
 
-An interactive, 22.5 billion pixel render of the OSP citation graph.
+Search citations to texts in the [Harvard Library Open Metadata](http://openmetadata.lib.harvard.edu) extracted from the OSP corpus.
+
+Read about the **[Open Syllabus Project](http://opensyllabusproject.org)**.
