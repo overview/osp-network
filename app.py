@@ -3,6 +3,7 @@
 import os
 
 from osp.citations.hlom.ranking import Ranking
+from osp.citations.hlom.utils import prettify_field
 from flask import Flask, render_template, request, jsonify
 
 
@@ -28,11 +29,11 @@ def format_ranks(ranks):
         record = r['record']
 
         texts.append({
+            'title':    prettify_field(record.marc.title()),
+            'author':   prettify_field(record.marc.author()),
             'count':    record.count,
             'rank':     r['rank'],
             'score':    r['score'],
-            'author':   record.marc.author(),
-            'title':    record.marc.title(),
         })
 
     return texts
