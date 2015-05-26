@@ -3,6 +3,8 @@
 var React = require('react');
 var Fluxxor = require('fluxxor');
 
+var RankList = require('./rank-list');
+
 
 module.exports = React.createClass({
 
@@ -23,7 +25,7 @@ module.exports = React.createClass({
           </div>
 
           <div className="col-md-7">
-            <h5>results</h5>
+            <RankList />
           </div>
 
         </div>

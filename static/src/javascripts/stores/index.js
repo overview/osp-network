@@ -1,8 +1,8 @@
 
 
-var Texts = require('./texts');
+var Ranks = require('./ranks');
 
 
 module.exports = {
-  texts: new Texts()
+  ranks: new Ranks()
 };
