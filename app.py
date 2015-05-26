@@ -28,6 +28,7 @@ def format_ranks(ranks):
         record = r['record']
 
         texts.append({
+            'id':       record.id,
             'title':    prettify_field(record.marc.title()),
             'author':   prettify_field(record.marc.author()),
             'rank':     r['rank'],

@@ -49,7 +49,7 @@ module.exports = React.createClass({
     else {
 
       var texts = _.map(this.state.ranks.results, function(r) {
-        return <RankRow text={r} />;
+        return <RankRow text={r} key={r.id} />;
       });
 
       var tableCx = classNames({
