@@ -15,7 +15,6 @@
   "homepage": "https://github.com/overview/osp-search",
   "devDependencies": {
     "browserify": "^9.0.8",
-    "browserify-shim": "^3.8.6",
     "grunt": "^0.4.5",
     "grunt-browserify": "^3.7.0",
     "grunt-contrib-clean": "^0.6.0",
@@ -30,26 +29,15 @@
   },
   "dependencies": {
     "backbone": "^1.1.2",
-    "backbone-nested": "^2.0.3",
     "bootstrap": "^3.3.4",
     "classnames": "^1.2.0",
     "fluxxor": "^1.5.3",
     "jquery": "^2.1.3",
-    "leaflet": "^0.7.3",
-    "leaflet-minimap": "^2.2.0",
     "lesshat": "^3.0.2",
     "lodash": "^3.7.0",
     "lodash-deep": "^1.6.0",
     "openlayers": "^3.4.0",
     "react": "^0.13.1",
     "superagent": "^1.2.0"
-  },
-  "browser": {
-    "leaflet.Zoomify": "./bower_components/Leaflet.Zoomify/L.TileLayer.Zoomify.js",
-    "leaflet.MousePosition": "./bower_components/Leaflet.MousePosition/src/L.Control.MousePosition.js",
-    "countup": "./bower_components/countUp.js/countUp.js"
-  },
-  "browserify-shim": {
-    "countup": "countUp"
   }
 }
