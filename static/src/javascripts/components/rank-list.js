@@ -38,7 +38,8 @@ module.exports = React.createClass({
       var spinnerCx = classNames({
         'fa': true,
         'fa-spin': true,
-        'fa-circle-o-notch': true
+        'fa-circle-o-notch': true,
+        'spinner': true
       });
 
       return <i className={spinnerCx}></i>;
