@@ -53,16 +53,15 @@ module.exports = React.createClass({
 
       var tableCx = classNames({
         'table': true,
-        'table-condensed': true
       });
 
       return (
-        <div id="rank-list">
+        <div id="rank-list" className="text-list">
           <table className={tableCx}>
             <thead>
               <th>Rank</th>
               <th>Count</th>
-              <th>Text</th>
+              <th className="text">Text</th>
             </thead>
             <tbody>
               {texts}
