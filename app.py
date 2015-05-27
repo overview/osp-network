@@ -83,7 +83,12 @@ def institutions():
                 'fields': ['name', 'city'],
                 'type': 'phrase_prefix'
             }
-        }
+        },
+        'sort': [{
+            'count': {
+                'order': 'desc'
+            }
+        }]
     })
 
     return jsonify(results)
