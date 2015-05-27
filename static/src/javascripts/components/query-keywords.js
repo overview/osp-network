@@ -20,9 +20,13 @@ module.exports = React.createClass({
    * Get search state.
    */
   getStateFromFlux: function() {
+
+    var ranks = this.getFlux().store('ranks').getState();
+
     return {
-      query: this.getFlux().store('ranks').getState().query.keywords
+      query: ranks.query.keywords
     };
+
   },
 
 
