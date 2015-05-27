@@ -1,7 +1,9 @@
 
 
+var $ = require('jquery');
 var React = require('react');
 var Fluxxor = require('fluxxor');
+require('selectize');
 
 
 module.exports = React.createClass({
@@ -16,6 +18,7 @@ module.exports = React.createClass({
   render: function() {
     return (
       <select id="filter-state" placeholder="Filter by state">
+        <option value="">Select a state...</option>
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
         <option value="AZ">Arizona</option>
@@ -69,6 +72,16 @@ module.exports = React.createClass({
         <option value="WY">Wyoming</option>
       </select>
     );
+  },
+
+
+  /**
+   * Initialize Selectize.
+   */
+  componentDidMount: function() {
+    $(React.findDOMNode(this)).selectize({
+      allowEmptyOption: true
+    });
   }
 
 

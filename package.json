@@ -38,6 +38,7 @@
     "lodash-deep": "^1.6.0",
     "openlayers": "^3.4.0",
     "react": "^0.13.1",
+    "selectize": "^0.12.1",
     "superagent": "^1.2.0"
   }
 }
