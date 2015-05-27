@@ -93,14 +93,18 @@ module.exports = React.createClass({
     // Wrap the <select>.
     this.node = React.findDOMNode(this);
     $(this.node).selectize();
-
-    // Alias the Selectize instance.
     this.selectize = this.node.selectize;
 
-    // Publish state queries.
+    // Publish queries.
     $(this.node).on('change', function() {
+
       var state = self.selectize.getValue();
-      self.getFlux().actions.state.query(state);
+
+      // Don't publish empty queries.
+      if (state) {
+        self.getFlux().actions.state.query(state);
+      }
+
     });
 
   }
