@@ -11,16 +11,17 @@ module.exports = React.createClass({
 
   mixins: [
     Fluxxor.FluxMixin(React),
+    Fluxxor.StoreWatchMixin('ranks'),
     React.addons.LinkedStateMixin
   ],
 
 
   /**
-   * Get initial query.
+   * Get search state.
    */
-  getInitialState: function() {
+  getStateFromFlux: function() {
     return {
-      query: null
+      query: this.getFlux().store('ranks').getState().query.keywords
     };
   },
 
