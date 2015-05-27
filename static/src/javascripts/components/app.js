@@ -24,9 +24,24 @@ module.exports = React.createClass({
         <div className="row">
 
           <div id="filters" className="col-md-5">
+
+            <div className="media page-header">
+
+              <div className="media-left">
+                <img src="/static/src/images/osp.jpg" />
+              </div>
+
+              <div className="media-body">
+                <h2 className="media-heading">Open Syllabus Project</h2>
+                <small>Harvard Library Open Metadata</small>
+              </div>
+
+            </div>
+
             <QueryKeywords />
             <QueryState />
             <QueryInst />
+
           </div>
 
           <div id="texts" className="col-md-7">
