@@ -45,15 +45,57 @@ module.exports = React.createClass({
 
     $(this.el).selectize({
 
-      load: function(q, callback) {
+      valueField: 'id',
+      searchField: 'name',
+      labelField: 'name',
+
+      // Query for institutions.
+      load: function(q, cb) {
+
+        var self = this;
 
         request
         .get('/institutions')
         .query({q:q})
         .end(function(err, res) {
-          console.log(res);
+
+          // Clear old results.
+          self.clearOptions();
+          self.refreshOptions();
+
+          // Render new results.
+          cb(res.body.institutions);
+          self.setCaret(0);
+
         });
 
+      },
+
+      // Sort by count.
+      score: function() {
+        return function(item) {
+          return Number(item.count);
+        };
+      },
+
+      // Format the results.
+      render: {
+        option: function(item) {
+          return React.renderToString(
+            <div className="institution">
+
+              <div className="name">
+                <i className="fa fa-university"></i>{' '}
+                {item.name}
+              </div>
+
+              <div className="location">
+                {item.city}, {item.state}
+              </div>
+
+            </div>
+          );
+        }
       }
 
     });

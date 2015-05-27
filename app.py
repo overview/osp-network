@@ -75,7 +75,8 @@ def institutions():
 
     q = request.args.get('q')
 
-    results = config.es.search('osp', 'institution', body={
+    # Query Elasticsearch.
+    docs = config.es.search('osp', 'institution', body={
         'size': 100,
         'query': {
             'multi_match': {
@@ -91,7 +92,20 @@ def institutions():
         }]
     })
 
-    return jsonify(results)
+    # Flatten out the results.
+    results = []
+    for d in docs['hits']['hits']:
+        results.append({
+            'id':       d['_id'],
+            'count':    d['_source']['count'],
+            'name':     d['_source']['name'],
+            'state':    d['_source']['state'],
+            'city':     d['_source']['city'],
+        })
+
+    return jsonify({
+        'institutions': results
+    })
 
 
 if __name__ == '__main__':
