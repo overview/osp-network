@@ -48,6 +48,7 @@ module.exports = React.createClass({
       valueField: 'id',
       searchField: 'name',
       labelField: 'name',
+      preload: true,
 
       // Query for institutions.
       load: function(q, cb) {
@@ -89,9 +90,19 @@ module.exports = React.createClass({
                 {item.name}
               </div>
 
-              <div className="location">
+              <span className="location">
                 {item.city}, {item.state}
-              </div>
+              </span>
+
+              {' '}&bull;{' '}
+
+              <span className="count">
+                {item.count}
+              </span>
+
+              {' '}
+
+              syllabi
 
             </div>
           );

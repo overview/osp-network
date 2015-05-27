@@ -75,16 +75,23 @@ def institutions():
 
     q = request.args.get('q')
 
+    # Match `name`, when a query is provided.
+    if q:
+        query = {
+            'multi_match': {
+                'query': q,
+                'type': 'phrase_prefix',
+                'fields': ['name']
+            }
+        }
+
+    # If the query is empty, load everything.
+    else: query = {'match_all': {}}
+
     # Query Elasticsearch.
     docs = config.es.search('osp', 'institution', body={
         'size': 100,
-        'query': {
-            'multi_match': {
-                'query': q,
-                'fields': ['name', 'city'],
-                'type': 'phrase_prefix'
-            }
-        },
+        'query': query,
         'sort': [{
             'count': {
                 'order': 'desc'
