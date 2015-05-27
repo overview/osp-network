@@ -17,7 +17,11 @@ module.exports = React.createClass({
    */
   render: function() {
     return (
-      <select id="filter-state" placeholder="Filter by state">
+      <select
+        id="filter-state"
+        placeholder="Filter by state"
+        className="filter">
+
         <option value=""></option>
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
@@ -70,6 +74,7 @@ module.exports = React.createClass({
         <option value="WV">West Virginia</option>
         <option value="WI">Wisconsin</option>
         <option value="WY">Wyoming</option>
+
       </select>
     );
   },
