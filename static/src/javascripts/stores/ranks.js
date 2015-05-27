@@ -20,7 +20,7 @@ module.exports = Fluxxor.createStore({
   initialize: function() {
     this.query = {};
     this.results = null;
-    //this.rank();
+    this.rank();
   },
 
 
@@ -43,17 +43,14 @@ module.exports = Fluxxor.createStore({
    */
   setParam: function(key, val) {
 
-    // If defined, re-rank.
     if (val) {
       this.query[key] = val;
-      this.rank();
-    }
-
-    else {
+    } else {
       delete this.query[key];
     }
 
     this.emit('change');
+    this.rank();
 
   },
 
