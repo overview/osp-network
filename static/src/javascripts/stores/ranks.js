@@ -7,13 +7,22 @@ var Fluxxor = require('fluxxor');
 module.exports = Fluxxor.createStore({
 
 
+  actions: {
+    QUERY_STATE: 'queryState'
+  },
+
+
   /**
    * Initialize results.
    */
   initialize: function() {
-    this.results = null;
-    this.loading = null;
-    this.query();
+
+    this.results  = null;
+    this.loading  = null;
+    this.query    = {};
+
+    this.rank();
+
   },
 
 
@@ -22,16 +31,28 @@ module.exports = Fluxxor.createStore({
    */
   getState: function() {
     return {
-      results: this.results,
-      loading: this.loading
+      results:  this.results,
+      loading:  this.loading,
+      query:    this.query
     };
+  },
+
+
+  /**
+   * Set the state query.
+   *
+   * @param {String} state
+   */
+  queryState: function(state) {
+    this.query.state = state;
+    this.rank();
   },
 
 
   /**
    * Pull rankings.
    */
-  query: function() {
+  rank: function() {
 
     var self = this;
 
@@ -41,6 +62,7 @@ module.exports = Fluxxor.createStore({
 
     request
     .get('/rank')
+    .query(this.query)
     .end(function(err, res) {
       self.results = res.body.texts;
       self.emit('change');

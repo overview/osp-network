@@ -18,6 +18,7 @@ module.exports = React.createClass({
   render: function() {
     return (
       <select id="filter-state" placeholder="Filter by state">
+
         <option value="">Select a state...</option>
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
@@ -70,18 +71,40 @@ module.exports = React.createClass({
         <option value="WV">West Virginia</option>
         <option value="WI">Wisconsin</option>
         <option value="WY">Wyoming</option>
+
       </select>
     );
   },
 
 
   /**
-   * Initialize Selectize.
+   * Wrap the select, listen for store changes.
    */
   componentDidMount: function() {
-    $(React.findDOMNode(this)).selectize({
-      allowEmptyOption: true
+    this._initSelectize();
+  },
+
+
+  /**
+   * Initialize Selectize, listen for selections.
+   */
+  _initSelectize: function() {
+
+    var self = this;
+
+    // Wrap the <select>.
+    this.node = React.findDOMNode(this);
+    $(this.node).selectize();
+
+    // Alias the Selectize instance.
+    this.selectize = this.node.selectize;
+
+    // Publish state queries.
+    $(this.node).on('change', function() {
+      var state = self.selectize.getValue();
+      self.getFlux().actions.state.query(state);
     });
+
   }
 
 

@@ -6,8 +6,9 @@ module.exports = {
   /**
    * When a state is selected.
    */
-  select: function() {
-    // TODO|dev
+  query: function(state) {
+    this.dispatch('QUERY_STATE', state);
+    console.log(state);
   }
 
 

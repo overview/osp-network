@@ -48,8 +48,11 @@ module.exports = React.createClass({
 
     else {
 
+      var now = Date.now();
+
+      // Tack a timestamp onto the keys, to re-render.
       var texts = _.map(this.state.ranks.results, function(r) {
-        return <RankRow text={r} key={r.id} />;
+        return <RankRow text={r} key={r.id+now} />;
       });
 
       var tableCx = classNames({
