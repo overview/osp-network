@@ -1,5 +1,6 @@
 
 
+var _ = require('lodash');
 var React = require('react/addons');
 var Fluxxor = require('fluxxor');
 var classNames = require('classnames');
@@ -25,9 +26,11 @@ module.exports = React.createClass({
 
 
   /**
-   * Render the state dropdown.
+   * Render the keywords search box.
    */
   render: function() {
+
+    console.log('render');
 
     var iconCx = classNames({
       'fa': true,
@@ -36,22 +39,22 @@ module.exports = React.createClass({
     });
 
     return (
-      <div
-        id="filter-keywords"
-        className="input-group filter">
-
-        <span className="input-group-addon">
-          <i className={iconCx}></i>
-        </span>
+      <div id="filter-keywords" className="input-group filter">
 
         <input
-          className="form-control"
+          className="search form-control"
           type="text"
-          placeholder="Filter by keywords in syllabi"
+          placeholder="Filter by keywords"
           valueLink={this.linkState('query')}
+          onKeyPress={this.onKeyPress}
           onKeyUp={this.onKeyUp}
-          onFocus={this.onFocus}
         />
+
+        <span className="input-group-btn">
+          <button className="btn btn-default" onClick={this.query}>
+            Search
+          </button>
+        </span>
 
       </div>
     );
@@ -60,11 +63,31 @@ module.exports = React.createClass({
 
 
   /**
-   * When the query is changed.
+   * Search when "Enter" is pressed.
+   */
+  onKeyPress: function(event) {
+    if (event.key == 'Enter') {
+      this.query()
+    }
+  },
+
+
+  /**
+   * Search when the input is cleared.
    */
   onKeyUp: function() {
-    this.getFlux().actions.keywords.query(this.state.query);
+    if (_.isEmpty(this.state.query)) {
+      this.query();
+    }
   },
+
+
+  /**
+   * Run the current query.
+   */
+  query: function() {
+    this.getFlux().actions.keywords.query(this.state.query);
+  }
 
 
 });

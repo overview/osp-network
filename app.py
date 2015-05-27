@@ -53,6 +53,10 @@ def rank():
 
     ranking = Ranking()
 
+    # Filter keywords.
+    query = request.args.get('keywords')
+    if query: ranking.filter_keywords(query)
+
     # Filter state.
     state = request.args.get('state')
     if state: ranking.filter_state(state)

@@ -9,6 +9,7 @@ module.exports = Fluxxor.createStore({
 
   actions: {
     QUERY_STATE: 'queryState',
+    QUERY_KEYWORDS: 'queryKeywords',
     QUERY_INST: 'queryInst'
   },
 
@@ -41,6 +42,17 @@ module.exports = Fluxxor.createStore({
    */
   queryState: function(state) {
     this.query.state = state;
+    this.rank();
+  },
+
+
+  /**
+   * Set the keywords query.
+   *
+   * @param {String} query
+   */
+  queryKeywords: function(query) {
+    this.query.keywords = query;
     this.rank();
   },
 
