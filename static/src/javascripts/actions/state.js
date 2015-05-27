@@ -8,7 +8,6 @@ module.exports = {
    */
   query: function(state) {
     this.dispatch('QUERY_STATE', state);
-    console.log(state);
   }
 
 

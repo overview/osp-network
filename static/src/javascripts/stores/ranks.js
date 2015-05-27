@@ -51,11 +51,14 @@ module.exports = Fluxxor.createStore({
 
     var self = this;
 
+    // Cancel an in-flight request.
+    if (this.req) this.req.abort();
+
     // Show spinner.
     this.results = null;
     this.emit('change');
 
-    request
+    this.req = request
     .get('/rank')
     .query(this.query)
     .end(function(err, res) {
