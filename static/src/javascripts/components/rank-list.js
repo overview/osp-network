@@ -55,6 +55,7 @@ module.exports = React.createClass({
 
       var tableCx = classNames({
         'table': true,
+        'table-hover': true
       });
 
       return (

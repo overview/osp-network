@@ -76,7 +76,7 @@ module.exports = React.createClass({
 
 
   /**
-   * Wrap the select, listen for store changes.
+   * Wrap the select, listen for selections.
    */
   componentDidMount: function() {
     this._initSelectize();
@@ -88,8 +88,8 @@ module.exports = React.createClass({
    * Initialize Selectize.
    */
   _initSelectize: function() {
-    this.node = React.findDOMNode(this);
-    $(this.node).selectize();
+    this.el = React.findDOMNode(this);
+    $(this.el).selectize();
   },
 
 
@@ -101,10 +101,10 @@ module.exports = React.createClass({
     var self = this;
 
     // CHANGE
-    $(this.node).on('change', function() {
+    $(this.el).on('change', function() {
 
       // Get the abbreviation.
-      var state = self.node.selectize.getValue();
+      var state = self.el.selectize.getValue();
 
       // Don't publish empty queries.
       if (state) {
