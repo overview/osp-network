@@ -7,7 +7,7 @@ var RankList = require('./rank-list');
 var QueryKeywords = require('./query-keywords');
 var QueryInst = require('./query-inst');
 var QueryState = require('./query-state');
-var Params = require('./params');
+var ParamList = require('./param-list');
 
 
 module.exports = React.createClass({
@@ -46,7 +46,7 @@ module.exports = React.createClass({
           </div>
 
           <div id="texts" className="col-md-7">
-            <Params />
+            <ParamList />
             <RankList />
           </div>
 

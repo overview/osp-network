@@ -53,6 +53,8 @@ module.exports = Fluxxor.createStore({
       delete this.query[key];
     }
 
+    this.emit('change');
+
   },
 
 
