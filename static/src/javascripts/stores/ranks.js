@@ -16,13 +16,9 @@ module.exports = Fluxxor.createStore({
    * Initialize results.
    */
   initialize: function() {
-
-    this.results  = null;
-    this.loading  = null;
-    this.query    = {};
-
+    this.query = {};
+    this.results = null;
     this.rank();
-
   },
 
 
@@ -31,9 +27,8 @@ module.exports = Fluxxor.createStore({
    */
   getState: function() {
     return {
-      results:  this.results,
-      loading:  this.loading,
-      query:    this.query
+      query: this.query,
+      results: this.results
     };
   },
 
@@ -57,15 +52,18 @@ module.exports = Fluxxor.createStore({
     var self = this;
 
     // Show spinner.
-    this.loading = true;
+    this.results = null;
     this.emit('change');
 
     request
     .get('/rank')
     .query(this.query)
     .end(function(err, res) {
+
+      // Show the new rows.
       self.results = res.body.texts;
       self.emit('change');
+
     });
 
   },
