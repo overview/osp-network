@@ -15,9 +15,13 @@ module.exports = React.createClass({
    */
   render: function() {
     return (
-      <button className="btn btn-primary">
+      <button
+        className="btn btn-primary"
+        onClick={this.props.close}>
+
         <i className="fa fa-times-circle"></i>{' '}
         {this.props.label}: {this.props.value}
+
       </button>
     );
   }

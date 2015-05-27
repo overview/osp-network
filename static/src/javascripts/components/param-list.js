@@ -36,6 +36,7 @@ module.exports = React.createClass({
       keywords = <Param
         label="Keywords"
         value={this.state.ranks.query.keywords}
+        close={this.onClickKeywords}
       />
     }
 
@@ -45,6 +46,7 @@ module.exports = React.createClass({
       state = <Param
         label="State"
         value={this.state.ranks.query.state}
+        close={this.onClickState}
       />
     }
 
@@ -55,7 +57,31 @@ module.exports = React.createClass({
       </div>
     );
 
-  }
+  },
+
+
+  /**
+   * Remove the keywords filter.
+   */
+  onClickKeywords: function() {
+    this.getFlux().actions.keywords.query(null);
+  },
+
+
+  /**
+   * Remove the state filter.
+   */
+  onClickState: function() {
+    this.getFlux().actions.state.query(null);
+  },
+
+
+  /**
+   * Remove the institution filter.
+   */
+  onClickInst: function() {
+    this.getFlux().actions.inst.query(null);
+  },
 
 
 });
