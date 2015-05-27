@@ -30,8 +30,6 @@ module.exports = React.createClass({
    */
   render: function() {
 
-    console.log('render');
-
     var iconCx = classNames({
       'fa': true,
       'fa-fw': true,

@@ -123,16 +123,8 @@ module.exports = React.createClass({
 
     // CHANGE
     $(this.el).on('change', function() {
-
-      // Get the institution id.
       var iid = self.el.selectize.getValue();
-      console.log(iid);
-
-      // Don't publish empty queries.
-      if (iid) {
-        self.getFlux().actions.inst.query(iid);
-      }
-
+      self.getFlux().actions.inst.query(iid);
     });
 
   }

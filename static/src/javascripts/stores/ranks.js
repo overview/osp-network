@@ -36,13 +36,33 @@ module.exports = Fluxxor.createStore({
 
 
   /**
+   * Set a query parameter.
+   *
+   * @param {String} key
+   * @param {Mixed} val
+   */
+  setParam: function(key, val) {
+
+    // If defined, re-rank.
+    if (val) {
+      this.query[key] = val;
+      this.rank();
+    }
+
+    else {
+      delete this.query[key];
+    }
+
+  },
+
+
+  /**
    * Set the state query.
    *
    * @param {String} state
    */
   queryState: function(state) {
-    this.query.state = state;
-    this.rank();
+    this.setParam('state', state);
   },
 
 
@@ -52,8 +72,7 @@ module.exports = Fluxxor.createStore({
    * @param {String} query
    */
   queryKeywords: function(query) {
-    this.query.keywords = query;
-    this.rank();
+    this.setParam('keywords', query);
   },
 
 
@@ -63,8 +82,7 @@ module.exports = Fluxxor.createStore({
    * @param {Number} iid
    */
   queryInst: function(iid) {
-    this.query.inst = iid;
-    this.rank();
+    this.setParam('inst', iid);
   },
 
 

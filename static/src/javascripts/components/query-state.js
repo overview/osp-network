@@ -107,15 +107,8 @@ module.exports = React.createClass({
 
     // CHANGE
     $(this.el).on('change', function() {
-
-      // Get the abbreviation.
       var state = self.el.selectize.getValue();
-
-      // Don't publish empty queries.
-      if (state) {
-        self.getFlux().actions.state.query(state);
-      }
-
+      self.getFlux().actions.state.query(state);
     });
 
   }
