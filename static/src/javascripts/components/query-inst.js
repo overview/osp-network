@@ -46,7 +46,7 @@ module.exports = React.createClass({
     $(this.el).selectize({
 
       valueField: 'id',
-      searchField: 'name',
+      searchField: ['name', 'city'],
       labelField: 'name',
       preload: true,
 

@@ -81,7 +81,7 @@ def institutions():
             'multi_match': {
                 'query': q,
                 'type': 'phrase_prefix',
-                'fields': ['name']
+                'fields': ['name', 'city']
             }
         }
 
