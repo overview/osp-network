@@ -2,8 +2,9 @@
 
 import os
 
-from osp.citations.hlom.ranking import Ranking
+from osp.common.config import config
 from osp.citations.hlom.utils import prettify_field
+from osp.citations.hlom.ranking import Ranking
 from flask import Flask, render_template, request, jsonify
 
 
@@ -63,6 +64,29 @@ def rank():
     return jsonify({
         'texts': format_ranks(ranking.rank())
     })
+
+
+@app.route('/institutions')
+def institutions():
+
+    """
+    Search institutions.
+    """
+
+    q = request.args.get('q')
+
+    results = config.es.search('osp', 'institution', body={
+        'size': 100,
+        'query': {
+            'multi_match': {
+                'query': q,
+                'fields': ['name', 'city'],
+                'type': 'phrase_prefix'
+            }
+        }
+    })
+
+    return jsonify(results)
 
 
 if __name__ == '__main__':
