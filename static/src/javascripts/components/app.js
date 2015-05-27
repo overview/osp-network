@@ -4,8 +4,9 @@ var React = require('react');
 var Fluxxor = require('fluxxor');
 
 var RankList = require('./rank-list');
-var QueryState = require('./query-state');
+var QueryKeywords = require('./query-keywords');
 var QueryInst = require('./query-inst');
+var QueryState = require('./query-state');
 
 
 module.exports = React.createClass({
@@ -23,6 +24,7 @@ module.exports = React.createClass({
         <div className="row">
 
           <div id="filters" className="col-md-5">
+            <QueryKeywords />
             <QueryState />
             <QueryInst />
           </div>

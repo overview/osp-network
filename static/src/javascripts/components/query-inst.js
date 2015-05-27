@@ -126,6 +126,7 @@ module.exports = React.createClass({
 
       // Get the institution id.
       var iid = self.el.selectize.getValue();
+      console.log(iid);
 
       // Don't publish empty queries.
       if (iid) {

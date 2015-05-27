@@ -19,7 +19,7 @@ module.exports = Fluxxor.createStore({
   initialize: function() {
     this.query = {};
     this.results = null;
-    this.rank();
+    //this.rank();
   },
 
 
