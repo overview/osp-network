@@ -85,7 +85,8 @@ module.exports = React.createClass({
    */
   componentDidMount: function() {
     this._initSelectize();
-    this._initEvents();
+    this._initPub();
+    this._initSub();
   },
 
 
@@ -99,16 +100,35 @@ module.exports = React.createClass({
 
 
   /**
-   * Listen for selections.
+   * Publish selections.
    */
-  _initEvents: function() {
+  _initPub: function() {
 
     var self = this;
 
-    // CHANGE
+    // Publish `state` abbreviations.
     $(this.el).on('change', function() {
       var state = self.el.selectize.getValue();
       self.getFlux().actions.state.query(state);
+    });
+
+  },
+
+
+  /**
+   * Manifest store changes.
+   */
+  _initSub: function() {
+
+    var self = this;
+
+    this.ranks = this.getFlux().store('ranks');
+
+    // Manifest new `state` values.
+    this.ranks.on('change', function() {
+      self.el.selectize.setValue(
+        self.ranks.query.state, true
+      );
     });
 
   }

@@ -50,10 +50,21 @@ module.exports = React.createClass({
       />
     }
 
+    var inst = null;
+
+    if (this.state.ranks.query.inst) {
+      inst = <Param
+        label="Institution"
+        value={this.state.ranks.query.inst}
+        close={this.onClickInst}
+      />
+    }
+
     return (
-      <div id="params">
+      <div id="param-list">
         {keywords}
         {state}
+        {inst}
       </div>
     );
 
