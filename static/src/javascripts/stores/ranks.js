@@ -8,7 +8,8 @@ module.exports = Fluxxor.createStore({
 
 
   actions: {
-    QUERY_STATE: 'queryState'
+    QUERY_STATE: 'queryState',
+    QUERY_INST: 'queryInst'
   },
 
 
@@ -40,6 +41,17 @@ module.exports = Fluxxor.createStore({
    */
   queryState: function(state) {
     this.query.state = state;
+    this.rank();
+  },
+
+
+  /**
+   * Set the institution query.
+   *
+   * @param {Number} iid
+   */
+  queryInst: function(iid) {
+    this.query.inst = iid;
     this.rank();
   },
 

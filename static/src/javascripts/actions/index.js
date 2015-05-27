@@ -1,5 +1,6 @@
 
 
 module.exports = {
-  state: require('./state')
+  state: require('./state'),
+  inst: require('./inst')
 };

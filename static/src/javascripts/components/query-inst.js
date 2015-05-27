@@ -97,7 +97,7 @@ module.exports = React.createClass({
               {' '}&bull;{' '}
 
               <span className="count">
-                {item.count}
+                {Number(item.count).toLocaleString()}
               </span>
 
               {' '}
