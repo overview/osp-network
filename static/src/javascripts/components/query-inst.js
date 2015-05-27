@@ -122,10 +122,9 @@ module.exports = React.createClass({
 
     var self = this;
 
-    // CHANGE
-    $(this.el).on('change', function() {
-      var iid = self.el.selectize.getValue();
-      self.getFlux().actions.inst.query(iid);
+    // Publish institution ids.
+    this.el.selectize.on('item_add', function(val, item) {
+      self.getFlux().actions.inst.query(val);
     });
 
   },
@@ -140,11 +139,16 @@ module.exports = React.createClass({
 
     this.ranks = this.getFlux().store('ranks');
 
-    // Manifest new `inst` values.
+    // Manifest new values.
     this.ranks.on('change', function() {
-      self.el.selectize.setValue(
-        self.ranks.query.inst, true
-      );
+
+      var newVal = self.ranks.query.inst;
+      var oldVal = self.el.selectize.getValue();
+
+      if (newVal != oldVal) {
+        self.el.selectize.setValue(newVal, true);
+      }
+
     });
 
   }

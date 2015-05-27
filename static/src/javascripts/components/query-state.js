@@ -106,10 +106,9 @@ module.exports = React.createClass({
 
     var self = this;
 
-    // Publish `state` abbreviations.
-    $(this.el).on('change', function() {
-      var state = self.el.selectize.getValue();
-      self.getFlux().actions.state.query(state);
+    // Publish state abbreviations.
+    this.el.selectize.on('item_add', function(val, item) {
+      self.getFlux().actions.state.query(val);
     });
 
   },
@@ -126,9 +125,14 @@ module.exports = React.createClass({
 
     // Manifest new `state` values.
     this.ranks.on('change', function() {
-      self.el.selectize.setValue(
-        self.ranks.query.state, true
-      );
+
+      var newVal = self.ranks.query.state;
+      var oldVal = self.el.selectize.getValue();
+
+      if (newVal != oldVal) {
+        self.el.selectize.setValue(newVal, true);
+      }
+
     });
 
   }
