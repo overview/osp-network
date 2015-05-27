@@ -49,6 +49,7 @@ module.exports = React.createClass({
       valueField: 'id',
       searchField: ['name', 'city'],
       labelField: 'name',
+      preload: true,
 
       // Query for institutions.
       load: function(q, cb) {
