@@ -49,7 +49,6 @@ module.exports = React.createClass({
       valueField: 'id',
       searchField: ['name', 'city'],
       labelField: 'name',
-      preload: true,
 
       // Query for institutions.
       load: function(q, cb) {
@@ -122,10 +121,15 @@ module.exports = React.createClass({
 
     var self = this;
 
-    // Publish id and label.
+    // Institution selected.
     this.el.selectize.on('item_add', function(val, item) {
       var label = $(item).text();
       self.getFlux().actions.inst.query(val, label);
+    });
+
+    // Institution cleared.
+    this.el.selectize.on('item_remove', function() {
+      self.getFlux().actions.inst.query();
     });
 
   },

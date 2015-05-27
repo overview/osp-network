@@ -106,10 +106,15 @@ module.exports = React.createClass({
 
     var self = this;
 
-    // Publish state abbreviations.
+    // State selected.
     this.el.selectize.on('item_add', function(val, item) {
       var label = $(item).text();
       self.getFlux().actions.state.query(val, label);
+    });
+
+    // State cleared.
+    this.el.selectize.on('item_remove', function() {
+      self.getFlux().actions.state.query();
     });
 
   },

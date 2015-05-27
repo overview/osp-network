@@ -21,7 +21,7 @@ module.exports = Fluxxor.createStore({
     this.labels = {};
     this.query = {};
     this.results = null;
-    //this.rank();
+    this.rank();
   },
 
 
@@ -74,6 +74,7 @@ module.exports = Fluxxor.createStore({
    */
   queryKeywords: function(query) {
     this.setParam('keywords', query);
+    this.rank();
   },
 
 

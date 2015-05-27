@@ -6,25 +6,38 @@ from osp.common.config import config
 from osp.citations.hlom.utils import prettify_field
 from osp.citations.hlom.ranking import Ranking
 from flask import Flask, render_template, request, jsonify
+from flask.ext.cache import Cache
+from functools import lru_cache
 
 
 app = Flask(__name__)
+cache = Cache(app, config={'CACHE_TYPE': 'redis'})
 
 
-def format_ranks(ranks):
+@cache.memoize()
+def rank(keywords=None, state=None, institution=None):
 
     """
-    Construct a list of hydrated texts for the client.
+    Pull text rankings.
 
     Args:
-        ranks (list): A ranked list of texts.
+        keywords (str)
+        state (str)
+        institution (int)
 
     Returns:
-        dict: The formatted list.
+        list: A ranked list of texts.
     """
 
+    ranking = Ranking()
+
+    # Apply filters.
+    if keywords: ranking.filter_keywords(keywords)
+    if state: ranking.filter_state(state)
+    if institution: ranking.filter_institution(institution)
+
     texts = []
-    for r in ranks:
+    for r in ranking.rank():
 
         record = r['record']
 
@@ -45,33 +58,23 @@ def search():
 
 
 @app.route('/rank')
-def rank():
+def rank_api():
 
     """
     Rank texts.
     """
 
-    ranking = Ranking()
+    texts = rank(
+        request.args.get('keywords'),
+        request.args.get('state'),
+        request.args.get('inst')
+    )
 
-    # Filter keywords.
-    query = request.args.get('keywords')
-    if query: ranking.filter_keywords(query)
-
-    # Filter state.
-    state = request.args.get('state')
-    if state: ranking.filter_state(state)
-
-    # Filter institution.
-    inst = request.args.get('inst')
-    if inst: ranking.filter_institution(inst)
-
-    return jsonify({
-        'texts': format_ranks(ranking.rank())
-    })
+    return jsonify({'texts': texts})
 
 
 @app.route('/institutions')
-def institutions():
+def inst_api():
 
     """
     Search institutions.
@@ -114,9 +117,7 @@ def institutions():
             'city':     d['_source']['city'],
         })
 
-    return jsonify({
-        'institutions': results
-    })
+    return jsonify({'institutions': results})
 
 
 if __name__ == '__main__':
