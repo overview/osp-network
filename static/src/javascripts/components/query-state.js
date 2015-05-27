@@ -80,25 +80,31 @@ module.exports = React.createClass({
    */
   componentDidMount: function() {
     this._initSelectize();
+    this._initEvents();
   },
 
 
   /**
-   * Initialize Selectize, listen for selections.
+   * Initialize Selectize.
    */
   _initSelectize: function() {
+    this.node = React.findDOMNode(this);
+    $(this.node).selectize();
+  },
+
+
+  /**
+   * Listen for selections.
+   */
+  _initEvents: function() {
 
     var self = this;
 
-    // Wrap the <select>.
-    this.node = React.findDOMNode(this);
-    $(this.node).selectize();
-    this.selectize = this.node.selectize;
-
-    // Publish queries.
+    // CHANGE
     $(this.node).on('change', function() {
 
-      var state = self.selectize.getValue();
+      // Get the abbreviation.
+      var state = self.node.selectize.getValue();
 
       // Don't publish empty queries.
       if (state) {
