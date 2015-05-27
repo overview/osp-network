@@ -45,7 +45,7 @@ module.exports = React.createClass({
     if (this.state.ranks.query.state) {
       state = <Param
         label="State"
-        value={this.state.ranks.query.state}
+        value={this.state.ranks.labels.state}
         close={this.onClickState}
       />
     }
@@ -55,7 +55,7 @@ module.exports = React.createClass({
     if (this.state.ranks.query.inst) {
       inst = <Param
         label="Institution"
-        value={this.state.ranks.query.inst}
+        value={this.state.ranks.labels.inst}
         close={this.onClickInst}
       />
     }

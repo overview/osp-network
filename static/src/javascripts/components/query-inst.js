@@ -122,9 +122,10 @@ module.exports = React.createClass({
 
     var self = this;
 
-    // Publish institution ids.
+    // Publish id and label.
     this.el.selectize.on('item_add', function(val, item) {
-      self.getFlux().actions.inst.query(val);
+      var label = $(item).text();
+      self.getFlux().actions.inst.query(val, label);
     });
 
   },

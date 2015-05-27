@@ -108,7 +108,8 @@ module.exports = React.createClass({
 
     // Publish state abbreviations.
     this.el.selectize.on('item_add', function(val, item) {
-      self.getFlux().actions.state.query(val);
+      var label = $(item).text();
+      self.getFlux().actions.state.query(val, label);
     });
 
   },

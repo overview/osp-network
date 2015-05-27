@@ -18,9 +18,10 @@ module.exports = Fluxxor.createStore({
    * Initialize results.
    */
   initialize: function() {
+    this.labels = {};
     this.query = {};
     this.results = null;
-    this.rank();
+    //this.rank();
   },
 
 
@@ -30,7 +31,8 @@ module.exports = Fluxxor.createStore({
   getState: function() {
     return {
       query: this.query,
-      results: this.results
+      results: this.results,
+      labels: this.labels
     };
   },
 
@@ -42,26 +44,26 @@ module.exports = Fluxxor.createStore({
    * @param {Mixed} val
    */
   setParam: function(key, val) {
-
     if (val) {
       this.query[key] = val;
     } else {
       delete this.query[key];
     }
-
-    this.emit('change');
-    this.rank();
-
   },
 
 
   /**
-   * Set the state query.
+   * Set a parameter label.
    *
-   * @param {String} state
+   * @param {String} key
+   * @param {Mixed} val
    */
-  queryState: function(state) {
-    this.setParam('state', state);
+  setLabel: function(key, val) {
+    if (val) {
+      this.labels[key] = val;
+    } else {
+      delete this.labels[key];
+    }
   },
 
 
@@ -76,12 +78,26 @@ module.exports = Fluxxor.createStore({
 
 
   /**
+   * Set the state query.
+   *
+   * @param {Object} args
+   */
+  queryState: function(args) {
+    this.setParam('state', args.state);
+    this.setLabel('state', args.label);
+    this.rank();
+  },
+
+
+  /**
    * Set the institution query.
    *
-   * @param {Number} iid
+   * @param {Object} args
    */
-  queryInst: function(iid) {
-    this.setParam('inst', iid);
+  queryInst: function(args) {
+    this.setParam('inst', args.iid);
+    this.setLabel('inst', args.label);
+    this.rank();
   },
 
 

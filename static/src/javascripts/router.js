@@ -25,7 +25,7 @@ module.exports = Backbone.Router.extend({
    * TODO|dev
    */
   index: function() {
-    console.log('index');
+    // TODO
   }
 
 
