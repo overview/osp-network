@@ -51,7 +51,7 @@ module.exports = React.createClass({
 
     // No results.
     if (count == 0) {
-      return <h3>No results</h3>;
+      return <h3 className="no-results">No results</h3>;
     }
 
     else {
