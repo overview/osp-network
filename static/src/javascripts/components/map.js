@@ -8,7 +8,20 @@ var L = require('leaflet');
 module.exports = React.createClass({
 
 
-  mixins: [Fluxxor.FluxMixin(React)],
+  mixins: [
+    Fluxxor.FluxMixin(React),
+    Fluxxor.StoreWatchMixin('institutions')
+  ],
+
+
+  /**
+   * Get institutions.
+   */
+  getStateFromFlux: function() {
+    return {
+      institutions: this.getFlux().store('institutions').getState()
+    };
+  },
 
 
   /**
