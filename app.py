@@ -29,7 +29,7 @@ def ranks_api():
     texts = rank(
         request.args.get('keywords'),
         request.args.get('state'),
-        request.args.get('inst')
+        request.args.get('institution')
     )
 
     return jsonify(texts)

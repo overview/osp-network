@@ -19,7 +19,7 @@ module.exports = React.createClass({
   render: function() {
     return (
       <select
-        id="filter-inst"
+        id="filter-institution"
         placeholder="Filter by institution"
         className="filter">
       </select>
@@ -125,12 +125,12 @@ module.exports = React.createClass({
     // Institution selected.
     this.el.selectize.on('item_add', function(val, item) {
       var label = $(item).text();
-      self.getFlux().actions.inst.query(val, label);
+      self.getFlux().actions.institution.query(val, label);
     });
 
     // Institution cleared.
     this.el.selectize.on('item_remove', function() {
-      self.getFlux().actions.inst.query();
+      self.getFlux().actions.institution.query();
     });
 
   },
@@ -148,7 +148,7 @@ module.exports = React.createClass({
     // Manifest new values.
     this.ranks.on('change', function() {
 
-      var newVal = self.ranks.query.inst;
+      var newVal = self.ranks.query.institution;
       var oldVal = self.el.selectize.getValue();
 
       if (newVal != oldVal) {

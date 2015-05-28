@@ -50,17 +50,17 @@ module.exports = React.createClass({
       />
     }
 
-    var inst = null;
+    var institution = null;
 
-    if (this.state.ranks.query.inst) {
-      inst = <Param
+    if (this.state.ranks.query.institution) {
+      institution = <Param
         label="Institution"
-        value={this.state.ranks.labels.inst}
-        close={this.onClickInst}
+        value={this.state.ranks.labels.institution}
+        close={this.onClickInstitution}
       />
     }
 
-    if (!keywords && !state && !inst) {
+    if (!keywords && !state && !institution) {
       return null;
     }
 
@@ -68,7 +68,7 @@ module.exports = React.createClass({
       <div id="param-list">
         {keywords}
         {state}
-        {inst}
+        {institution}
       </div>
     );
 
@@ -94,8 +94,8 @@ module.exports = React.createClass({
   /**
    * Remove the institution filter.
    */
-  onClickInst: function() {
-    this.getFlux().actions.inst.query(null);
+  onClickInstitution: function() {
+    this.getFlux().actions.institution.query(null);
   },
 
 

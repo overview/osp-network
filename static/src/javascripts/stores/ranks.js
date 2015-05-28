@@ -8,9 +8,9 @@ module.exports = Fluxxor.createStore({
 
 
   actions: {
-    QUERY_STATE: 'queryState',
     QUERY_KEYWORDS: 'queryKeywords',
-    QUERY_INST: 'queryInst'
+    QUERY_STATE: 'queryState',
+    QUERY_INSTITUTION: 'queryInstitution'
   },
 
 
@@ -95,9 +95,9 @@ module.exports = Fluxxor.createStore({
    *
    * @param {Object} args
    */
-  queryInst: function(args) {
-    this.setParam('inst', args.iid);
-    this.setLabel('inst', args.label);
+  queryInstitution: function(args) {
+    this.setParam('institution', args.iid);
+    this.setLabel('institution', args.label);
     this.rank();
   },
 

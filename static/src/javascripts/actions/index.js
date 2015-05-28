@@ -1,7 +1,7 @@
 
 
 module.exports = {
-  state: require('./state'),
   keywords: require('./keywords'),
-  inst: require('./inst')
+  state: require('./state'),
+  institution: require('./institution')
 };
