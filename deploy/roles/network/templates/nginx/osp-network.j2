@@ -6,7 +6,7 @@ server {
   charset utf-8;
 
   location ^~ /static/ {
-    root /home/ubuntu/osp-network/;
+    root {{ network_src }};
   }
 
   location / {

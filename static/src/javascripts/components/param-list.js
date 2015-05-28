@@ -60,7 +60,11 @@ module.exports = React.createClass({
       />
     }
 
-    return (
+    if (!keywords && !state && !inst) {
+      return null;
+    }
+
+    else return (
       <div id="param-list">
         {keywords}
         {state}
