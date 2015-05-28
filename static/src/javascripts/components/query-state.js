@@ -94,8 +94,29 @@ module.exports = React.createClass({
    * Initialize Selectize.
    */
   _initSelectize: function() {
+
     this.el = React.findDOMNode(this);
-    $(this.el).selectize();
+
+    $(this.el).selectize({
+
+      // Add icons.
+      render: {
+        option: function(item) {
+
+          var iconCx = 'stateface stateface-'+item.value.toLowerCase();
+
+          return React.renderToString(
+            <div className="state">
+              <span className={iconCx}></span>
+              {item.text}
+            </div>
+          );
+
+        }
+      }
+
+    });
+
   },
 
 
