@@ -14,7 +14,7 @@ app = Flask(__name__)
 cache = Cache(app, config={'CACHE_TYPE': 'redis'})
 
 
-@cache.memoize()
+@cache.memoize(86400)
 def rank(keywords=None, state=None, institution=None):
 
     """
