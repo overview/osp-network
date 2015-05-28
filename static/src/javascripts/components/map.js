@@ -109,11 +109,26 @@ module.exports = React.createClass({
 
     this.ranks = this.getFlux().store('ranks');
 
-    // Close the bubble on unselect.
+    // When the institution changes.
     this.ranks.on('change', function() {
-      if (!self.ranks.query.institution) {
-        self.map.closePopup();
+
+      var iid = self.ranks.query.institution;
+
+      // Close on unselect.
+      if (!iid) self.map.closePopup();
+
+      // Open on select.
+      else if (self.idsToMarkers[iid]) {
+
+        // Open bubble.
+        self.idsToMarkers[iid].openPopup();
+
+        // Pan to marker.
+        var latLng = self.idsToMarkers[iid]._latlng
+        self.map.setView(latLng, 12);
+
       }
+
     });
 
   },
@@ -125,6 +140,7 @@ module.exports = React.createClass({
   renderMarkers: function() {
 
     var self = this;
+    this.idsToMarkers = {};
 
     _.each(this.state.institutions.institutions, function(i) {
 
@@ -145,6 +161,9 @@ module.exports = React.createClass({
       // Show the marker.
       self.markers.addLayer(marker);
       marker.bindPopup(popup);
+
+      // Map id -> marker.
+      self.idsToMarkers[i.id] = marker;
 
     });
 
