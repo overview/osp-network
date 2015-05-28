@@ -45,6 +45,6 @@
 
 - name: Symlink the tile pyramid
   file:
-    src: /osp/tiles/hlom
+    src: /osp/tiles/v3
     dest: '{{ network_src }}/static/tiles'
     state: link
