@@ -1,8 +1,15 @@
 
 
+var _ = require('lodash');
 var React = require('react');
 var Fluxxor = require('fluxxor');
 var L = require('leaflet');
+var markerTpl = require('./marker.jade');
+require('leaflet.markercluster');
+
+
+// Set Leaflet image path.
+L.Icon.Default.imagePath = '/static/dist/images/leaflet'
 
 
 module.exports = React.createClass({
@@ -28,7 +35,14 @@ module.exports = React.createClass({
    * Render the container.
    */
   render: function() {
+
+    // Show markers when data is hydrated.
+    if (this.state.institutions.institutions) {
+      this.renderMarkers();
+    }
+
     return <div id="map"></div>;
+
   },
 
 
@@ -37,6 +51,7 @@ module.exports = React.createClass({
    */
   componentDidMount: function() {
     this._initLeaflet();
+    this._initMarkers();
   },
 
 
@@ -54,6 +69,46 @@ module.exports = React.createClass({
 
     // Focus on NYC.
     this.map.setView([40.73, -73.93], 6)
+
+  },
+
+
+  /**
+   * Initialize the marker cluster group.
+   */
+  _initMarkers: function() {
+    this.markers = new L.MarkerClusterGroup();
+    this.map.addLayer(this.markers);
+  },
+
+
+  /**
+   * Render the marker clusters.
+   */
+  renderMarkers: function() {
+
+    var self = this;
+
+    _.each(this.state.institutions.institutions, function(i) {
+
+      if (!i.lat) return;
+
+      // Create the marker.
+      var marker = new L.Marker([i.lat, i.lon], {
+        name: i.name
+      });
+
+      // Create the popup.
+      var popup = markerTpl({
+        url: i.url,
+        name: i.name
+      });
+
+      // Show the marker.
+      self.markers.addLayer(marker);
+      marker.bindPopup(popup);
+
+    });
 
   },
 
