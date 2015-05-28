@@ -70,6 +70,12 @@ module.exports = React.createClass({
     // Focus on NYC.
     this.map.setView([40.73, -73.93], 6)
 
+    // Publish selections.
+    this.map.on('popupopen', function(e) {
+      var opts = e.popup._source.options;
+      self.getFlux().actions.institution.query(opts.iid, opts.name);
+    });
+
   },
 
 
@@ -95,6 +101,7 @@ module.exports = React.createClass({
 
       // Create the marker.
       var marker = new L.Marker([i.lat, i.lon], {
+        iid: i.id,
         name: i.name
       });
 
