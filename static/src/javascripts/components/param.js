@@ -20,7 +20,8 @@ module.exports = React.createClass({
         onClick={this.props.close}>
 
         <i className="fa fa-times-circle"></i>{' '}
-        {this.props.label}: {this.props.value}
+        <span className="key">{this.props.label}:</span>{' '}
+        {this.props.value}
 
       </button>
     );
