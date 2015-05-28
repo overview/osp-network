@@ -57,7 +57,7 @@ module.exports = React.createClass({
         var self = this;
 
         request
-        .get('/api/institutions')
+        .get('/institutions/search')
         .query({q:q})
         .end(function(err, res) {
 

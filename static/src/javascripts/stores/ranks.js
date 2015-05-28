@@ -117,7 +117,7 @@ module.exports = Fluxxor.createStore({
     this.emit('change');
 
     this.req = request
-    .get('/api/ranks')
+    .get('/texts/rank')
     .query(this.query)
     .end(function(err, res) {
 

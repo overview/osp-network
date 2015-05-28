@@ -19,14 +19,14 @@ def search():
     return render_template('search.html')
 
 
-@app.route('/api/ranks')
-def ranks_api():
+@app.route('/texts/rank')
+def texts_rank():
 
     """
     Rank texts.
     """
 
-    texts = rank(
+    texts = cached_texts(
         request.args.get('keywords'),
         request.args.get('state'),
         request.args.get('institution')
@@ -35,8 +35,22 @@ def ranks_api():
     return jsonify(texts)
 
 
-@app.route('/api/institutions')
-def inst_api():
+@app.route('/institutions/load')
+def institutions_load():
+
+    """
+    Load institutions.
+    """
+
+    query = {'match_all': {}}
+
+    return jsonify({
+        'institutions': cached_institutions(query, 3000)
+    })
+
+
+@app.route('/institutions/search')
+def institutions_search():
 
     """
     Search institutions.
@@ -57,33 +71,13 @@ def inst_api():
     # If the query is empty, load everything.
     else: query = {'match_all': {}}
 
-    # Query Elasticsearch.
-    docs = config.es.search('osp', 'institution', body={
-        'size': 100,
-        'query': query,
-        'sort': [{
-            'count': {
-                'order': 'desc'
-            }
-        }]
+    return jsonify({
+        'institutions': cached_institutions(query)
     })
 
-    # Flatten out the results.
-    results = []
-    for d in docs['hits']['hits']:
-        results.append({
-            'id':       d['_id'],
-            'count':    d['_source']['count'],
-            'name':     d['_source']['name'],
-            'state':    d['_source']['state'],
-            'city':     d['_source']['city'],
-        })
 
-    return jsonify({'institutions': results})
-
-
-@cache.memoize(86400)
-def rank(keywords=None, state=None, institution=None):
+@cache.memoize()
+def cached_texts(keywords=None, state=None, institution=None):
 
     """
     Pull text rankings.
@@ -123,6 +117,46 @@ def rank(keywords=None, state=None, institution=None):
         'count': results['count'],
         'texts': texts
     }
+
+
+@cache.memoize()
+def cached_institutions(query, size=100):
+
+    """
+    Load all institutions.
+
+    Args:
+        query (dict): An Elasticsearch query.
+
+    Returns: dict
+    """
+
+    # Query Elasticsearch.
+    docs = config.es.search('osp', 'institution', body={
+        'size': size,
+        'query': query,
+        'sort': [{
+            'count': {
+                'order': 'desc'
+            }
+        }]
+    })
+
+    # Flatten out the results.
+    results = []
+    for d in docs['hits']['hits']:
+        results.append({
+            'id':       d['_id'],
+            'count':    d['_source']['count'],
+            'name':     d['_source']['name'],
+            'state':    d['_source']['state'],
+            'city':     d['_source']['city'],
+            'url':      d['_source']['url'],
+            'lon':      d['_source']['lon'],
+            'lat':      d['_source']['lat'],
+        })
+
+    return results
 
 
 if __name__ == '__main__':
