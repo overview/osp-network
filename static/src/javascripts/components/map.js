@@ -32,6 +32,7 @@ module.exports = React.createClass({
    */
   _initLeaflet: function() {
 
+    var self = this;
     this.map = L.map(this.getDOMNode());
 
     // Create an OSM tile layer.
