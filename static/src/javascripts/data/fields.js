@@ -35,7 +35,7 @@ module.exports = [
   },
 
   {
-    label: 'Cultural Studies',
+    label: 'Sociology / Cultural Studies',
     xmin: 103,
     xmax: 124,
     ymin: -106,
@@ -43,7 +43,7 @@ module.exports = [
   },
 
   {
-    label: 'History / Poly Sci / Int. Affairs',
+    label: 'History / Poli Sci / Int. Affairs',
     xmin: 52,
     xmax: 90,
     ymin: -95,
