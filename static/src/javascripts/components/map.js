@@ -52,6 +52,8 @@ module.exports = React.createClass({
   componentDidMount: function() {
     this._initLeaflet();
     this._initMarkers();
+    this._initPub();
+    this._initSub();
   },
 
 
@@ -70,12 +72,6 @@ module.exports = React.createClass({
     // Focus on NYC.
     this.map.setView([40.73, -73.93], 6)
 
-    // Publish selections.
-    this.map.on('popupopen', function(e) {
-      var opts = e.popup._source.options;
-      self.getFlux().actions.institution.query(opts.iid, opts.name);
-    });
-
   },
 
 
@@ -85,6 +81,41 @@ module.exports = React.createClass({
   _initMarkers: function() {
     this.markers = new L.MarkerClusterGroup();
     this.map.addLayer(this.markers);
+  },
+
+
+  /**
+   * Publish institution selections.
+   */
+  _initPub: function() {
+
+    var self = this;
+
+    // When a popup is clicked.
+    this.map.on('popupopen', function(e) {
+      var opts = e.popup._source.options;
+      self.getFlux().actions.institution.query(opts.iid, opts.name);
+    });
+
+  },
+
+
+  /**
+   * Manifest store changes.
+   */
+  _initSub: function() {
+
+    var self = this;
+
+    this.ranks = this.getFlux().store('ranks');
+
+    // Close the bubble on unselect.
+    this.ranks.on('change', function() {
+      if (!self.ranks.query.institution) {
+        self.map.closePopup();
+      }
+    });
+
   },
 
 
