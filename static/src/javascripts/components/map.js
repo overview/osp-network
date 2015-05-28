@@ -63,7 +63,9 @@ module.exports = React.createClass({
   _initLeaflet: function() {
 
     var self = this;
+
     this.map = L.map(this.getDOMNode());
+    this.focused = false;
 
     // Create an OSM tile layer.
     var url = '//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
@@ -71,6 +73,14 @@ module.exports = React.createClass({
 
     // Focus on NYC.
     this.map.setView([40.73, -73.93], 6)
+
+    // Track focus state.
+    this.map.on('focus', function() {
+      self.focused = true;
+    });
+    this.map.on('blur', function() {
+      self.focused = false;
+    });
 
   },
 
@@ -93,8 +103,10 @@ module.exports = React.createClass({
 
     // When a popup is clicked.
     this.map.on('popupopen', function(e) {
-      var opts = e.popup._source.options;
-      self.getFlux().actions.institution.query(opts.iid, opts.name);
+      if (self.focused) {
+        var opts = e.popup._source.options;
+        self.getFlux().actions.institution.query(opts.iid, opts.name);
+      }
     });
 
   },
@@ -120,12 +132,12 @@ module.exports = React.createClass({
       // Open on select.
       else if (self.idsToMarkers[iid]) {
 
-        // Open bubble.
-        self.idsToMarkers[iid].openPopup();
-
         // Pan to marker.
         var latLng = self.idsToMarkers[iid]._latlng
         self.map.setView(latLng, 12);
+
+        // Open bubble.
+        self.idsToMarkers[iid].openPopup();
 
       }
 

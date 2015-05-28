@@ -148,8 +148,8 @@ module.exports = React.createClass({
     // Manifest new values.
     this.ranks.on('change', function() {
 
-      var newVal = self.ranks.query.institution;
       var oldVal = self.el.selectize.getValue();
+      var newVal = self.ranks.query.institution;
 
       if (newVal != oldVal) {
         self.el.selectize.setValue(newVal, true);

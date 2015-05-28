@@ -11,7 +11,10 @@ from functools import lru_cache
 
 
 app = Flask(__name__)
-cache = Cache(app, config={'CACHE_TYPE': 'redis'})
+cache = Cache(app, config={
+    'CACHE_TYPE': 'redis',
+    'CACHE_DEFAULT_TIMEOUT': 86400,
+})
 
 
 @app.route('/')
