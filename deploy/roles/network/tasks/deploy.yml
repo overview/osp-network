@@ -28,11 +28,6 @@
   args:
     chdir: "{{ network_src }}"
 
-- name: Bower install
-  command: bower install --allow-root
-  args:
-    chdir: "{{ network_src }}"
-
 - name: Build the application
   command: grunt compile:min
   args:

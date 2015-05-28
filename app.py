@@ -36,8 +36,10 @@ def rank(keywords=None, state=None, institution=None):
     if state: ranking.filter_state(state)
     if institution: ranking.filter_institution(institution)
 
+    results = ranking.rank()
+
     texts = []
-    for r in ranking.rank():
+    for r in results['ranks']:
 
         record = r['record']
 
@@ -49,7 +51,10 @@ def rank(keywords=None, state=None, institution=None):
             'count':    record.count,
         })
 
-    return texts
+    return {
+        'count': results['count'],
+        'texts': texts
+    }
 
 
 @app.route('/')
@@ -70,7 +75,7 @@ def rank_api():
         request.args.get('inst')
     )
 
-    return jsonify({'texts': texts})
+    return jsonify(texts)
 
 
 @app.route('/institutions')

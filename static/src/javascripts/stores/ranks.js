@@ -122,7 +122,7 @@ module.exports = Fluxxor.createStore({
     .end(function(err, res) {
 
       // Show the new rows.
-      self.results = res.body.texts;
+      self.results = res.body;
       self.emit('change');
 
     });

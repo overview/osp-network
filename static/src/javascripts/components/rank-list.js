@@ -46,10 +46,18 @@ module.exports = React.createClass({
 
     }
 
+    // Get the result count.
+    var count = Number(this.state.ranks.results.count);
+
+    // No results.
+    if (count == 0) {
+      return <h3>No results</h3>;
+    }
+
     else {
 
       // Tack a timestamp onto the keys, to re-render.
-      var texts = _.map(this.state.ranks.results, function(r) {
+      var texts = _.map(this.state.ranks.results.texts, function(r) {
         return <RankRow text={r} key={r.id} />;
       });
 
@@ -60,6 +68,13 @@ module.exports = React.createClass({
 
       return (
         <div id="rank-list" className="text-list">
+
+          <h3 className="hit-count">
+            <span className="count">
+              {count.toLocaleString()}
+            </span> texts:
+          </h3>
+
           <table className={tableCx}>
             <thead>
               <th>Rank</th>
@@ -70,6 +85,7 @@ module.exports = React.createClass({
               {texts}
             </tbody>
           </table>
+
         </div>
       );
 
