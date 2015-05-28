@@ -26,6 +26,7 @@ module.exports = React.createClass({
    * Render a rank result row.
    */
   render: function() {
+
     return (
       <tr>
 
@@ -35,6 +36,10 @@ module.exports = React.createClass({
 
         <td className="count">
           {this.state.text.formatInt('count')}
+        </td>
+
+        <td className="score">
+          {this.state.text.getScore()}
         </td>
 
         <td className="text">
@@ -51,6 +56,7 @@ module.exports = React.createClass({
 
       </tr>
     );
+
   }
 
 
