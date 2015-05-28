@@ -14,56 +14,13 @@ app = Flask(__name__)
 cache = Cache(app, config={'CACHE_TYPE': 'redis'})
 
 
-@cache.memoize(86400)
-def rank(keywords=None, state=None, institution=None):
-
-    """
-    Pull text rankings.
-
-    Args:
-        keywords (str)
-        state (str)
-        institution (int)
-
-    Returns:
-        list: A ranked list of texts.
-    """
-
-    ranking = Ranking()
-
-    # Apply filters.
-    if keywords: ranking.filter_keywords(keywords)
-    if state: ranking.filter_state(state)
-    if institution: ranking.filter_institution(institution)
-
-    results = ranking.rank()
-
-    texts = []
-    for r in results['ranks']:
-
-        record = r['record']
-
-        texts.append({
-            'id':       record.id,
-            'title':    prettify_field(record.marc.title()),
-            'author':   prettify_field(record.marc.author()),
-            'rank':     r['rank'],
-            'count':    record.count,
-        })
-
-    return {
-        'count': results['count'],
-        'texts': texts
-    }
-
-
 @app.route('/')
 def search():
     return render_template('search.html')
 
 
-@app.route('/rank')
-def rank_api():
+@app.route('/api/ranks')
+def ranks_api():
 
     """
     Rank texts.
@@ -78,7 +35,7 @@ def rank_api():
     return jsonify(texts)
 
 
-@app.route('/institutions')
+@app.route('/api/institutions')
 def inst_api():
 
     """
@@ -123,6 +80,49 @@ def inst_api():
         })
 
     return jsonify({'institutions': results})
+
+
+@cache.memoize(86400)
+def rank(keywords=None, state=None, institution=None):
+
+    """
+    Pull text rankings.
+
+    Args:
+        keywords (str)
+        state (str)
+        institution (int)
+
+    Returns:
+        list: A ranked list of texts.
+    """
+
+    ranking = Ranking()
+
+    # Apply filters.
+    if keywords: ranking.filter_keywords(keywords)
+    if state: ranking.filter_state(state)
+    if institution: ranking.filter_institution(institution)
+
+    results = ranking.rank()
+
+    texts = []
+    for r in results['ranks']:
+
+        record = r['record']
+
+        texts.append({
+            'id':       record.id,
+            'title':    prettify_field(record.marc.title()),
+            'author':   prettify_field(record.marc.author()),
+            'rank':     r['rank'],
+            'count':    record.count,
+        })
+
+    return {
+        'count': results['count'],
+        'texts': texts
+    }
 
 
 if __name__ == '__main__':
