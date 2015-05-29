@@ -18,8 +18,13 @@
   args:
     chdir: '{{ filter_src }}'
 
+- name: Push up the wheelhouse
+  unarchive:
+    src: '{{ filter_wheelhouse }}'
+    dest: '{{ filter_src }}'
+
 - name: Install pip dependencies
-  command: env/bin/pip3 install -r requirements.txt
+  command: env/bin/pip3 install -r requirements.txt --find-links=wheelhouse
   args:
     chdir: '{{ filter_src }}'
 

@@ -4,5 +4,7 @@ filter_repo: https://github.com/overview/osp-network.git
 filter_branch: search
 filter_src: /home/{{ ansible_ssh_user }}/osp-filter
 
+filter_wheelhouse: {{ lookup('env', 'OSP_FILTER_WHEELHOUSE') }}
+
 uwsgi_config: /etc/uwsgi
 supervisor_autostart: true
