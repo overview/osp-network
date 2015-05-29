@@ -6,4 +6,4 @@
     - tag_osp_filter
 
   roles:
-    - network
+    - filter
