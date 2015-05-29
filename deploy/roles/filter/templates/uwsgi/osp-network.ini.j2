@@ -1,7 +1,7 @@
 
 [uwsgi]
 
-base = {{ network_src }}
+base = {{ filter_src }}
 module = app
 home = %(base)/env
 pythonpath = %(base)
