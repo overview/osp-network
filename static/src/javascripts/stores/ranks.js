@@ -140,6 +140,9 @@ module.exports = Fluxxor.createStore({
 
     var self = this;
 
+    // Clear filters.
+    this.query = {};
+
     // Cancel an in-flight request.
     if (this.req) this.req.abort();
 
