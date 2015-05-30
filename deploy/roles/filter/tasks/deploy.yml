@@ -43,3 +43,6 @@
   command: grunt compile:min
   args:
     chdir: "{{ filter_src }}"
+
+- name: Restart the application
+  shell: supervisorctl reload
