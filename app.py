@@ -40,17 +40,6 @@ def api_rank_texts():
     return jsonify(texts)
 
 
-@app.route('/texts/search')
-def api_search_texts():
-
-    """
-    Search texts.
-    """
-
-    texts = search_texts(request.args.get('query'))
-    return jsonify(texts)
-
-
 @app.route('/institutions/load')
 def api_load_institutions():
 
@@ -109,9 +98,13 @@ def rank_texts(keywords=None, state=None, institution=None):
 
     ranking = Ranking()
 
-    # Apply filters.
+    # Filter by keywords:
     if keywords: ranking.filter_keywords(keywords)
+
+    # Filter by state:
     if state: ranking.filter_state(state)
+
+    # Filter by institution:
     if institution: ranking.filter_institution(institution)
 
     results = ranking.rank()
@@ -133,67 +126,6 @@ def rank_texts(keywords=None, state=None, institution=None):
     return {
         'count': results['count'],
         'texts': texts
-    }
-
-
-@cache.memoize()
-def search_texts(q=None):
-
-    """
-    Search metadata.
-
-    Args:
-        q (str): The search query.
-
-    Returns:
-        list: A ranked list of texts.
-    """
-
-    # Search all fields when query is provided.
-    if q:
-        query = {
-            'multi_match': {
-                'query': q,
-                'fields': ['title', 'author', 'publisher'],
-                'type': 'phrase_prefix'
-            }
-        }
-
-    # If the query is empty, load all documents.
-    else:
-        query = {
-            'match_all': {}
-        }
-
-    results = config.es.search('osp', 'record', body={
-        'query': query,
-        'size': 100,
-        'sort': [{
-            'count': {
-                'order': 'desc'
-            }
-        }],
-        'highlight': {
-            'fields': {
-                'title': {
-                    'number_of_fragments': 1,
-                    'fragment_size': 1000
-                },
-                'author': {
-                    'number_of_fragments': 1,
-                    'fragment_size': 1000
-                },
-                'publisher': {
-                    'number_of_fragments': 1,
-                    'fragment_size': 1000
-                }
-            }
-        }
-    })
-
-    return {
-        'count': results['hits']['total'],
-        'texts': results['hits']['hits']
     }
 
 

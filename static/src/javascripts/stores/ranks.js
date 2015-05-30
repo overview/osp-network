@@ -131,33 +131,4 @@ module.exports = Fluxxor.createStore({
   },
 
 
-  /**
-   * Search metadata.
-   *
-   * @param {String} query
-   */
-  search: function(query) {
-
-    var self = this;
-
-    // Clear filters.
-    this.query = {};
-
-    // Cancel an in-flight request.
-    if (this.req) this.req.abort();
-
-    // Show spinner.
-    this.results = null;
-    this.emit('change');
-
-    this.req = request
-    .get('/texts/search')
-    .query({query:query})
-    .end(function(err, res) {
-      console.log(res);
-    });
-
-  },
-
-
 });
