@@ -5,9 +5,10 @@ import os
 from osp.common.config import config
 from osp.citations.hlom.utils import prettify_field
 from osp.citations.hlom.ranking import Ranking
+from osp.locations.models.doc_inst import Document_Institution
 from flask import Flask, render_template, request, jsonify
 from flask.ext.cache import Cache
-from functools import lru_cache
+from peewee import fn
 
 
 app = Flask(__name__)
