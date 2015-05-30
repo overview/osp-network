@@ -9,6 +9,28 @@ module.exports = Backbone.Model.extend({
 
 
   /**
+   * Compute the text's teaching score.
+   *
+   * @returns {Number}
+   */
+  getScore: function() {
+    var count = this.get('t_count');
+    return (Math.log(count)/Math.log(config.maxCount)) * 10;
+  },
+
+
+  /**
+   * Get the score color.
+   *
+   * @returns {String}
+   */
+  getColor: function() {
+    var scale = chroma.scale(['#F04124', '#43ac6a']).mode('lab');
+    return scale(this.getScore()/10).hex()
+  },
+
+
+  /**
    * Format an integer field for display.
    *
    * @param {String} key
@@ -20,12 +42,12 @@ module.exports = Backbone.Model.extend({
 
 
   /**
-   * Compute the text's teaching score.
+   * Format the teaching score.
    *
-   * @returns {Number}
+   * @returns {String}
    */
-  getScore: function() {
-    return 10; // TODO
+  formatScore: function() {
+    return this.getScore().toFixed(2);
   }
 
 

@@ -27,6 +27,10 @@ module.exports = React.createClass({
    */
   render: function() {
 
+    var scoreStyle = {
+      color: this.state.text.getColor()
+    };
+
     return (
       <tr>
 
@@ -35,11 +39,11 @@ module.exports = React.createClass({
         </td>
 
         <td className="count">
-          {this.state.text.formatInt('count')}
+          {this.state.text.formatInt('f_count')}
         </td>
 
-        <td className="score">
-          {this.state.text.getScore()}
+        <td className="score" style={scoreStyle}>
+          {this.state.text.formatScore()}
         </td>
 
         <td className="text">

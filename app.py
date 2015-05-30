@@ -12,6 +12,7 @@ from peewee import fn
 
 
 app = Flask(__name__)
+
 cache = Cache(app, config={
     'CACHE_TYPE': 'redis',
     'CACHE_DEFAULT_TIMEOUT': 86400,
@@ -80,7 +81,7 @@ def institutions_search():
     })
 
 
-@cache.memoize()
+#@cache.memoize()
 def cached_texts(keywords=None, state=None, institution=None):
 
     """
@@ -114,7 +115,8 @@ def cached_texts(keywords=None, state=None, institution=None):
             'title':    prettify_field(record.marc.title()),
             'author':   prettify_field(record.marc.author()),
             'rank':     r['rank'],
-            'count':    record.count,
+            't_count':  record.metadata['citation_count'],
+            'f_count':  record.count,
         })
 
     return {
@@ -123,7 +125,7 @@ def cached_texts(keywords=None, state=None, institution=None):
     }
 
 
-@cache.memoize()
+#@cache.memoize()
 def cached_institutions(query, size=100):
 
     """
