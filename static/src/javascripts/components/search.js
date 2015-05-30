@@ -17,16 +17,20 @@ module.exports = React.createClass({
 
 
   /**
-   * Get search state.
+   * Get filtering query.
    */
   getStateFromFlux: function() {
+    return {}; // TODO
+  },
 
-    var ranks = this.getFlux().store('ranks').getState();
 
+  /**
+   * By default, empty query.
+   */
+  getInitialState: function() {
     return {
-      query: ranks.query.keywords
+      query: null
     };
-
   },
 
 
@@ -42,12 +46,12 @@ module.exports = React.createClass({
     });
 
     return (
-      <div id="filter-keywords" className="input-group filter">
+      <div id="search" className="input-group filter">
 
         <input
           className="search form-control"
           type="text"
-          placeholder="Filter by keywords in syllabi"
+          placeholder="Search texts"
           valueLink={this.linkState('query')}
           onKeyPress={this.onKeyPress}
           onKeyUp={this.onKeyUp}
@@ -89,7 +93,7 @@ module.exports = React.createClass({
    * Run the current query.
    */
   query: function() {
-    this.getFlux().actions.keywords.query(this.state.query);
+    console.log(this.state.query);
   }
 
 

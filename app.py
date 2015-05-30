@@ -81,7 +81,7 @@ def institutions_search():
     })
 
 
-#@cache.memoize()
+@cache.memoize()
 def cached_texts(keywords=None, state=None, institution=None):
 
     """
@@ -125,7 +125,7 @@ def cached_texts(keywords=None, state=None, institution=None):
     }
 
 
-#@cache.memoize()
+@cache.memoize()
 def cached_institutions(query, size=100):
 
     """

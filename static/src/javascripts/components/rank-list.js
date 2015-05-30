@@ -79,7 +79,7 @@ module.exports = React.createClass({
             <thead>
               <th>Rank</th>
               <th>Count</th>
-              <th>Score</th>
+              <th>Teaching Score</th>
               <th className="text">Text</th>
             </thead>
             <tbody>
