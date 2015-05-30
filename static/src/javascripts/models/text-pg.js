@@ -16,6 +16,16 @@ module.exports = Backbone.Model.extend({
    */
   formatInt: function(key) {
     return Number(this.get(key)).toLocaleString();
+  },
+
+
+  /**
+   * Compute the text's teaching score.
+   *
+   * @returns {Number}
+   */
+  getScore: function() {
+    return 10; // TODO
   }
 
 

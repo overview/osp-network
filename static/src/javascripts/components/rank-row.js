@@ -38,6 +38,10 @@ module.exports = React.createClass({
           {this.state.text.formatInt('count')}
         </td>
 
+        <td className="score">
+          {this.state.text.getScore()}
+        </td>
+
         <td className="text">
 
           <div className="title">
