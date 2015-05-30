@@ -5,7 +5,9 @@ var React = require('react');
 var Fluxxor = require('fluxxor');
 var L = require('leaflet');
 var markerTpl = require('./marker.jade');
+
 require('leaflet.markercluster');
+require('leaflet.heat');
 
 
 // Set Leaflet image path.
@@ -52,6 +54,7 @@ module.exports = React.createClass({
   componentDidMount: function() {
     this._initLeaflet();
     this._initMarkers();
+    this._initHeatmap();
     this._initPub();
     this._initSub();
   },
@@ -91,6 +94,20 @@ module.exports = React.createClass({
   _initMarkers: function() {
     this.markers = new L.MarkerClusterGroup();
     this.map.addLayer(this.markers);
+  },
+
+
+  /**
+   * Initialize the heatmap.
+   */
+  _initHeatmap: function() {
+
+    this.heatmap = L.heatLayer([], {
+      minOpacity: 0.15
+    });
+
+    this.map.addLayer(this.heatmap);
+
   },
 
 
@@ -152,7 +169,9 @@ module.exports = React.createClass({
   renderMarkers: function() {
 
     var self = this;
+
     this.idsToMarkers = {};
+    var points = [];
 
     _.each(this.state.institutions.institutions, function(i) {
 
@@ -174,10 +193,16 @@ module.exports = React.createClass({
       self.markers.addLayer(marker);
       marker.bindPopup(popup);
 
+      // Register the heatmap point.
+      points.push(new L.latLng(i.lat, i.lon));
+
       // Map id -> marker.
       self.idsToMarkers[i.id] = marker;
 
     });
+
+    // Show the heatmap.
+    this.heatmap.setLatLngs(points);
 
   },
 
