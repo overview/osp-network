@@ -25,13 +25,13 @@ def search():
 
 
 @app.route('/texts/rank')
-def texts_rank():
+def api_rank_texts():
 
     """
     Rank texts.
     """
 
-    texts = cached_texts(
+    texts = rank_texts(
         request.args.get('keywords'),
         request.args.get('state'),
         request.args.get('institution')
@@ -40,8 +40,19 @@ def texts_rank():
     return jsonify(texts)
 
 
+@app.route('/texts/search')
+def api_search_texts():
+
+    """
+    Search texts.
+    """
+
+    texts = search_texts(request.args.get('query'))
+    return jsonify(texts)
+
+
 @app.route('/institutions/load')
-def institutions_load():
+def api_load_institutions():
 
     """
     Load institutions.
@@ -50,12 +61,12 @@ def institutions_load():
     query = {'match_all': {}}
 
     return jsonify({
-        'institutions': cached_institutions(query, 3000)
+        'institutions': load_institutions(query, 3000)
     })
 
 
 @app.route('/institutions/search')
-def institutions_search():
+def api_search_institutions():
 
     """
     Search institutions.
@@ -77,12 +88,12 @@ def institutions_search():
     else: query = {'match_all': {}}
 
     return jsonify({
-        'institutions': cached_institutions(query)
+        'institutions': load_institutions(query)
     })
 
 
 @cache.memoize()
-def cached_texts(keywords=None, state=None, institution=None):
+def rank_texts(keywords=None, state=None, institution=None):
 
     """
     Pull text rankings.
@@ -126,7 +137,68 @@ def cached_texts(keywords=None, state=None, institution=None):
 
 
 @cache.memoize()
-def cached_institutions(query, size=100):
+def search_texts(q=None):
+
+    """
+    Search metadata.
+
+    Args:
+        q (str): The search query.
+
+    Returns:
+        list: A ranked list of texts.
+    """
+
+    # Search all fields when query is provided.
+    if q:
+        query = {
+            'multi_match': {
+                'query': q,
+                'fields': ['title', 'author', 'publisher'],
+                'type': 'phrase_prefix'
+            }
+        }
+
+    # If the query is empty, load all documents.
+    else:
+        query = {
+            'match_all': {}
+        }
+
+    results = config.es.search('osp', 'record', body={
+        'query': query,
+        'size': 100,
+        'sort': [{
+            'count': {
+                'order': 'desc'
+            }
+        }],
+        'highlight': {
+            'fields': {
+                'title': {
+                    'number_of_fragments': 1,
+                    'fragment_size': 1000
+                },
+                'author': {
+                    'number_of_fragments': 1,
+                    'fragment_size': 1000
+                },
+                'publisher': {
+                    'number_of_fragments': 1,
+                    'fragment_size': 1000
+                }
+            }
+        }
+    })
+
+    return {
+        'count': results['hits']['total'],
+        'texts': results['hits']['hits']
+    }
+
+
+@cache.memoize()
+def load_institutions(query, size=100):
 
     """
     Load all institutions.

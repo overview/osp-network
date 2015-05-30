@@ -93,7 +93,7 @@ module.exports = React.createClass({
    * Run the current query.
    */
   query: function() {
-    console.log(this.state.query);
+    this.getFlux().actions.search.query(this.state.query);
   }
 
 
