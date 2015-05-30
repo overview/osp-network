@@ -1,5 +1,3 @@
-# OSP Search
+# OSP Filter
 
-Search citations to texts in the [Harvard Library Open Metadata](http://openmetadata.lib.harvard.edu) extracted from the OSP corpus.
-
-Read about the **[Open Syllabus Project](http://opensyllabusproject.org)**.
+Filter OSP texts by state, institution, and keywords.
