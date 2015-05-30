@@ -92,8 +92,40 @@ module.exports = React.createClass({
    * Initialize the marker cluster group.
    */
   _initMarkers: function() {
-    this.markers = new L.MarkerClusterGroup();
+
+    this.markers = new L.MarkerClusterGroup({
+
+      iconCreateFunction: function(cluster) {
+
+        var children = cluster.getAllChildMarkers();
+
+        // Add the counts of all the children.
+        count = _.reduce(children, function(s, m) {
+          return s + m.options.count;
+        }, 0);
+
+        // Form the class.
+        var c = 'marker-cluster-';
+        if (count < 10) {
+          c += 'small';
+        } else if (count < 100) {
+          c += 'medium';
+        } else {
+          c += 'large';
+        }
+
+        return new L.DivIcon({
+          html: '<div><span>'+count+'</span></div>',
+          iconSize: new L.Point(40, 40),
+          className: 'marker-cluster '+c
+        });
+
+      }
+
+    });
+
     this.map.addLayer(this.markers);
+
   },
 
 
@@ -180,7 +212,8 @@ module.exports = React.createClass({
       // Create the marker.
       var marker = new L.Marker([i.lat, i.lon], {
         iid: i.id,
-        name: i.name
+        name: i.name,
+        count: i.count
       });
 
       // Create the popup.
